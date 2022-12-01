@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "react-dev": "webpack --mode development --watch",
-    "server-dev": "npx nodemon server/index.js"
+    "server-dev": "npx nodemon server/server.js"
   },
   "author": "Beth Johnson",
   "license": "ISC",
@@ -30,6 +30,10 @@
     "jquery": "^3.1.1",
     "mongoose": "^5.10.15",
     "react": "^16.8.0",
-    "react-dom": "^16.8.0"
+    "react-dom": "^16.8.0",
+    "url-join": "^5.0.0"
+  },
+  "resolutions": {
+    "superagent-proxy": "^2.1.0"
   }
 }
