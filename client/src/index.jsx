@@ -7,12 +7,16 @@ import ProductDetails from './Components/ProductDetails/ProductDetails.jsx';
 import Questions from './Components/Questions/Questions.jsx';
 
 export default function App() {
-  const [productList, setProductList] = useState([]);
   const [renderedProduct, setRenderedProduct] = useState({});
+
+  const changeRenderedProduct = (id) => {
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}`, { headers: { Authorization: token.TOKEN } })
+      .then((data) => { setRenderedProduct(data.data); });
+  };
 
   useEffect(() => {
     axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products', { headers: { Authorization: token.TOKEN } })
-      .then((data) => { setProductList(data.data); setRenderedProduct(data.data[0]); });
+      .then((data) => { setRenderedProduct(data.data[0]); });
   }, []);
 
   // useEffect(() => {
@@ -24,7 +28,10 @@ export default function App() {
   return (
 
     <div>
-      <ProductDetails renderedProduct={renderedProduct} />
+      <ProductDetails
+        changeRenderedProduct={changeRenderedProduct}
+        renderedProduct={renderedProduct}
+      />
       <Reviews renderedProduct={renderedProduct} />
       <Questions renderedProduct={renderedProduct} />
     </div>
