@@ -78,8 +78,16 @@
  }
 
 
- .reviews {
-  border: solid 1px rgb(100, 237, 175);
+ .review-container {
+  border: solid 1px blueviolet;
+  padding: 5px;
+  margin:5px;
+
+
+ }
+
+ .review-item{
+  border: solid 1px black;
   padding: 5px;
   margin:5px;
 

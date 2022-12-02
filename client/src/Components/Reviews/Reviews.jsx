@@ -1,12 +1,8 @@
 import { React, useState, useEffect } from 'react';
-import ReviewItem from './ReviewItem.jsx';
 import axios from "axios";
-<<<<<<< HEAD
-import token from '../../../../config.js';
-=======
-import token from './../../../../config.js'
->>>>>>> d7ff5f04c017b872f5b584acd0a735bae71bb626
+import ReviewItem from './ReviewItem.jsx';
 
+import token from '../../../../config.js';
 
 export default function Reviews({ renderedProduct }) {
   const [reviewList, setReviewList] = useState([]);
@@ -24,11 +20,19 @@ export default function Reviews({ renderedProduct }) {
   useEffect(() => { getProductReview(); }, []);
 
   return (
-    <div className="reviews">
+    <div className="review-container">
       <h2>Reviews</h2>
 
-      {reviewList.length > 0 ? reviewList.map((review) =>
-        <ReviewItem summary={review.summary} />) : <div />}
+      {reviewList.length > 0 ? reviewList.map((review) => (
+        <ReviewItem
+          summary={review.summary}
+          body={review.body}
+          reviewer={review.reviewer_name}
+          date={review.date}
+          recommend={review.recommend}
+          photos={review.photos}
+        />
+      )) : <div />}
     </div>
   );
 }
