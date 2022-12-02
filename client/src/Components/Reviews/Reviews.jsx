@@ -1,7 +1,11 @@
 import { React, useState, useEffect } from 'react';
 import ReviewItem from './ReviewItem.jsx';
 import axios from "axios";
+<<<<<<< HEAD
 import token from '../../../../config.js';
+=======
+import token from './../../../../config.js'
+>>>>>>> d7ff5f04c017b872f5b584acd0a735bae71bb626
 
 
 export default function Reviews({ renderedProduct }) {
