@@ -17,7 +17,7 @@ export default function RelatedProducts({productId, changeRenderedProduct}) {
 
 
   return (
-    <div>
+    <div className="related-products-container">
       {relatedList.map((relatedId, index) =>
       { return (
       <RenderRelatedEntry

@@ -5,6 +5,7 @@ import token from '../../config.js'
 import Reviews from './Components/Reviews/Reviews.jsx'
 import ProductDetails from './Components/ProductDetails/ProductDetails.jsx';
 import Questions from './Components/Questions/Questions.jsx';
+import RelatedProducts from './Components/RelatedProducts/RelatedProducts.jsx';
 
 export default function App() {
   const [renderedProduct, setRenderedProduct] = useState({});
@@ -29,11 +30,14 @@ export default function App() {
 
     <div>
       <ProductDetails
-        changeRenderedProduct={changeRenderedProduct}
         renderedProduct={renderedProduct}
       />
       <Reviews renderedProduct={renderedProduct} />
       <Questions renderedProduct={renderedProduct} />
+      <RelatedProducts
+        changeRenderedProduct={changeRenderedProduct}
+        productId={renderedProduct.id}
+      />
     </div>
 
   );
