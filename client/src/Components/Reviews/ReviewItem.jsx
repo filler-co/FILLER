@@ -1,11 +1,30 @@
-import React from 'react';
+import { React, useState, useEffect } from 'react';
+import axios from 'axios';
 
-export default function ReviewItem({renderedProduct}) {
 
-  console.log(renderedProduct)
-  //'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products'
+
+
+export default function ReviewItem({ summary }) {
+
+
+  // state for summary
+  console.log('rl', summary)
+
+
+
+
+
 
   return (
-    <div > Review Item </div>
+    <div>
+      <p>Summary: {summary}</p>
+
+    </div>
   )
+
+
+
+
+
+
 }
