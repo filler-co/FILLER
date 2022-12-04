@@ -3,7 +3,7 @@ const path = require('path');
 const axios = require('axios');
 
 const app = express();
-const { getProducts, getProductReviews, getProductQuestions } = require('./controller');
+const { getProducts, getProduct, getStyles, getProductReviews, getProductQuestions } = require('./controller');
 
 
 app.use(express.json());
@@ -12,11 +12,17 @@ app.use(express.static(path.join(__dirname, '../client/dist/')));
 // get all products
 app.get('/products', getProducts);
 
+// get specific product
+app.get('/products/:product_id', getProduct);
+
+// get styles of specific product
+app.get('/products/:product_id/styles', getStyles);
+
 // get specifc product reviews
-app.get('/reviews/:product_id', getProductReviews)
+app.get('/reviews/:product_id', getProductReviews);
 
 // get specific product questions
-app.get('/questions/:product_id', getProductQuestions)
+app.get('/questions/:product_id', getProductQuestions);
 
 
 app.listen(3000, function() {

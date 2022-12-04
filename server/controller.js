@@ -24,6 +24,28 @@ module.exports.getProducts = (req, res) => {
     });
 };
 
+module.exports.getProduct = (req, res) => {
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${req.params.product_id}`, { headers: { Authorization: token.TOKEN } })
+    .then((data) => {
+      console.log('data from get product', data.data);
+      res.status(200).json(data.data);
+    }).catch((err) => {
+      console.log('error here', err);
+      res.sendStatus(404);
+    });
+};
+
+module.exports.getStyles = (req, res) => {
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${req.params.product_id}/styles`, { headers: { Authorization: token.TOKEN } })
+    .then((data) => {
+      console.log('data from get product styles', data.data);
+      res.status(200).json(data.data);
+    }).catch((err) => {
+      console.log('error here', err);
+      res.sendStatus(404);
+    });
+};
+
 module.exports.getProductReviews = (req, res) => {
   axios.get(path.join(options.url, `reviews/${req.params.product_id}`), options.headers)
     .catch((err) => {
