@@ -14,7 +14,7 @@ const options = {
 
 // 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products'
 module.exports.getProducts = (req, res) => {
-  axios.get(new URL('/products', options.url).href, { headers: { Authorization: token.TOKEN } })
+  axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/', { headers: { Authorization: token.TOKEN } })
     .then((data) => {
       console.log('data from get products', data.data);
       res.status(200).json(data.data);
