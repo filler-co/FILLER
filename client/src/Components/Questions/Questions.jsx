@@ -13,6 +13,7 @@ export default function Questions({ questions }) {
     <div className="container">
       Q&A
       {mock.map((question, index) => <QuestionItem question={question} key={index}/>)}
+
     </div>
   );
 }
