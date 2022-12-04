@@ -3,6 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import token from './../../../../config.js';
+import StylePrice from './StylePrice.jsx';
 
 const PDContainer = styled.div`
   display: grid;
@@ -93,7 +94,7 @@ export default function ProductDetails({renderedProduct, changeRenderedProduct})
         {renderedProduct.name}
       </PDNameContainer>
       <PDPriceContainer>
-        PRICE
+        <StylePrice selectedStyle={selectedStyle} />
       </PDPriceContainer>
       <PDStyleNameContainer>
         {selectedStyle.name}
