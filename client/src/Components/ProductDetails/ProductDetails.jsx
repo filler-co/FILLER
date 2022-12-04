@@ -5,6 +5,7 @@ import axios from 'axios';
 import token from './../../../../config.js';
 import StylePrice from './StylePrice.jsx';
 import StyleImage from './StyleImage.jsx';
+import StyleButtons from './StyleButtons.jsx';
 
 const PDContainer = styled.div`
   display: grid;
@@ -101,11 +102,11 @@ export default function ProductDetails({renderedProduct, changeRenderedProduct})
         {selectedStyle.name}
       </PDStyleNameContainer>
       <StyleListContainer>
-        STYLE LIST
-        STYLE LIST
-        STYLE LIST
-        STYLE LIST
-        STYLE LIST
+        <StyleButtons
+          selectedStyleId={selectedStyle.id}
+          productStyles={productStyles}
+          setSelectedStyle={setSelectedStyle}
+        />
       </StyleListContainer>
       <PDDropdownsContainer>
         DROPDOWNS
