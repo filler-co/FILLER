@@ -3,7 +3,7 @@ import React from 'react';
 
 export default function ProductDetails({renderedProduct, changeRenderedProduct}) {
   return (
-    <div className="product-details-container">
+    <div className="">
       <div className="main">{renderedProduct.name}</div>
     </div>
 
