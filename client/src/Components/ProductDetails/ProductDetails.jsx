@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import token from './../../../../config.js';
 import StylePrice from './StylePrice.jsx';
+import StyleImage from './StyleImage.jsx';
 
 const PDContainer = styled.div`
   display: grid;
@@ -85,7 +86,7 @@ export default function ProductDetails({renderedProduct, changeRenderedProduct})
   }, [renderedProduct]);
   return (
     <PDContainer>
-      <PDImgContainer>IMAGE</PDImgContainer>
+      <PDImgContainer><StyleImage selectedStylePhotos={selectedStyle.photos} /></PDImgContainer>
       <PDStarsContainer>
         STARS
       </PDStarsContainer>
