@@ -56,7 +56,8 @@ const AskQuestionBtn = styled.div`
 export default function Questions({ renderedProduct }) {
 
   const [questions, setQuestions] = useState([]);
-  const [searchResult, setSearchResult] = useState([]);
+  // const [searchResult, setSearchResult] = useState([]);
+  const [displayedQuestions, setDisplayedQuestions] = useState([]);
 
   const product_id = renderedProduct.id || 40347;
 
@@ -66,7 +67,8 @@ export default function Questions({ renderedProduct }) {
       .then((response) => {
         console.log('Client side response is : ', response.data);
         setQuestions(response.data.results);
-        setSearchResult(response.data.results);
+        // setSearchResult(response.data.results);
+        setDisplayedQuestions(response.data.results.slice(0,2));
       })
       .catch((error) => {
         console.log('Client side error is : ', error);
@@ -91,7 +93,7 @@ export default function Questions({ renderedProduct }) {
       }
     })
     console.log('search result is : ', results);
-    setSearchResult(results);
+    setDisplayedQuestions(results);
 
   }
 
@@ -110,7 +112,7 @@ export default function Questions({ renderedProduct }) {
         <SearchBar searchQuestion={searchQuestion}/>
       </Search>
       <QAList>
-        {searchResult.length > 0 ? searchResult.map((question, index) => <QuestionItem question={question} key={index} />) : 'Still loading'}
+        {displayedQuestions.length > 0 ? displayedQuestions.map((question, index) => <QuestionItem question={question} key={index} />) : 'Still loading'}
       </QAList>
       <MoreQuestionBtn>
         <MoreButton buttonName='MORE ANSWERED QUESTIONS' />
