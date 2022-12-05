@@ -7,7 +7,10 @@ import axios from 'axios';
 import token from '../../../../config';
 
 export default function StarHandler({ renderedProduct, num, single }) {
-  // state --> ratings obj
+  // Star Handler takes 3 props, renderd product is the rendered product state, num is true
+  // if you want to add the numerical rating, if you want to get the stars for a
+  // single review pass the single prop the rating or false if you do not want
+  // a single review's rating
   const [currRatings, setCurrRatings] = useState([]);
   const starResult = [];
   const id = renderedProduct.id || '40344';
