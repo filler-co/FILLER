@@ -12,7 +12,7 @@ const Container = styled.div`
   display: grid;
   height: 100vh;
   color: black;
-  grid-template-rows: 6fr 2fr 2fr 2fr;
+  grid-template-rows: 6fr 2fr 1fr 2fr;
   grid-gap: 0.25rem;
   text-align-center;
   grid-template-areas:
