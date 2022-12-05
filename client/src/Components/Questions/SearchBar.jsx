@@ -1,5 +1,15 @@
 import React from 'react';
 import { useState } from 'react';
+import styled, { css } from 'styled-components';
+
+const SearchStyle = styled.input`
+  width: 98%;
+  padding: 10px;
+  margin: 10px;
+  border: 1.5px solid grey;
+  ${'' /* border-radius: 2px; */}
+  box-sizing: border-box;
+`;
 
 export default function SearchBar({ searchQuestion }) {
   const [keyWord, setKeyword] = useState('');
@@ -15,10 +25,9 @@ export default function SearchBar({ searchQuestion }) {
 
   return (
     <div className="container">
-      Search bar
       <form onSubmit={handleSubmit}>
-        <input type='text' onChange={handleChange} value={keyWord} placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..."/>
-        <input type="submit" value="Submit" />
+          <SearchStyle type='text' onChange={handleChange} value={keyWord} placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." />
+        {/* <input type="submit" value="Submit" /> */}
       </form>
     </div>
   );

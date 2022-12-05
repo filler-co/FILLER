@@ -5,6 +5,52 @@ import QuestionItem from './QuestionItem.jsx';
 import SearchBar from './SearchBar.jsx';
 import MoreButton from '../Shared/MoreButton.jsx';
 import token from '../../../../config.js';
+import styled, { css } from 'styled-components';
+
+/* Define style for component*/
+const Container = styled.div`
+  display: grid;
+  max-height: 100%;
+  color: white;
+  grid-template-columns: 0.4fr 0.6fr;
+  grid-template-rows: 0.1fr 0.1fr 0.75fr 0.05fr;
+
+  grid-template-areas:
+    "header header"
+    "search search"
+    "list list"
+    "moreQBtn askBtn";
+  text-align: left;
+  grid-gap: 1rem;
+ `;
+
+ const Header = styled.div`
+  color:grey;
+  grid-area: header;
+  ${'' /* padding: 0.25rem; */}
+`;
+
+const Search = styled.div`
+  ${'' /* background: #01BAEF; */}
+  grid-area: search;
+  padding: 0.25rem;
+`;
+const QAList = styled.div`
+  background: #0CBABA;
+  grid-area: list;
+  padding: 0.25rem;
+`;
+const MoreQuestionBtn = styled.div`
+  ${'' /* background: #FFD3BA; */}
+  grid-area: moreQBtn;
+  padding: 0.25rem;
+`;
+
+const AskQuestionBtn = styled.div`
+  ${'' /* background: #FFD3BA; */}
+  grid-area: askBtn;
+  padding: 0.25rem;
+`;
 
 export default function Questions({ renderedProduct }) {
   const [questions, setQuestions] = useState([]);
@@ -18,15 +64,27 @@ export default function Questions({ renderedProduct }) {
       .catch((error) => {
         console.log('Client side error is : ', error);
       });
-  // }, [renderedProduct.id]);
+    // }, [renderedProduct.id]);
   }, []);
 
   return (
-    <div className="container">
-      Q&A
-      <SearchBar />
-      {questions.length > 0 ? questions.map((question, index) => <QuestionItem question={question} key={index} />) : 'Still loading'}
-      <MoreButton />
-    </div>
+    <Container>
+    <Header>
+    QUESTIONS & ANSWERS
+    </Header>
+
+      <Search>
+        <SearchBar />
+      </Search>
+      <QAList>
+        {questions.length > 0 ? questions.map((question, index) => <QuestionItem question={question} key={index} />) : 'Still loading'}
+      </QAList>
+      <MoreQuestionBtn>
+        <MoreButton buttonName='MORE ANSWERED QUESTIONS' />
+      </MoreQuestionBtn>
+      <AskQuestionBtn>
+        <MoreButton buttonName='ADD A QUESTION +' />
+      </AskQuestionBtn>
+    </Container>
   );
 }
