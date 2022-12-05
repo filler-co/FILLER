@@ -67,7 +67,8 @@ export default function App() {
       .then((data) => { setRenderedProduct(data.data[0]); });
   }, []);
 
-  const [num, setNum] = useState(2)
+  const [revNum, setRevNum] = useState(2);
+
 
   return (
 
@@ -78,7 +79,7 @@ export default function App() {
         />
       </PDdiv>
       <Rdiv>
-        <Reviews renderedProduct={renderedProduct} setNum={setNum} num={num}/>
+        <Reviews renderedProduct={renderedProduct} setRevNum={setRevNum} revNum={revNum}/>
       </Rdiv>
       <Qdiv>
         <Questions renderedProduct={renderedProduct} />
@@ -87,7 +88,7 @@ export default function App() {
         <RelatedProducts
           changeRenderedProduct={changeRenderedProduct}
           productId={renderedProduct.id}
-          setNum={setNum}
+          setRevNum={setRevNum}
         />
       </RPdiv>
     </Container>
