@@ -67,6 +67,8 @@ export default function App() {
       .then((data) => { setRenderedProduct(data.data[0]); });
   }, []);
 
+  const [num, setNum] = useState(2)
+
   return (
 
     <Container>
@@ -76,7 +78,7 @@ export default function App() {
         />
       </PDdiv>
       <Rdiv>
-        <Reviews renderedProduct={renderedProduct} />
+        <Reviews renderedProduct={renderedProduct} setNum={setNum} num={num}/>
       </Rdiv>
       <Qdiv>
         <Questions renderedProduct={renderedProduct} />
@@ -85,6 +87,7 @@ export default function App() {
         <RelatedProducts
           changeRenderedProduct={changeRenderedProduct}
           productId={renderedProduct.id}
+          setNum={setNum}
         />
       </RPdiv>
     </Container>

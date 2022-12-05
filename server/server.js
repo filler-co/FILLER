@@ -27,6 +27,6 @@ app.get('/reviews/:product_id', getProductReviews);
 // get specific product questions
 app.get('/questions/:product_id', getProductQuestions);
 
-app.listen(8080, () => {
-  console.log('listening on port 8080');
+app.listen(3000, () => {
+  console.log('listening on port 3000');
 });

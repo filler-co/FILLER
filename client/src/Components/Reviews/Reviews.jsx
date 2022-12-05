@@ -1,60 +1,38 @@
 import { React, useState, useEffect } from 'react';
 import axios from 'axios';
 import ReviewItem from './ReviewItem.jsx';
-import RatingsBreakdown from './RatingsBreakdown.jsx'
+import RatingsBreakdown from './RatingsBreakdown.jsx';
+import MoreButton from '../Shared/MoreButton.jsx';
 import RenderRelatedEntry from '../RelatedProducts/RenderRelatedEntry.jsx'
+
 import styled from 'styled-components';
 
 import token from '../../../../config';
 
 
-const RScroll = styled.div`
-overflow-y: scroll;
-scroll-behaviour: smooth;
-`;
-
-export default function Reviews({ renderedProduct }) {
+export default function Reviews({ renderedProduct, num, setNum }) {
   const [reviewList, setReviewList] = useState([]);
-  const [reviewNum, setReviewNum] = useState(2);
-  const [count, setCount] = useState(['rerender'])
   const id = renderedProduct.id
 
 
   const getProductReview = () => {
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=${id}&count=${reviewNum}&sort=newest`, { headers: { Authorization: token.TOKEN } })
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=${id}&count=${num}&sort=newest`, { headers: { Authorization: token.TOKEN } })
       .then((data) => { setReviewList(data.data.results); })
       .catch((err) => console.log(err));
   };
 
-
-
-  const moreReviews = (e) => {
-    e.preventDefault();
-    setReviewNum(reviewNum + 2);
-    getProductReview();
-  };
-  useEffect(() => {getProductReview()}, [renderedProduct.id, reviewNum])
-
-
-
-
+  useEffect(() => {if (renderedProduct.id) {getProductReview()}}, [renderedProduct.id, num])
 
   return (
     <div className="review-container">
       <h2>Ratings & Reviews</h2>
       <RatingsBreakdown renderedProduct={renderedProduct} />
-      <RScroll>
       {reviewList.length > 0 ? reviewList.map((review, idx) => (
         <ReviewItem
           key={idx}
-          summary={review.summary}
-          body={review.body}
-          reviewer={review.reviewer_name}
-          date={review.date}
-          recommend={review.recommend}
-          photos={review.photos}
           rating={review.rating}
           renderedProduct={renderedProduct}
+          review={review}
         />
       )) : (
         <nav>
@@ -63,10 +41,7 @@ export default function Reviews({ renderedProduct }) {
           </h2>
         </nav>
       )}
-      </RScroll>
-      <button type="submit" onClick={(e) => { moreReviews(e) }}>
-        Get More Reviews
-      </button>
+      <MoreButton buttonName={'Get More Reviews'} actionNeed={getProductReview} num={num} setNum={setNum}/>
     </div>
   );
 }

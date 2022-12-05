@@ -7,9 +7,9 @@ import axios from 'axios';
 import token from '../../../../config';
 
 export default function StarHandler({ renderedProduct, num, single }) {
-  // Star Handler takes 3 props, renderd product is the rendered product state, num is true
-  // if you want to add the numerical rating, if you want to get the stars for a
-  // single review pass the single prop the rating or false if you do not want
+  // Star Handler takes 3 props, rendered product is the rendered product state, num is true
+  // if you want to add the numerical rating; if you want to get the stars for a
+  // single review pass the single prop the rating(1-5) or false if you do not want
   // a single review's rating
   const [currRatings, setCurrRatings] = useState([]);
   const starResult = [];
@@ -20,13 +20,11 @@ export default function StarHandler({ renderedProduct, num, single }) {
       .catch((err) => console.log(err));
   };
 
-  useEffect(() => {
-    getReviewMetaData();
+  useEffect(() => { if(renderedProduct.id) {getReviewMetaData();}
   }, [renderedProduct.id]);
 
   const starGenerator = (starArr) => {
     let i = 0;
-    console.log('starArr',starArr)
     while (i < starArr[0]) {
       starResult.push(<FontAwesomeIcon icon={faStar} />);
       i += 1;
@@ -49,10 +47,8 @@ export default function StarHandler({ renderedProduct, num, single }) {
       for (let i = 0; i < currRatings.length; i += 1) {
         sum += (currRatings[i][0] * currRatings[i][1]);
         count += Number(currRatings[i][1]);
-        console.log(sum, count)
       }
       let result = (sum / count);
-      console.log('resuult', result)
       if (Number.isNaN(result)) {
         result = undefined;
       } else {
