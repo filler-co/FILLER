@@ -3,4 +3,11 @@ module.exports = {
   env: {
     browser: true,
   },
+  overrides: [
+    {
+      rules: {
+        'react/prop-types': 'off',
+      },
+    },
+  ],
 };

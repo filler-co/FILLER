@@ -58,12 +58,12 @@ export default function App() {
   const [renderedProduct, setRenderedProduct] = useState({});
 
   const changeRenderedProduct = (id) => {
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}`, { headers: { Authorization: token.TOKEN } })
+    axios.get(`/products/${id}`, { headers: { Authorization: token.TOKEN } })
       .then((data) => { setRenderedProduct(data.data); });
   };
 
   useEffect(() => {
-    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products', { headers: { Authorization: token.TOKEN } })
+    axios.get('/products', { headers: { Authorization: token.TOKEN } })
       .then((data) => { setRenderedProduct(data.data[0]); });
   }, []);
 
