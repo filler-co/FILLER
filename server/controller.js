@@ -56,6 +56,16 @@ module.exports.getProductReviews = (req, res) => {
     });
 };
 
+// module.exports.getReviewMetaData = (req, res) => {
+//   axios.get(path.join(options.url, `reviews/meta/${req.params.product_id}`), options.headers)
+//     .catch((err) => {
+//       console.error(err);
+//       res.status(404);
+//     }).then((data) => {
+//       res.status(200).send(data);
+//     });
+// };
+
 module.exports.getProductQuestions = (req, res) => {
   axios.get(path.join(options.url, `qa/questions/${req.params.product_id}`), options.headers)
     .catch((err) => {

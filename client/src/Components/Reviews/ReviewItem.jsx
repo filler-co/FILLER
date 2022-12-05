@@ -1,19 +1,11 @@
 import { React, useState, useEffect } from 'react';
-import axios from 'axios';
+import StarHandler from '../Shared/StarHandler.jsx';
 
-
-
-
-export default function ReviewItem({ summary, body, reviewer, date, recommend, photos}) {
-
-
-
-
-  // state for summary
-  console.log('rl', photos);
-
+export default function ReviewItem({ summary, body, reviewer, date,
+  recommend, photos, rating, renderedProduct}) {
   return (
     <div className="review-item">
+      <StarHandler renderedProduct={renderedProduct} single={rating} />
       <p>
         Date:
         {date}
@@ -31,10 +23,10 @@ export default function ReviewItem({ summary, body, reviewer, date, recommend, p
         {reviewer}
       </p>
       <div>
-        {photos.length > 0 ? photos.map((photo) =>
+        {/* {photos.length > 0 ? photos.map((photo) =>
            <img src={photo.url} alt="reviewPhoto" />
         ) : <div>Hi</div>
-        }
+        } */}
       </div>
       <p>{recommend ? 'I would recommend this product' : 'I would not recommend this product.'}</p>
 

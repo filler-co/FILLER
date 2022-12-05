@@ -38,9 +38,11 @@ const Qdiv = styled.div`
 
 const Rdiv = styled.div`
   grid-area: reviews;
-  border: solid 1px blueviolet;
+  border: solid 1px lightblue;
   padding: 5px;
   margin:5px;
+  background: blushlavender
+
 `;
 
 const RPdiv = styled.div`
