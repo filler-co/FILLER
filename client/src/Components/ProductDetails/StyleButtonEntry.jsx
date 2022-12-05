@@ -9,6 +9,8 @@ const SBContainer = styled.div`
 
 const SBButton = styled.button`
   cursor: pointer;
+  border: none;
+  background: none;
 `;
 
 export default function StyleButtonEntry({ selectedStyleId, productStyle, changeStyle}) {
