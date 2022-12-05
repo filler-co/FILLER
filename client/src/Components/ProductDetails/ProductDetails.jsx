@@ -85,6 +85,10 @@ export default function ProductDetails({renderedProduct, changeRenderedProduct})
         });
     }
   }, [renderedProduct]);
+
+  const changeStyle = (styleObj) => {
+    setSelectedStyle(styleObj);
+  };
   return (
     <PDContainer>
       <PDImgContainer><StyleImage selectedStylePhotos={selectedStyle.photos} /></PDImgContainer>
@@ -105,7 +109,7 @@ export default function ProductDetails({renderedProduct, changeRenderedProduct})
         <StyleButtons
           selectedStyleId={selectedStyle.id}
           productStyles={productStyles}
-          setSelectedStyle={setSelectedStyle}
+          changeStyle={changeStyle}
         />
       </StyleListContainer>
       <PDDropdownsContainer>

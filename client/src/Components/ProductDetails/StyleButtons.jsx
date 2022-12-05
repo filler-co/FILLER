@@ -4,10 +4,10 @@ import styled from 'styled-components';
 import StyleButtonEntry from './StyleButtonEntry.jsx';
 
 const StyleButtonsContainer = styled.div`
-  display: block;
+  display: inline-flex;
 `;
 
-export default function StyleButtons({selectedStyleId, productStyles, setSelectedStyle}) {
+export default function StyleButtons({selectedStyleId, productStyles, changeStyle}) {
   return (
     <StyleButtonsContainer>
       {productStyles.map((productStyle, index) => (
@@ -15,7 +15,7 @@ export default function StyleButtons({selectedStyleId, productStyles, setSelecte
           key={productStyle.style_id}
           selectedStyleId={selectedStyleId}
           productStyle={productStyle}
-          setSelectedStyle={setSelectedStyle}
+          changeStyle={changeStyle}
         />
       ))}
     </StyleButtonsContainer>
