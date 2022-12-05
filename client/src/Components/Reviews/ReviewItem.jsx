@@ -2,7 +2,7 @@ import { React, useState, useEffect } from 'react';
 import StarHandler from '../Shared/StarHandler.jsx';
 
 export default function ReviewItem({ summary, body, reviewer, date,
-  recommend, photos, rating, renderedProduct}) {
+  recommend, photos, rating, renderedProduct, relatedList, setRelatedList}) {
   return (
     <div className="review-item">
       <StarHandler renderedProduct={renderedProduct} single={rating} />

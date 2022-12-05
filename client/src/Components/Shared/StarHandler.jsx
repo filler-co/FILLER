@@ -13,10 +13,9 @@ export default function StarHandler({ renderedProduct, num, single }) {
   // a single review's rating
   const [currRatings, setCurrRatings] = useState([]);
   const starResult = [];
-  const id = renderedProduct.id || '40344';
   let starNum = '';
   const getReviewMetaData = () => {
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta/?product_id=${id}`, { headers: { Authorization: token.TOKEN } })
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta/?product_id=${renderedProduct.id}`, { headers: { Authorization: token.TOKEN } })
       .then((data) => { setCurrRatings(Object.entries(data.data.ratings)); })
       .catch((err) => console.log(err));
   };
@@ -27,24 +26,17 @@ export default function StarHandler({ renderedProduct, num, single }) {
 
   const starGenerator = (starArr) => {
     let i = 0;
+    console.log('starArr',starArr)
     while (i < starArr[0]) {
       starResult.push(<FontAwesomeIcon icon={faStar} />);
       i += 1;
     }
-    if (starArr[1] < 2) {
+    if (starArr[1] >= 3 && starArr[1] <= 7) {
       starResult.push(<FontAwesomeIcon icon={faStarHalfStroke} />);
-    } else if (starArr[1] >= 2 && starArr[1] < 5) {
-      starResult.push('Q');
-    } else if (starArr[1] >= 5 && starArr[1] < 7) {
-      starResult.push(<FontAwesomeIcon icon={faStarHalfStroke} />);
-    } else {
-      //starResult.push('3Q');
+    } else if (starArr[1] >= 7 ){
+      starResult.push(<FontAwesomeIcon icon={faStarHalfStroke} />)
     }
-    // let currStars = starResult.length;
-    // while (currStars < 5) {
-    //   starResult.push(<FontAwesomeIcon icon={faStar} />);
-    //   currStars += 1;
-    // }
+
   };
 
   if (typeof single === 'number') {
@@ -56,15 +48,18 @@ export default function StarHandler({ renderedProduct, num, single }) {
       let count = 0;
       for (let i = 0; i < currRatings.length; i += 1) {
         sum += (currRatings[i][0] * currRatings[i][1]);
-        count += currRatings[i][1];
+        count += Number(currRatings[i][1]);
+        console.log(sum, count)
       }
       let result = (sum / count);
+      console.log('resuult', result)
       if (Number.isNaN(result)) {
         result = undefined;
       } else {
         result = result.toString().split('.');
         result[1] = result[1].slice(0, 1);
         starNum = result.join('.');
+
 
         // produce the stars
         starGenerator(result);
