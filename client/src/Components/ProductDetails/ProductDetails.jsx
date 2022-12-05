@@ -6,6 +6,7 @@ import token from './../../../../config.js';
 import StylePrice from './StylePrice.jsx';
 import StyleImage from './StyleImage.jsx';
 import StyleButtons from './StyleButtons.jsx';
+import StyleDropdowns from './StyleDropdowns.jsx';
 
 const PDContainer = styled.div`
   display: grid;
@@ -113,7 +114,7 @@ export default function ProductDetails({renderedProduct, changeRenderedProduct})
         />
       </StyleListContainer>
       <PDDropdownsContainer>
-        DROPDOWNS
+        <StyleDropdowns selectedStyle={selectedStyle} />
       </PDDropdownsContainer>
       <PDButtonsContainer>
         BUTTONS
