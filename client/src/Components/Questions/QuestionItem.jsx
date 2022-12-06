@@ -9,7 +9,7 @@ import {sortResults, imcrementVote} from '../../utils/helper.js';
 const Container = styled.div`
   display: grid;
   max-height: 100%;
-  color: white;
+  color: black;
   grid-template-columns: 0.7fr 0.2fr 0.1fr;
   grid-template-rows: 0.3fr 0.6fr 0.1fr;
   grid-template-areas:
@@ -21,14 +21,14 @@ const Container = styled.div`
  `;
 
 const Question = styled.div`
-  background: #3a3a55;
+  ${'' /* background: #3a3a55; */}
   grid-area: question;
   padding: 0.25rem;
   font-weight: bold;
 `;
 
 const Helpful = styled.div`
-  background: #1f2128;
+  ${'' /* background: #1f2128; */}
   grid-area: helpful;
   padding: 0.25rem;
   font-size: 0.65em;
@@ -37,14 +37,14 @@ const Helpful = styled.div`
 `;
 
 const AddAnswer = styled.div`
-  background: #1f2128;
+  ${'' /* background: #1f2128; */}
   grid-area: addanswer;
   padding: 0.25rem;
   font-size: 0.65em;
 `;
 
 const LoadMore = styled.div`
-  background: #3a3a55;
+  ${'' /* background: #3a3a55; */}
   grid-area: loadmore;
   padding: 0.25rem;
   font-weight: bold;
@@ -52,7 +52,7 @@ const LoadMore = styled.div`
 `;
 
 const AnswerList = styled.div`
-  background: #1f2128;
+  ${'' /* background: #1f2128; */}
   grid-area: list;
   padding: 0.25rem;
 `;

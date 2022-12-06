@@ -5,7 +5,7 @@ import styled, { css } from 'styled-components';
 const Container = styled.div`
   display: grid;
   max-height: 100vh;
-  color: white;
+  color: black;
   grid-template-rows: 0.4fr 0.2fr 0.4fr;
   grid-template-areas:
     "answer"
@@ -16,7 +16,7 @@ const Container = styled.div`
  `;
 
 const Answer = styled.div`
-  background: #3a3a55;
+  ${'' /* background: #3a3a55; */}
   grid-area: answer;
   padding: 0.25rem;
   font-size: 0.85em;
@@ -24,14 +24,14 @@ const Answer = styled.div`
 `;
 
 const AnswerInfo = styled.div`
-  background: #1f2128;
+  ${'' /* background: #1f2128; */}
   grid-area: answerinfo;
   padding: 0.25rem;
   font-size: 0.65em;
 `;
 
 const PhotoContainer = styled.div`
-  background: #1f2128;
+  ${'' /* background: #1f2128; */}
   grid-area: photocontainer;
   padding: 0.25rem;
 `;

@@ -14,7 +14,7 @@ import { sortResults, imcrementVote } from '../../utils/helper.js';
 const Container = styled.div`
   display: grid;
   ${'' /* max-height: 100vh; */}
-  color: white;
+  color: black;
   grid-template-columns: 0.4fr 0.6fr;
   grid-template-rows: 0.1fr 0.1fr 0.65fr 0.15fr;
 
@@ -39,7 +39,7 @@ const Search = styled.div`
   padding: 0.25rem;
 `;
 const QAList = styled.div`
-  background: #0CBABA;
+  ${'' /* background: #0CBABA; */}
   grid-area: list;
   padding: 0.25rem;
   ${'' /* max-height: 100vh; */}
@@ -140,7 +140,7 @@ export default function Questions({ renderedProduct, setqNum, qNum }) {
       </Search>
       <QAList>
         {/* {displayedQuestions.length > 0 ? displayedQuestions.map((question, index) => <QuestionItem question={question} handleVote={handleVote} key={index} />) : 'Still loading'} */}
-        {displayedQuestions.length > 0 ? displayedQuestions.map((question, index) => <QuestionItem question={question} handleVote={handleVote} key={index} />) : 'Still loading'}
+        {displayedQuestions.length > 0 ? displayedQuestions.map((question, index) => <QuestionItem question={question} handleVote={handleVote} key={index} />) : 'No questions for this product, try another product'}
       </QAList>
       {showMoreBtn && <MoreQuestionBtn>
         <MoreButton buttonName='MORE ANSWERED QUESTIONS' actionNeed={getQuestions} setqNum={setqNum} qNum={qNum}/>

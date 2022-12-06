@@ -76,7 +76,9 @@ export default function SearchBar({ searchQuestion }) {
           width="20px"
           height="20px"
           stroke="red"
-          // onClick={handleSearch}
+          onClick={() => {
+            setKeyword('');
+          }}
         />
       </Icon>
 
