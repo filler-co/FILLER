@@ -1,10 +1,10 @@
 const express = require('express');
 const path = require('path');
-const axios = require('axios');
 
 const app = express();
-const { getProducts, getProduct, getStyles, getProductReviews, getProductQuestions } = require('./controller');
-
+const {
+  getProducts, getProduct, getStyles, getProductReviews, getProductQuestions, getReviewMetaData,
+} = require('./controller');
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../client/dist/')));
@@ -21,10 +21,12 @@ app.get('/products/:product_id/styles', getStyles);
 // get specifc product reviews
 app.get('/reviews/:product_id', getProductReviews);
 
+// // get review meta data
+// app.get('/reviews/meta/:product_id', getReviewMetaData);
+
 // get specific product questions
 app.get('/questions/:product_id', getProductQuestions);
 
-
-app.listen(3000, function() {
-  console.log(`listening on port 3000`);
-});``
+app.listen(3000, () => {
+  console.log('listening on port 3000');
+});
