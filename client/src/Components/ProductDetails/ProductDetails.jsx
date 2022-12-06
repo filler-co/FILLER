@@ -11,15 +11,14 @@ import StyleDropdowns from './StyleDropdowns.jsx';
 const PDContainer = styled.div`
   display: grid;
   grid-template-columns: 50%, 50%;
-  grid-template-rows: 1fr, 1.5fr, 0.5fr, 1fr, 2.5fr, 1fr, 0.5fr;
+  grid-template-rows: 1fr, 1.5fr, 0.5fr, 1fr, 2.5fr, 1.5fr;
   grid-template-areas:
   "product-image product-stars"
   "product-image product-title"
   "product-image product-price"
   "product-image product-style"
   "product-image style-list"
-  "product-image product-dropdowns"
-  "product-image cart-favorite";
+  "product-image product-dropdowns";
 `;
 
 const PDImgContainer = styled.div`
@@ -68,12 +67,6 @@ const PDDropdownsContainer = styled.div`
   margin:5px;
 `;
 
-const PDButtonsContainer = styled.div`
-  grid-area: cart-favorite;
-  border: solid 1px cornflowerblue;
-  padding: 5px;
-  margin:5px;
-`;
 
 export default function ProductDetails({renderedProduct, changeRenderedProduct}) {
   const [productStyles, setProductStyles] = React.useState([]);
@@ -116,13 +109,6 @@ export default function ProductDetails({renderedProduct, changeRenderedProduct})
       <PDDropdownsContainer>
         <StyleDropdowns selectedStyle={selectedStyle} />
       </PDDropdownsContainer>
-      <PDButtonsContainer>
-        BUTTONS
-      </PDButtonsContainer>
-
-
-
-
 
     </PDContainer>
   );
