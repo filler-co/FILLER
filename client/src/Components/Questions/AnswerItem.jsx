@@ -36,7 +36,11 @@ const PhotoContainer = styled.div`
   padding: 0.25rem;
 `;
 
-export default function AnswerItem({ answer }) {
+export default function AnswerItem({ answer, handleVote }) {
+
+  const handleClick = () => {
+    handleVote('answers',answer.id);
+  }
 
   return (
     <Container>
@@ -44,7 +48,7 @@ export default function AnswerItem({ answer }) {
         A:{answer.body}
       </Answer>
       <AnswerInfo>
-        <div>&nbsp;&nbsp;&nbsp;&nbsp;By {answer.answerer_name},{answer.date} | Helpful? Yes({answer.helpfulness}) | Report: no</div>
+        <div>&nbsp;&nbsp;&nbsp;&nbsp;By {answer.answerer_name},{answer.date} | <span style={{textDecoration: "underline"}} onClick={handleClick}>Helpful? Yes({answer.helpfulness})</span> | Report: no</div>
       </AnswerInfo>
       <PhotoContainer>
       </PhotoContainer>

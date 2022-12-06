@@ -13,7 +13,7 @@ import { sortResults, imcrementVote } from '../../utils/helper.js';
 /* Define style for component*/
 const Container = styled.div`
   display: grid;
-  max-height: 100vh;
+  ${'' /* max-height: 100vh; */}
   color: white;
   grid-template-columns: 0.4fr 0.6fr;
   grid-template-rows: 0.1fr 0.1fr 0.65fr 0.15fr;
@@ -73,6 +73,8 @@ export default function Questions({ renderedProduct, setqNum, qNum }) {
       .then((response) => {
         console.log('Client side response is : ', response.data);
         setQuestions(response.data.results);
+        let displayed = response.data.results.length > 2 ? response.data.results.slice(0,2) : response.data.results
+        setDisplayedQuestions(response.data.results);
         // if (response.data.results.length === questions.length) {
         //   console.log('that is all the questions, no more load more button')
         //   setShowMoreBtn(false);
@@ -123,9 +125,9 @@ export default function Questions({ renderedProduct, setqNum, qNum }) {
 
   /* Handle helpful vote */
   const handleVote = (voteName, id) => {
-    // imcrementVote(voteName, id, () => {
-    //   getQuestions();
-    // });
+    imcrementVote(voteName, id, () => {
+      getQuestions();
+    });
   }
 
   return (
@@ -138,7 +140,7 @@ export default function Questions({ renderedProduct, setqNum, qNum }) {
       </Search>
       <QAList>
         {/* {displayedQuestions.length > 0 ? displayedQuestions.map((question, index) => <QuestionItem question={question} handleVote={handleVote} key={index} />) : 'Still loading'} */}
-        {questions.length > 0 ? questions.map((question, index) => <QuestionItem question={question} handleVote={handleVote} key={index} />) : 'Still loading'}
+        {displayedQuestions.length > 0 ? displayedQuestions.map((question, index) => <QuestionItem question={question} handleVote={handleVote} key={index} />) : 'Still loading'}
       </QAList>
       {showMoreBtn && <MoreQuestionBtn>
         <MoreButton buttonName='MORE ANSWERED QUESTIONS' actionNeed={getQuestions} setqNum={setqNum} qNum={qNum}/>

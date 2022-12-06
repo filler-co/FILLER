@@ -68,6 +68,7 @@ export default function App() {
   }, []);
 
   const [revNum, setRevNum] = useState(2);
+  const [qNum, setqNum] = useState(2);
 
 
   return (
@@ -82,7 +83,7 @@ export default function App() {
         <Reviews renderedProduct={renderedProduct} setRevNum={setRevNum} revNum={revNum}/>
       </Rdiv>
       <Qdiv>
-        <Questions renderedProduct={renderedProduct} />
+        <Questions renderedProduct={renderedProduct} setqNum={setqNum} qNum={qNum}/>
       </Qdiv>
       <RPdiv>
         <RelatedProducts

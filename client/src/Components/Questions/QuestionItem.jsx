@@ -57,7 +57,7 @@ const AnswerList = styled.div`
   padding: 0.25rem;
 `;
 
-export default function Questions({ question, handleVote }) {
+export default function QuestionsItem({ question, handleVote }) {
 
   useEffect(() => {
     sortResults(Object.values(question.answers),'helpfulness', (result) => {
@@ -90,7 +90,7 @@ export default function Questions({ question, handleVote }) {
   }
 
   const handleClick = () => {
-    // handleVote('questions',question.question_id);
+    handleVote('questions',question.question_id);
   }
 
   return (
@@ -98,8 +98,8 @@ export default function Questions({ question, handleVote }) {
       <Question>
         Q:{question.question_body}
       </Question>
-      <Helpful>
-        Helpful? <span onClick={handleClick}>Yes</span>({question.question_helpfulness})
+      <Helpful onClick={handleClick}>
+        Helpful? Yes({question.question_helpfulness})
       </Helpful>
       <AddAnswer>
       <a>Add Answer</a>
@@ -107,7 +107,7 @@ export default function Questions({ question, handleVote }) {
       <AnswerList>
       {Object.values(displayedAnswers).map((answer, index) => {
         {/* return <div key={index}>A:{answer.body}</div> */}
-        return <AnswerItem answer={answer} key={index}/>
+        return <AnswerItem answer={answer} key={index} handleVote={handleVote}/>
       })}
       </AnswerList>
       {showLoadmore ?  <LoadMore><div onClick={handleLoadMore}>&nbsp;&nbsp;&nbsp;&nbsp;LOAD MORE ANSWERS</div></LoadMore> : ''}

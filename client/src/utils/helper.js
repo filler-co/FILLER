@@ -24,7 +24,10 @@ import token from '../../../config.js';
   // imcrement vote for helpfulness
   export function imcrementVote(voteName, id , cb) {
     console.log('Voting for : ', voteName, id);
-      axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/${voteName}/${id}/helpful`, {}, { headers: { Authorization: token.TOKEN } })
+      // axios.put('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/643484/helpful', { headers: { Authorization: token.TOKEN } })
+      // axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${id}/helpful`, { headers: { Authorization: token.TOKEN }}, { withCredentials: false})
+      let url = `/${voteName}/${id}/helpful`;
+      axios.put(url)
       .then((response) => {
         console.log('Client side response is : ', response);
         cb();
