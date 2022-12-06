@@ -100,7 +100,7 @@ export default function Questions({ question }) {
       <AnswerList>
       {Object.values(displayedAnswers).map((answer, index) => {
         {/* return <div key={index}>A:{answer.body}</div> */}
-        return <AnswerItem answer={answer}/>
+        return <AnswerItem answer={answer} key={index}/>
       })}
       </AnswerList>
       {showLoadmore ?  <LoadMore><div onClick={handleLoadMore}>&nbsp;&nbsp;&nbsp;&nbsp;LOAD MORE ANSWERS</div></LoadMore> : ''}
