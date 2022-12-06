@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useState } from 'react';
 import styled, { css } from 'styled-components';
 import AnswerItem from './AnswerItem.jsx';
+import {sortResults, imcrementVote} from '../../utils/helper.js';
+
 
 /* Define style for component*/
 const Container = styled.div`
@@ -29,6 +32,8 @@ const Helpful = styled.div`
   grid-area: helpful;
   padding: 0.25rem;
   font-size: 0.65em;
+  text-decoration: underline;
+  cursor: pointer;
 `;
 
 const AddAnswer = styled.div`
@@ -52,7 +57,41 @@ const AnswerList = styled.div`
   padding: 0.25rem;
 `;
 
-export default function Questions({ question }) {
+export default function Questions({ question, handleVote }) {
+
+  useEffect(() => {
+    sortResults(Object.values(question.answers),'helpfulness', (result) => {
+      setAnswers(result);
+      if (result.length > 2) {
+        setDisplayedAnswers(result.slice(0,2));
+        setShowLoadmore(true);
+      } else {
+        setDisplayedAnswers(result);
+      }
+    });
+
+  },[question])
+
+  const [answers, setAnswers] = useState([]);
+  const [displayedAnswers, setDisplayedAnswers] = useState([]);
+  const [showLoadmore, setShowLoadmore] = useState(false);
+
+  const handleLoadMore = () => {
+    let totalNumber = answers.length;
+
+    if (totalNumber > displayedAnswers.length) {
+      if (totalNumber > displayedAnswers.length + 2) {
+        setDisplayedAnswers(answers.slice(0,displayedAnswers.length+2));
+      } else {
+        setDisplayedAnswers(answers);
+        setShowLoadmore(false);
+      }
+    }
+  }
+
+  const handleClick = () => {
+    // handleVote('questions',question.question_id);
+  }
 
   return (
     <Container>
@@ -60,24 +99,19 @@ export default function Questions({ question }) {
         Q:{question.question_body}
       </Question>
       <Helpful>
-        Helpful? Yes({question.question_helpfulness})
+        Helpful? <span onClick={handleClick}>Yes</span>({question.question_helpfulness})
       </Helpful>
       <AddAnswer>
       <a>Add Answer</a>
       </AddAnswer>
       <AnswerList>
-      {Object.values(question.answers).map((answer, index) => {
+      {Object.values(displayedAnswers).map((answer, index) => {
         {/* return <div key={index}>A:{answer.body}</div> */}
-        return <AnswerItem answer={answer}/>
+        return <AnswerItem answer={answer} key={index}/>
       })}
       </AnswerList>
-      {Object.values(question.answers).length > 0 ?  <LoadMore>
-        <a>LOAD MORE ANSWERS</a>
-      </LoadMore> : ''}
-
+      {showLoadmore ?  <LoadMore><div onClick={handleLoadMore}>&nbsp;&nbsp;&nbsp;&nbsp;LOAD MORE ANSWERS</div></LoadMore> : ''}
       {/* <div>By {question.asker_name},{question.question_date} | | Report:{question.reported}</div> */}
     </Container>
-
-
   );
 }
