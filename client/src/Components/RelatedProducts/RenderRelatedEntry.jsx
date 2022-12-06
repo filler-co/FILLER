@@ -1,9 +1,9 @@
-import React from 'react';
+import {React, useState} from 'react';
+const RenderRelatedEntry = ({changeRenderedProduct, relatedId, setRevNum }) => {
 
-const RenderRelatedEntry = ({changeRenderedProduct, relatedId}) => {
-
+// add setQNum
   return (
-    <div onClick={(e) => {changeRenderedProduct(relatedId);}}>
+    <div onClick={(e) => { changeRenderedProduct(relatedId); setRevNum(2)}}>
       <div>{relatedId}</div>
     </div>
   );
