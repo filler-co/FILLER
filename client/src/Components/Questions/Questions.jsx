@@ -7,7 +7,7 @@ import MoreButton from '../Shared/MoreButton.jsx';
 import token from '../../../../config.js';
 import styled, { css } from 'styled-components';
 import { result } from 'lodash';
-import sortResults from '../../utils/helper.js';
+import {sortResults, imcrementVote} from '../../utils/helper.js';
 
 
 /* Define style for component*/
@@ -63,20 +63,23 @@ export default function Questions({ renderedProduct }) {
   const [displayedQuestions, setDisplayedQuestions] = useState([]);
 
   useEffect(() => {
+    getQuestions();
+  }, [renderedProduct]);
+
+  /* Get all questions back */
+  const getQuestions = () => {
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions?product_id=${renderedProduct.id}`, { headers: { Authorization: token.TOKEN } })
       .then((response) => {
         console.log('Client side response is : ', response.data);
-        let sortedResults = sortResults(response.data.results, 'question_helpfulness',(result) => {
+        sortResults(response.data.results, 'question_helpfulness',(result) => {
           setQuestions(result);
           setDisplayedQuestions(result.slice(0, 2));
         });
-
-        ;
       })
       .catch((error) => {
         console.log('Client side error is : ', error);
       });
-  }, [renderedProduct]);
+  }
 
   /* Filter for questions */
   const searchQuestion = (keyWord) => {
@@ -99,17 +102,23 @@ export default function Questions({ renderedProduct }) {
     setDisplayedQuestions(results);
   }
 
+  /* Handle helpful vote */
+  const handleVote = (voteName, id) => {
+    // imcrementVote(voteName, id, () => {
+    //   getQuestions();
+    // });
+  }
+
   return (
     <Container>
       <Header>
         QUESTIONS & ANSWERS
       </Header>
-
       <Search>
         <SearchBar searchQuestion={searchQuestion} />
       </Search>
       <QAList>
-        {displayedQuestions.length > 0 ? displayedQuestions.map((question, index) => <QuestionItem question={question} key={index} />) : 'Still loading'}
+        {displayedQuestions.length > 0 ? displayedQuestions.map((question, index) => <QuestionItem question={question} handleVote={handleVote} key={index} />) : 'Still loading'}
       </QAList>
       <MoreQuestionBtn>
         <MoreButton buttonName='MORE ANSWERED QUESTIONS' />
@@ -119,4 +128,4 @@ export default function Questions({ renderedProduct }) {
       </AskQuestionBtn>
     </Container>
   );
-}
+};

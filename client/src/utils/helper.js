@@ -1,8 +1,9 @@
 /* All the helper functions shared between components*/
-/* Sort all the questions */
+import axios from 'axios';
+import token from '../../../config.js';
 
   // sorting helper function
-  export default function sortResults(array, criteria, cb) {
+  export function sortResults(array, criteria, cb) {
     console.log('sorting')
 
     function compare(a, b) {
@@ -18,6 +19,20 @@
     array.sort(compare);
     console.log('sort result is : ', array);
     cb(array);
+  }
+
+  // imcrement vote for helpfulness
+  export function imcrementVote(voteName, id , cb) {
+    console.log('Voting for : ', voteName, id);
+      axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/${voteName}/${id}/helpful`, {}, { headers: { Authorization: token.TOKEN } })
+      .then((response) => {
+        console.log('Client side response is : ', response);
+        cb();
+      })
+      .catch((error) => {
+        console.log('Client side error is : ', error);
+      });
+
   }
 
 

@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import { useState } from 'react';
 import styled, { css } from 'styled-components';
 import AnswerItem from './AnswerItem.jsx';
-import sortResults from '../../utils/helper.js';
+import {sortResults, imcrementVote} from '../../utils/helper.js';
+
 
 /* Define style for component*/
 const Container = styled.div`
@@ -31,6 +32,8 @@ const Helpful = styled.div`
   grid-area: helpful;
   padding: 0.25rem;
   font-size: 0.65em;
+  text-decoration: underline;
+  cursor: pointer;
 `;
 
 const AddAnswer = styled.div`
@@ -54,7 +57,7 @@ const AnswerList = styled.div`
   padding: 0.25rem;
 `;
 
-export default function Questions({ question }) {
+export default function Questions({ question, handleVote }) {
 
   useEffect(() => {
     sortResults(Object.values(question.answers),'helpfulness', (result) => {
@@ -86,13 +89,17 @@ export default function Questions({ question }) {
     }
   }
 
+  const handleClick = () => {
+    // handleVote('questions',question.question_id);
+  }
+
   return (
     <Container>
       <Question>
         Q:{question.question_body}
       </Question>
       <Helpful>
-        Helpful? Yes({question.question_helpfulness})
+        Helpful? <span onClick={handleClick}>Yes</span>({question.question_helpfulness})
       </Helpful>
       <AddAnswer>
       <a>Add Answer</a>
