@@ -3,10 +3,14 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyleDropdownContainer = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: 50%, 50%;
+  grid-template-areas:
+    "size-dropdown qty-dropdown";
 `;
 
 const SizeDropdownContainer = styled.div`
+  grid-area: size-dropdown;
 `;
 
 const SizeDropdownHeader = styled.div`
@@ -22,6 +26,7 @@ const SizeListItem = styled.li`
 `;
 
 const QtyDropdownContainer = styled.div`
+  grid-area: qty-dropdown;
 `;
 
 const QtyDropdownHeader = styled.div`
