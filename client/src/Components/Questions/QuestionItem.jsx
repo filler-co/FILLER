@@ -61,9 +61,9 @@ export default function Questions({ question }) {
       setDisplayedAnswers(Object.values(question.answers).slice(0,2));
       setShowLoadmore(true);
     } else {
-      setDisplayedAnswers(question.answers);
+      setDisplayedAnswers(Object.values(question.answers));
     }
-  },[])
+  },[question])
 
   const [displayedAnswers, setDisplayedAnswers] = useState([]);
   const [showLoadmore, setShowLoadmore] = useState(false);

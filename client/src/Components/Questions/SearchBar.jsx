@@ -58,12 +58,7 @@ export default function SearchBar({ searchQuestion }) {
 
   return (
     <Container>
-      <TextInput
-        value={keyWord}
-        onChange={handleChange}
-        placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..."
-      />
-      <Icon>
+    <Icon>
         <Search
           width="20px"
           height="20px"
@@ -71,6 +66,20 @@ export default function SearchBar({ searchQuestion }) {
           // onClick={handleSearch}
         />
       </Icon>
+      <TextInput
+        value={keyWord}
+        onChange={handleChange}
+        placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..."
+      />
+      <Icon>
+        <Clear
+          width="20px"
+          height="20px"
+          stroke="red"
+          // onClick={handleSearch}
+        />
+      </Icon>
+
     </Container>
   );
 }
