@@ -7,7 +7,7 @@ import MoreButton from '../Shared/MoreButton.jsx';
 import token from '../../../../config.js';
 import styled, { css } from 'styled-components';
 import { result } from 'lodash';
-import {sortResults, imcrementVote} from '../../utils/helper.js';
+import { sortResults, imcrementVote } from '../../utils/helper.js';
 
 
 /* Define style for component*/
@@ -57,10 +57,11 @@ const AskQuestionBtn = styled.div`
   padding: 0.25rem;
 `;
 
-export default function Questions({ renderedProduct }) {
+export default function Questions({ renderedProduct, setqNum, qNum }) {
 
   const [questions, setQuestions] = useState([]);
   const [displayedQuestions, setDisplayedQuestions] = useState([]);
+  const [showMoreBtn, setShowMoreBtn] = useState(true);
 
   useEffect(() => {
     getQuestions();
@@ -68,18 +69,36 @@ export default function Questions({ renderedProduct }) {
 
   /* Get all questions back */
   const getQuestions = () => {
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions?product_id=${renderedProduct.id}`, { headers: { Authorization: token.TOKEN } })
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions?product_id=${renderedProduct.id}&count=${qNum}`, { headers: { Authorization: token.TOKEN } })
       .then((response) => {
         console.log('Client side response is : ', response.data);
-        sortResults(response.data.results, 'question_helpfulness',(result) => {
-          setQuestions(result);
-          setDisplayedQuestions(result.slice(0, 2));
-        });
+        setQuestions(response.data.results);
+        // if (response.data.results.length === questions.length) {
+        //   console.log('that is all the questions, no more load more button')
+        //   setShowMoreBtn(false);
+        // }
+        //setDisplayedQuestions(result.slice(0, 2));
       })
       .catch((error) => {
         console.log('Client side error is : ', error);
       });
   }
+
+  /* get questions with manual sorting */
+  // const getQuestions = () => {
+  //   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions?product_id=${renderedProduct.id}`, { headers: { Authorization: token.TOKEN } })
+  //     .then((response) => {
+  //       console.log('Client side response is : ', response.data);
+  //       sortResults(response.data.results, 'question_helpfulness',(result) => {
+  //         setQuestions(result);
+  //         setDisplayedQuestions(result.slice(0, 2));
+  //       });
+  //     })
+  //     .catch((error) => {
+  //       console.log('Client side error is : ', error);
+  //     });
+  // }
+
 
   /* Filter for questions */
   const searchQuestion = (keyWord) => {
@@ -118,11 +137,13 @@ export default function Questions({ renderedProduct }) {
         <SearchBar searchQuestion={searchQuestion} />
       </Search>
       <QAList>
-        {displayedQuestions.length > 0 ? displayedQuestions.map((question, index) => <QuestionItem question={question} handleVote={handleVote} key={index} />) : 'Still loading'}
+        {/* {displayedQuestions.length > 0 ? displayedQuestions.map((question, index) => <QuestionItem question={question} handleVote={handleVote} key={index} />) : 'Still loading'} */}
+        {questions.length > 0 ? questions.map((question, index) => <QuestionItem question={question} handleVote={handleVote} key={index} />) : 'Still loading'}
       </QAList>
-      <MoreQuestionBtn>
-        <MoreButton buttonName='MORE ANSWERED QUESTIONS' />
-      </MoreQuestionBtn>
+      {showMoreBtn && <MoreQuestionBtn>
+        <MoreButton buttonName='MORE ANSWERED QUESTIONS' actionNeed={getQuestions} setqNum={setqNum} qNum={qNum}/>
+      </MoreQuestionBtn>}
+
       <AskQuestionBtn>
         <MoreButton buttonName='ADD A QUESTION +' />
       </AskQuestionBtn>

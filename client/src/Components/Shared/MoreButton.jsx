@@ -30,11 +30,12 @@ Using the MoreButton
 
 
 
-export default function MoreButton({ buttonName, actionNeed, setRevNum, revNum, qNum}) {
+export default function MoreButton({ buttonName, actionNeed, setRevNum, revNum, setqNum, qNum}) {
   const handleClick = (event) => {
     console.log('Handle click with button : ', buttonName);
     event.preventDefault();
-    revNum ? setRevNum(revNum + 2) : //set qNum
+    revNum ? setRevNum(revNum + 2) :
+    qNum && setqNum(qNum+2)
     actionNeed()
   };
 
