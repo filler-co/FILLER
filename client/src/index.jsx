@@ -38,9 +38,11 @@ const Qdiv = styled.div`
 
 const Rdiv = styled.div`
   grid-area: reviews;
-  border: solid 1px blueviolet;
+  border: solid 1px lightblue;
   padding: 5px;
   margin:5px;
+  background: blushlavender
+
 `;
 
 const RPdiv = styled.div`
@@ -65,6 +67,9 @@ export default function App() {
       .then((data) => { setRenderedProduct(data.data[0]); });
   }, []);
 
+  const [revNum, setRevNum] = useState(2);
+
+
   return (
 
     <Container>
@@ -74,7 +79,7 @@ export default function App() {
         />
       </PDdiv>
       <Rdiv>
-        <Reviews renderedProduct={renderedProduct} />
+        <Reviews renderedProduct={renderedProduct} setRevNum={setRevNum} revNum={revNum}/>
       </Rdiv>
       <Qdiv>
         <Questions renderedProduct={renderedProduct} />
@@ -83,6 +88,7 @@ export default function App() {
         <RelatedProducts
           changeRenderedProduct={changeRenderedProduct}
           productId={renderedProduct.id}
+          setRevNum={setRevNum}
         />
       </RPdiv>
     </Container>

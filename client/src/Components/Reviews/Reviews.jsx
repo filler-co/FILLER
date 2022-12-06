@@ -1,38 +1,47 @@
 import { React, useState, useEffect } from 'react';
-import axios from "axios";
+import axios from 'axios';
 import ReviewItem from './ReviewItem.jsx';
+import RatingsBreakdown from './RatingsBreakdown.jsx';
+import MoreButton from '../Shared/MoreButton.jsx';
 
-import token from '../../../../config.js';
+import styled from 'styled-components';
 
-export default function Reviews({ renderedProduct }) {
+import token from '../../../../config';
+
+
+export default function Reviews({ renderedProduct, revNum, setRevNum }) {
   const [reviewList, setReviewList] = useState([]);
+  const id = renderedProduct.id
 
-  // state fro body
 
-  // get request to the current product id
 
   const getProductReview = () => {
-    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews?product_id=40344', { headers: { Authorization: token.TOKEN } })
-      .then((data) => { setReviewList(data.data.results); console.log('data', data.data.results); })
-      .catch((err) => console.error(err));
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=${id}&count=${revNum}&sort=newest`, { headers: { Authorization: token.TOKEN } })
+    .then((data) => { setReviewList(data.data.results); })
+    .catch((err) => console.log(err));
   };
 
-  useEffect(() => { getProductReview(); }, []);
+  useEffect(() => {if (renderedProduct.id) {getProductReview()}}, [revNum, renderedProduct.id])
 
   return (
     <div className="review-container">
-      <h2>Reviews</h2>
-
-      {reviewList.length > 0 ? reviewList.map((review) => (
+      <h2>Ratings & Reviews</h2>
+      <RatingsBreakdown renderedProduct={renderedProduct} />
+      {reviewList.length > 0 ? reviewList.map((review, idx) => (
         <ReviewItem
-          summary={review.summary}
-          body={review.body}
-          reviewer={review.reviewer_name}
-          date={review.date}
-          recommend={review.recommend}
-          photos={review.photos}
+          key={idx}
+          rating={review.rating}
+          renderedProduct={renderedProduct}
+          review={review}
         />
-      )) : <div />}
+      )) : (
+        <nav>
+          <h2>
+            Loading Reviews
+          </h2>
+        </nav>
+      )}
+      <MoreButton buttonName={'Get More Reviews'} actionNeed={getProductReview} revNum={revNum} setRevNum={setRevNum} qNum={false}/>
     </div>
   );
 }

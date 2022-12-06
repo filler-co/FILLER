@@ -44,7 +44,7 @@ export default function AnswerItem({ answer }) {
         A:{answer.body}
       </Answer>
       <AnswerInfo>
-        <div>By {answer.answerer_name},{answer.date} | Helpful? Yes({answer.helpfulness}) | Report: no</div>
+        <div>&nbsp;&nbsp;&nbsp;&nbsp;By {answer.answerer_name},{answer.date} | Helpful? Yes({answer.helpfulness}) | Report: no</div>
       </AnswerInfo>
       <PhotoContainer>
       </PhotoContainer>
