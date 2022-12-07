@@ -14,7 +14,7 @@ export default function RatingsBreakdown({ renderedProduct }) {
       .catch((err) => console.log(err));
   }
 
-  useEffect(() => {if(renderedProduct.id) {getGraphData()}}, [renderedProduct.id]);
+  useEffect(() => {if(renderedProduct) {getGraphData()}}, [renderedProduct]);
 
   console.log('cr', graphData)
 
@@ -23,7 +23,7 @@ export default function RatingsBreakdown({ renderedProduct }) {
   return (
     <div>
     <h3>REVIEW BREAKDOWN</h3>
-    {/* {renderedProduct.id ? <StarHandler renderedProduct={renderedProduct} num={num} single={false}/> : <div></div> } */}
+    {renderedProduct.id ? <StarHandler renderedProduct={renderedProduct.id} num={num} single={false}/> : <div></div> }
     </div>
 
   );

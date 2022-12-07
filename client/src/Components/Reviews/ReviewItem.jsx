@@ -103,7 +103,7 @@ export default function ReviewItem({ review, renderedProduct, rating }) {
   return (
     <ReviewItemContainer>
       <StarItem>
-        <StarHandler renderedProduct={renderedProduct} single={rating} />
+        <StarHandler renderedProduct={renderedProduct.id} single={rating} />
       </StarItem>
       <UserInfo>
           {review.reviewer_name} | {formatDate(review.date)}
