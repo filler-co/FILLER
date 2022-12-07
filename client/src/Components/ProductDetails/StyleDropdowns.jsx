@@ -30,7 +30,7 @@ const SizeDropdownListContainer = styled.div`
   overflow-y: auto;
   overflow-x: hidden;
   background: white;
-  max-height: 70px;
+  max-height: 90px;
 `;
 
 const SizeDropdownList = styled.ul`
@@ -47,7 +47,7 @@ const QtyDropdownContainer = styled.div`
   padding: 5px;
   margin: 5px 5px 0px 5px;
   margin-bottom: 25%;
-  max-height: 50px;
+  max-height: 40px;
 `;
 
 const QtyDropdownHeader = styled.div`
