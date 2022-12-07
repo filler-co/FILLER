@@ -23,7 +23,6 @@ const PDContainer = styled.div`
 
 const PDImgContainer = styled.div`
   grid-area: product-image;
-  background: cornflowerblue;
   text-align: center;
   margin:5px;
 `;
@@ -85,7 +84,9 @@ export default function ProductDetails({renderedProduct, changeRenderedProduct})
   };
   return (
     <PDContainer>
-      <PDImgContainer><StyleImage selectedStylePhotos={selectedStyle.photos} /></PDImgContainer>
+      <PDImgContainer>
+        <StyleImage selectedStylePhotos={selectedStyle.photos} />
+      </PDImgContainer>
       <PDStarsContainer>
         STARS
       </PDStarsContainer>

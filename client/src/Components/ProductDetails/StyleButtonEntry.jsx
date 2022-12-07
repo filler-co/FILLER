@@ -17,7 +17,7 @@ export default function StyleButtonEntry({ selectedStyleId, productStyle, change
   return (
     <SBContainer>
       <SBButton type="button" onClick={() => changeStyle(productStyle)}>
-        <div style={{ backgroundImage: `url(${productStyle.photos[0].thumbnail_url})`, borderRadius: '50%', width: '30px', height: '30px'}} />
+        <div style={{ backgroundImage: `url(${productStyle.photos[0].thumbnail_url})`, borderRadius: '50%', width: '40px', height: '40px'}} />
       </SBButton>
     </SBContainer>
   );

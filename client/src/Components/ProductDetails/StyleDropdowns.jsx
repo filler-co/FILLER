@@ -29,6 +29,7 @@ const SizeDropdownListContainer = styled.div`
   overflow-y: auto;
   overflow-x: hidden;
   max-height: 70%;
+  background: white;
 `;
 
 const SizeDropdownList = styled.ul`
@@ -40,18 +41,23 @@ const SizeListItem = styled.li`
 const QtyDropdownContainer = styled.div`
   grid-area: qty-dropdown;
   text-align: center;
-  z-index: 1;
+  z-index: 2;
   border: solid 1px cornflowerblue;
   padding: 5px;
-  margin:5px;
+  margin: 5px 5px 0px 5px;
+  margin-bottom: 25%;
 `;
 
 const QtyDropdownHeader = styled.div`
-  z-index: 3;
+  z-index: 5;
 `;
 
 const QtyDropdownListContainer = styled.div`
-  z-index: 3;
+  z-index: 5;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 40%;
+  background: white;
 `;
 
 const QtyDropdownList = styled.ul`
@@ -79,9 +85,10 @@ const FavContainer = styled.div`
   grid-area: qty-dropdown;
   border: solid 1px cornflowerblue;
   padding: 5px;
-  margin:5px;
-  padding-top: 25%;
+  margin: 0px 5px 5px 5px;
+  margin-top: 25%;
   text-align: center;
+  z-index: 1;
 `;
 
 
