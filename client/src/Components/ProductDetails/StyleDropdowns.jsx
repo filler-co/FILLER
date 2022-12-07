@@ -18,6 +18,7 @@ const SizeDropdownContainer = styled.div`
   padding: 5px;
   margin: 5px 5px 0px 5px;
   margin-bottom: 25%;
+  max-height: 50px;
 `;
 
 const SizeDropdownHeader = styled.div`
@@ -28,8 +29,8 @@ const SizeDropdownListContainer = styled.div`
   z-index: 5;
   overflow-y: auto;
   overflow-x: hidden;
-  max-height: 70%;
   background: white;
+  max-height: 70px;
 `;
 
 const SizeDropdownList = styled.ul`
@@ -46,6 +47,7 @@ const QtyDropdownContainer = styled.div`
   padding: 5px;
   margin: 5px 5px 0px 5px;
   margin-bottom: 25%;
+  max-height: 50px;
 `;
 
 const QtyDropdownHeader = styled.div`
@@ -56,8 +58,8 @@ const QtyDropdownListContainer = styled.div`
   z-index: 5;
   overflow-y: auto;
   overflow-x: hidden;
-  max-height: 40%;
   background: white;
+  max-height: 70px;
 `;
 
 const QtyDropdownList = styled.ul`
