@@ -9,7 +9,6 @@ const ButtonStyle = styled.button`
   padding: 0.25em 1em;
   border: 1px solid black;
   height: 2.5em;
-  width: 12em;
   border-radius: 7px;
 
 
