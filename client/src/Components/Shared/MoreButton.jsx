@@ -2,14 +2,13 @@ import {React, useState} from 'react';
 import styled, { css } from 'styled-components';
 
 const ButtonStyle = styled.button`
-  background: #edede9;
-  font-size: 1em;
+  background: white;
+  font-size: 0.8em;
   margin: 1em;
   padding: 0.25em 1em;
   border: 1px solid black;
-  height: 2.5em;
-  border-radius: 7px;
-
+  height: 3em;
+  font-weight:bold;
 `;
 /*This is passed as my actionNeed from the component that is using the button
 
@@ -31,11 +30,12 @@ Using the MoreButton
 
 
 
-export default function MoreButton({ buttonName, actionNeed, setRevNum, revNum, qNum}) {
+export default function MoreButton({ buttonName, actionNeed, setRevNum, revNum, setqNum, qNum}) {
   const handleClick = (event) => {
     console.log('Handle click with button : ', buttonName);
     event.preventDefault();
-    revNum ? setRevNum(revNum + 2) : //set qNum
+    revNum ? setRevNum(revNum + 2) :
+    qNum && setqNum(qNum+2)
     actionNeed()
   };
 

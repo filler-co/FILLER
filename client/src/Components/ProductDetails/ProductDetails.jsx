@@ -8,7 +8,7 @@ import StyleImage from './StyleImage.jsx';
 
 const PDContainer = styled.div`
   display: grid;
-  grid-template-columns: 30%, 70%;
+  grid-template-columns: 50%, 50%;
   grid-template-rows: 1fr, 1.5fr, 0.5fr, 1fr, 2.5fr, 1fr, 0.5fr;
   grid-template-areas:
   "product-image product-stars"

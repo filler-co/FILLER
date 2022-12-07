@@ -8,27 +8,28 @@ import {sortResults, imcrementVote} from '../../utils/helper.js';
 /* Define style for component*/
 const Container = styled.div`
   display: grid;
-  max-height: 100%;
-  color: white;
+  max-height: 100vh;
+  min-height:auto;
+  color: black;
+  grid-template-rows: 0.3fr 0.69fr 0.01fr;
   grid-template-columns: 0.7fr 0.2fr 0.1fr;
-  grid-template-rows: 0.3fr 0.6fr 0.1fr;
   grid-template-areas:
     "question helpful addanswer"
     "list list list"
     "loadmore loadmore loadmore";
   text-align: left;
-  grid-gap: 0.25rem;
+  grid-gap: 0.05rem;
  `;
 
 const Question = styled.div`
-  background: #3a3a55;
+  ${'' /* background: #3a3a55; */}
   grid-area: question;
-  padding: 0.25rem;
+  ${'' /* padding: 0.25rem; */}
   font-weight: bold;
 `;
 
 const Helpful = styled.div`
-  background: #1f2128;
+  ${'' /* background: #1f2128; */}
   grid-area: helpful;
   padding: 0.25rem;
   font-size: 0.65em;
@@ -37,27 +38,27 @@ const Helpful = styled.div`
 `;
 
 const AddAnswer = styled.div`
-  background: #1f2128;
+  ${'' /* background: #1f2128; */}
   grid-area: addanswer;
   padding: 0.25rem;
   font-size: 0.65em;
 `;
 
 const LoadMore = styled.div`
-  background: #3a3a55;
+  ${'' /* background: #3a3a55; */}
   grid-area: loadmore;
   padding: 0.25rem;
   font-weight: bold;
-  font-size: 0.75em;
+  font-size: 0.65em;
 `;
 
 const AnswerList = styled.div`
-  background: #1f2128;
+  ${'' /* background: #1f2128; */}
   grid-area: list;
   padding: 0.25rem;
 `;
 
-export default function Questions({ question, handleVote }) {
+export default function QuestionsItem({ question, handleVote }) {
 
   useEffect(() => {
     sortResults(Object.values(question.answers),'helpfulness', (result) => {
@@ -90,7 +91,7 @@ export default function Questions({ question, handleVote }) {
   }
 
   const handleClick = () => {
-    // handleVote('questions',question.question_id);
+    handleVote('questions',question.question_id);
   }
 
   return (
@@ -98,8 +99,8 @@ export default function Questions({ question, handleVote }) {
       <Question>
         Q:{question.question_body}
       </Question>
-      <Helpful>
-        Helpful? <span onClick={handleClick}>Yes</span>({question.question_helpfulness})
+      <Helpful onClick={handleClick}>
+        Helpful? Yes({question.question_helpfulness})
       </Helpful>
       <AddAnswer>
       <a>Add Answer</a>
@@ -107,7 +108,7 @@ export default function Questions({ question, handleVote }) {
       <AnswerList>
       {Object.values(displayedAnswers).map((answer, index) => {
         {/* return <div key={index}>A:{answer.body}</div> */}
-        return <AnswerItem answer={answer} key={index}/>
+        return <AnswerItem answer={answer} key={index} handleVote={handleVote}/>
       })}
       </AnswerList>
       {showLoadmore ?  <LoadMore><div onClick={handleLoadMore}>&nbsp;&nbsp;&nbsp;&nbsp;LOAD MORE ANSWERS</div></LoadMore> : ''}

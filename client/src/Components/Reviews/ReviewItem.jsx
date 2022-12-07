@@ -131,4 +131,3 @@ export default function ReviewItem({ review, renderedProduct, rating }) {
     </ReviewItemContainer>
   );
 }
-
