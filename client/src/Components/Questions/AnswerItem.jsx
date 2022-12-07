@@ -1,11 +1,12 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import { report } from '../../utils/helper';
 
 /* Define style for component*/
 const Container = styled.div`
   display: grid;
   max-height: 100vh;
-  color: white;
+  color: black;
   grid-template-rows: 0.4fr 0.2fr 0.4fr;
   grid-template-areas:
     "answer"
@@ -16,7 +17,7 @@ const Container = styled.div`
  `;
 
 const Answer = styled.div`
-  background: #3a3a55;
+  ${'' /* background: #3a3a55; */}
   grid-area: answer;
   padding: 0.25rem;
   font-size: 0.85em;
@@ -24,19 +25,31 @@ const Answer = styled.div`
 `;
 
 const AnswerInfo = styled.div`
-  background: #1f2128;
+  ${'' /* background: #1f2128; */}
   grid-area: answerinfo;
   padding: 0.25rem;
   font-size: 0.65em;
+  color:grey;
+  cursor: pointer;
 `;
 
 const PhotoContainer = styled.div`
-  background: #1f2128;
+  ${'' /* background: #1f2128; */}
   grid-area: photocontainer;
   padding: 0.25rem;
 `;
 
-export default function AnswerItem({ answer }) {
+export default function AnswerItem({ answer, handleVote }) {
+
+  const handleVoteClick = () => {
+    handleVote('answers',answer.id);
+  }
+
+  const handleReportClick = () => {
+    report('answers',answer.id);
+  }
+
+
 
   return (
     <Container>
@@ -44,7 +57,7 @@ export default function AnswerItem({ answer }) {
         A:{answer.body}
       </Answer>
       <AnswerInfo>
-        <div>&nbsp;&nbsp;&nbsp;&nbsp;By {answer.answerer_name},{answer.date} | Helpful? Yes({answer.helpfulness}) | Report: no</div>
+        <div>&nbsp;&nbsp;&nbsp;&nbsp;By {answer.answerer_name},{answer.date} | Helpful?<span style={{textDecoration: "underline"}} onClick={handleVoteClick}> Yes({answer.helpfulness})</span> | <span style={{textDecoration: "underline"}} onClick={handleReportClick}>Report</span></div>
       </AnswerInfo>
       <PhotoContainer>
       </PhotoContainer>

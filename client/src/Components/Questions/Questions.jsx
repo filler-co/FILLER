@@ -7,16 +7,18 @@ import MoreButton from '../Shared/MoreButton.jsx';
 import token from '../../../../config.js';
 import styled, { css } from 'styled-components';
 import { result } from 'lodash';
-import {sortResults, imcrementVote} from '../../utils/helper.js';
+import { sortResults, imcrementVote } from '../../utils/helper.js';
 
 
 /* Define style for component*/
 const Container = styled.div`
   display: grid;
-  max-height: 100vh;
-  color: white;
+  max-height: 100%;
+  min-height: 100%;
+  ${'' /* min-height: auto; */}
+  color: black;
   grid-template-columns: 0.4fr 0.6fr;
-  grid-template-rows: 0.1fr 0.1fr 0.65fr 0.15fr;
+  grid-template-rows: 0.01fr 0.01fr 0.97fr 0.01fr;
 
   grid-template-areas:
     "header header"
@@ -36,31 +38,33 @@ const Header = styled.div`
 const Search = styled.div`
   ${'' /* background: #01BAEF; */}
   grid-area: search;
-  padding: 0.25rem;
+  ${'' /* padding: 0.25rem; */}
 `;
 const QAList = styled.div`
-  background: #0CBABA;
+  ${'' /* background: #0CBABA; */}
   grid-area: list;
-  padding: 0.25rem;
-  ${'' /* max-height: 100vh; */}
-  ${'' /* overflow: auto; */}
+  ${'' /* padding: 0.25rem; */}
+  max-height: 100vh;
+  min-height: auto;
+  overflow: auto;
 `;
 const MoreQuestionBtn = styled.div`
   ${'' /* background: #FFD3BA; */}
   grid-area: moreQBtn;
-  padding: 0.25rem;
+  ${'' /* padding: 0.25rem; */}
 `;
 
 const AskQuestionBtn = styled.div`
   ${'' /* background: #FFD3BA; */}
   grid-area: askBtn;
-  padding: 0.25rem;
+  ${'' /* padding: 0.25rem; */}
 `;
 
-export default function Questions({ renderedProduct }) {
+export default function Questions({ renderedProduct, setqNum, qNum }) {
 
   const [questions, setQuestions] = useState([]);
   const [displayedQuestions, setDisplayedQuestions] = useState([]);
+  const [showMoreBtn, setShowMoreBtn] = useState(true);
 
   useEffect(() => {
     getQuestions();
@@ -68,32 +72,56 @@ export default function Questions({ renderedProduct }) {
 
   /* Get all questions back */
   const getQuestions = () => {
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions?product_id=${renderedProduct.id}`, { headers: { Authorization: token.TOKEN } })
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions?product_id=${renderedProduct.id}&count=${qNum}`, { headers: { Authorization: token.TOKEN } })
       .then((response) => {
         console.log('Client side response is : ', response.data);
-        sortResults(response.data.results, 'question_helpfulness',(result) => {
-          setQuestions(result);
-          setDisplayedQuestions(result.slice(0, 2));
-        });
+        setQuestions(response.data.results);
+        let displayed = response.data.results.length > 2 ? response.data.results.slice(0,2) : response.data.results
+        setDisplayedQuestions(response.data.results);
+        // if (response.data.results.length === questions.length) {
+        //   console.log('that is all the questions, no more load more button')
+        //   setShowMoreBtn(false);
+        // }
+        //setDisplayedQuestions(result.slice(0, 2));
       })
       .catch((error) => {
         console.log('Client side error is : ', error);
       });
   }
 
+  /* get questions with manual sorting */
+  // const getQuestions = () => {
+  //   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions?product_id=${renderedProduct.id}`, { headers: { Authorization: token.TOKEN } })
+  //     .then((response) => {
+  //       console.log('Client side response is : ', response.data);
+  //       sortResults(response.data.results, 'question_helpfulness',(result) => {
+  //         setQuestions(result);
+  //         setDisplayedQuestions(result.slice(0, 2));
+  //       });
+  //     })
+  //     .catch((error) => {
+  //       console.log('Client side error is : ', error);
+  //     });
+  // }
+
+
   /* Filter for questions */
   const searchQuestion = (keyWord) => {
     console.log('Search questions with keyword : ', keyWord);
     let results = [];
+    let flag = false;
     questions.forEach((question, index) => {
       if (question.question_body.toLowerCase().includes(keyWord)) {
         console.log('find a match in question');
         results.push(question);
       } else {
         Object.values(question.answers).forEach((answer) => {
-          if (answer.body.toLowerCase().includes(keyWord)) {
-            console.log('find a match in answer')
-            results.push(question);
+          if (!flag) {
+            if (answer.body.toLowerCase().includes(keyWord)) {
+              console.log('find a match in answer')
+              results.push(question);
+              flag = true;
+            }
           }
         })
       }
@@ -104,9 +132,9 @@ export default function Questions({ renderedProduct }) {
 
   /* Handle helpful vote */
   const handleVote = (voteName, id) => {
-    // imcrementVote(voteName, id, () => {
-    //   getQuestions();
-    // });
+    imcrementVote(voteName, id, () => {
+      getQuestions();
+    });
   }
 
   return (
@@ -118,11 +146,13 @@ export default function Questions({ renderedProduct }) {
         <SearchBar searchQuestion={searchQuestion} />
       </Search>
       <QAList>
-        {displayedQuestions.length > 0 ? displayedQuestions.map((question, index) => <QuestionItem question={question} handleVote={handleVote} key={index} />) : 'Still loading'}
+        {/* {displayedQuestions.length > 0 ? displayedQuestions.map((question, index) => <QuestionItem question={question} handleVote={handleVote} key={index} />) : 'Still loading'} */}
+        {displayedQuestions.length > 0 ? displayedQuestions.map((question, index) => <QuestionItem question={question} handleVote={handleVote} key={index} />) : 'No questions for this product, try another product'}
       </QAList>
-      <MoreQuestionBtn>
-        <MoreButton buttonName='MORE ANSWERED QUESTIONS' />
-      </MoreQuestionBtn>
+      {showMoreBtn && <MoreQuestionBtn>
+        <MoreButton buttonName='MORE ANSWERED QUESTIONS' actionNeed={getQuestions} setqNum={setqNum} qNum={qNum}/>
+      </MoreQuestionBtn>}
+
       <AskQuestionBtn>
         <MoreButton buttonName='ADD A QUESTION +' />
       </AskQuestionBtn>
