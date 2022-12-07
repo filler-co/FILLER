@@ -1,7 +1,6 @@
 import { React, useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { fas, faStarHalf, faStar} from '@fortawesome/free-solid-svg-icons';
-import {far} from '@fortawesome/free-regular-svg-icons';
+import { faStarHalf, faStar} from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import styled, { css } from 'styled-components';
 
@@ -41,6 +40,7 @@ export default function StarHandler({ renderedProduct, num, single }) {
       .then((data) => { setCurrRatings(Object.entries(data.data.ratings)); })
       .catch((err) => console.log(err));
   };
+  console.log('curr',currRatings)
 
   useEffect(() => { if(renderedProduct.id) {getReviewMetaData();}
   }, [renderedProduct.id]);
