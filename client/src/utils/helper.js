@@ -35,7 +35,17 @@ import token from '../../../config.js';
       .catch((error) => {
         console.log('Client side error is : ', error);
       });
-
   }
 
+  export function report(reportName, id) {
+    console.log('Report for : ', reportName, id);
+    let url = `/${reportName}/${id}/report`;
+    axios.put(url)
+      .then((response) => {
+        console.log('Client side response is : ', response);
+      })
+      .catch((error) => {
+        console.log('Client side error is : ', error);
+      });
+  }
 

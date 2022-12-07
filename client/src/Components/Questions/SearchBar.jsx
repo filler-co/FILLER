@@ -22,7 +22,8 @@ const TextInput = styled.input`
   flex: 1 0;
   min-width: 25px;
   min-height: 25px;
-  font-size: inherit;
+  font-size: 0.8em;
+  font-weight:bold;
   background-color: transparent;
   padding-left: 5px;
   border: 1px;
@@ -50,10 +51,10 @@ export default function SearchBar({ searchQuestion }) {
     }
   };
 
-  const handleSubmit = (event) => {
-    console.log('Handle form submit');
-    event.preventDefault();
-    searchQuestion();
+  const handleClear = (event) => {
+    console.log('Clear the search bar');
+    setKeyword('');
+    searchQuestion('');
   };
 
   return (
@@ -76,9 +77,7 @@ export default function SearchBar({ searchQuestion }) {
           width="20px"
           height="20px"
           stroke="red"
-          onClick={() => {
-            setKeyword('');
-          }}
+          onClick={handleClear}
         />
       </Icon>
 

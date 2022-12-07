@@ -96,6 +96,27 @@ module.exports.voteForHelpfulness = (req, res) => {
       console.log('error here', err);
       res.sendStatus(404);
     });
+};
+
+module.exports.report = (req, res) => {
+  console.log('params is : ',req.params.id, req.params.reportName);
+  let flag_qa = (req.params.reportName === 'questions' || req.params.reportName === 'answers')
+  let url_qa = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/${req.params.reportName}/${req.params.id}/report`;
+
+  let flag_rev = req.params.reportName === 'reviews';
+  let url_rev = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/${req.params.reportName}/${req.params.id}/report`;
+
+  let url = flag_qa ?  url_qa : url_rev;
+
+  axios.put(url, { headers: { Authorization: token.TOKEN } })
+    .then((response) => {
+      console.log('response from report', response);
+      res.send('reported');
+    }).catch((err) => {
+      console.log('error here', err);
+      res.sendStatus(404);
+
+    });
 }
 
 

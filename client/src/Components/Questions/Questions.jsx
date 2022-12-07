@@ -13,10 +13,11 @@ import { sortResults, imcrementVote } from '../../utils/helper.js';
 /* Define style for component*/
 const Container = styled.div`
   display: grid;
-  ${'' /* max-height: 100vh; */}
+  max-height: 100vh;
+  min-height: auto;
   color: black;
   grid-template-columns: 0.4fr 0.6fr;
-  grid-template-rows: 0.1fr 0.1fr 0.65fr 0.15fr;
+  grid-template-rows: 0.01fr 0.01fr 0.97fr 0.01fr;
 
   grid-template-areas:
     "header header"
@@ -36,25 +37,26 @@ const Header = styled.div`
 const Search = styled.div`
   ${'' /* background: #01BAEF; */}
   grid-area: search;
-  padding: 0.25rem;
+  ${'' /* padding: 0.25rem; */}
 `;
 const QAList = styled.div`
   ${'' /* background: #0CBABA; */}
   grid-area: list;
-  padding: 0.25rem;
-  ${'' /* max-height: 100vh; */}
-  ${'' /* overflow: auto; */}
+  ${'' /* padding: 0.25rem; */}
+  max-height: 100vh;
+  min-height: auto;
+  overflow: auto;
 `;
 const MoreQuestionBtn = styled.div`
   ${'' /* background: #FFD3BA; */}
   grid-area: moreQBtn;
-  padding: 0.25rem;
+  ${'' /* padding: 0.25rem; */}
 `;
 
 const AskQuestionBtn = styled.div`
   ${'' /* background: #FFD3BA; */}
   grid-area: askBtn;
-  padding: 0.25rem;
+  ${'' /* padding: 0.25rem; */}
 `;
 
 export default function Questions({ renderedProduct, setqNum, qNum }) {

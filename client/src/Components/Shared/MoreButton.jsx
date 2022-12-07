@@ -2,13 +2,13 @@ import {React, useState} from 'react';
 import styled, { css } from 'styled-components';
 
 const ButtonStyle = styled.button`
-  ${'' /* background: #9EBD6E; */}
-  font-size: 1em;
+  background: white;
+  font-size: 0.8em;
   margin: 1em;
   padding: 0.25em 1em;
   border: 1px solid black;
   height: 3em;
-
+  font-weight:bold;
 `;
 /*This is passed as my actionNeed from the component that is using the button
 

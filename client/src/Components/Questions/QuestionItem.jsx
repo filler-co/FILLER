@@ -8,22 +8,23 @@ import {sortResults, imcrementVote} from '../../utils/helper.js';
 /* Define style for component*/
 const Container = styled.div`
   display: grid;
-  max-height: 100%;
+  max-height: 100vh;
+  min-height:auto;
   color: black;
+  grid-template-rows: 0.3fr 0.69fr 0.01fr;
   grid-template-columns: 0.7fr 0.2fr 0.1fr;
-  grid-template-rows: 0.3fr 0.6fr 0.1fr;
   grid-template-areas:
     "question helpful addanswer"
     "list list list"
     "loadmore loadmore loadmore";
   text-align: left;
-  grid-gap: 0.25rem;
+  grid-gap: 0.05rem;
  `;
 
 const Question = styled.div`
   ${'' /* background: #3a3a55; */}
   grid-area: question;
-  padding: 0.25rem;
+  ${'' /* padding: 0.25rem; */}
   font-weight: bold;
 `;
 
@@ -48,7 +49,7 @@ const LoadMore = styled.div`
   grid-area: loadmore;
   padding: 0.25rem;
   font-weight: bold;
-  font-size: 0.75em;
+  font-size: 0.65em;
 `;
 
 const AnswerList = styled.div`

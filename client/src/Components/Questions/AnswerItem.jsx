@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import { report } from '../../utils/helper';
 
 /* Define style for component*/
 const Container = styled.div`
@@ -28,6 +29,8 @@ const AnswerInfo = styled.div`
   grid-area: answerinfo;
   padding: 0.25rem;
   font-size: 0.65em;
+  color:grey;
+  cursor: pointer;
 `;
 
 const PhotoContainer = styled.div`
@@ -38,9 +41,15 @@ const PhotoContainer = styled.div`
 
 export default function AnswerItem({ answer, handleVote }) {
 
-  const handleClick = () => {
+  const handleVoteClick = () => {
     handleVote('answers',answer.id);
   }
+
+  const handleReportClick = () => {
+    report('answers',answer.id);
+  }
+
+
 
   return (
     <Container>
@@ -48,7 +57,7 @@ export default function AnswerItem({ answer, handleVote }) {
         A:{answer.body}
       </Answer>
       <AnswerInfo>
-        <div>&nbsp;&nbsp;&nbsp;&nbsp;By {answer.answerer_name},{answer.date} | <span style={{textDecoration: "underline"}} onClick={handleClick}>Helpful? Yes({answer.helpfulness})</span> | Report: no</div>
+        <div>&nbsp;&nbsp;&nbsp;&nbsp;By {answer.answerer_name},{answer.date} | Helpful?<span style={{textDecoration: "underline"}} onClick={handleVoteClick}> Yes({answer.helpfulness})</span> | <span style={{textDecoration: "underline"}} onClick={handleReportClick}>Report</span></div>
       </AnswerInfo>
       <PhotoContainer>
       </PhotoContainer>

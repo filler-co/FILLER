@@ -4,7 +4,7 @@ const cors = require('cors');
 
 const app = express();
 const {
-  getProducts, getProduct, getStyles, getProductReviews, getProductQuestions, getReviewMetaData, voteForHelpfulness,
+  getProducts, getProduct, getStyles, getProductReviews, getProductQuestions, getReviewMetaData, voteForHelpfulness,report,
 } = require('./controller');
 
 app.use(express.json());
@@ -32,8 +32,11 @@ app.get('/reviews/:product_id', getProductReviews);
 // get specific product questions
 app.get('/questions/:product_id', getProductQuestions);
 
-// mark a question as helpful
-app.put('/:voteName/:id/helpful', voteForHelpfulness)
+// mark a question or answer as helpful
+app.put('/:voteName/:id/helpful', voteForHelpfulness);
+
+// report a question or answer
+app.put('/:reportName/:id/report', report);
 
 
 app.listen(3000, () => {
