@@ -1,7 +1,11 @@
 import { React, useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+<<<<<<< HEAD
 import { faStar, faStarHalfStroke } from '@fortawesome/free-solid-svg-icons';
 // import {  } from '@fortawesome/free-regular-svg-icons';
+=======
+import { faStarHalf, faStar} from '@fortawesome/free-solid-svg-icons';
+>>>>>>> main
 import axios from 'axios';
 
 import token from '../../../../config';
@@ -19,6 +23,7 @@ export default function StarHandler({ renderedProduct, num, single }) {
       .then((data) => { setCurrRatings(Object.entries(data.data.ratings)); })
       .catch((err) => console.log(err));
   };
+  console.log('curr',currRatings)
 
   useEffect(() => { if(renderedProduct.id) {getReviewMetaData();}
   }, [renderedProduct.id]);
