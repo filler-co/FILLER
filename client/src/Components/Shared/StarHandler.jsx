@@ -1,14 +1,31 @@
 import { React, useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-<<<<<<< HEAD
-import { faStar, faStarHalfStroke } from '@fortawesome/free-solid-svg-icons';
-// import {  } from '@fortawesome/free-regular-svg-icons';
-=======
 import { faStarHalf, faStar} from '@fortawesome/free-solid-svg-icons';
->>>>>>> main
 import axios from 'axios';
+import styled, { css } from 'styled-components';
 
 import token from '../../../../config';
+
+
+const StyledStarHandler = styled.div`
+display: grid;
+grid-template-columns: .2fr .8fr;
+grid-template-areas:
+"rating stars";
+`
+
+
+const StyledRating = styled.p`
+grid-area: rating;
+font-size: 35px;
+`
+const StyledStars = styled.div`
+grid-area: stars;
+display: flex;
+align-items: flex-start;
+
+`
+
 
 export default function StarHandler({ renderedProduct, num, single }) {
   // Star Handler takes 3 props, rendered product is the rendered product state, num is true
@@ -35,9 +52,9 @@ export default function StarHandler({ renderedProduct, num, single }) {
       i += 1;
     }
     if (starArr[1] >= 3 && starArr[1] <= 7) {
-      starResult.push(<FontAwesomeIcon icon={faStarHalfStroke} />);
+      starResult.push( <FontAwesomeIcon icon={faStarHalf} />);
     } else if (starArr[1] >= 7 ){
-      starResult.push(<FontAwesomeIcon icon={faStarHalfStroke} />)
+      starResult.push(faStar)
     }
 
   };
@@ -70,15 +87,15 @@ export default function StarHandler({ renderedProduct, num, single }) {
   }
 
   return (
-    <div>
-      <p>
-        {num ? starNum : ''}
-      </p>
+    <StyledStarHandler>
+        {num ? <StyledRating>{starNum}</StyledRating>: ''}
+      <StyledStars>
       {starResult.map((star, idx) => (
         <i key={idx}>
           {star}
         </i>
       ))}
-    </div>
+      </StyledStars>
+    </StyledStarHandler>
   );
 }
