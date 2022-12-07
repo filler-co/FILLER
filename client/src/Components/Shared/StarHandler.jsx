@@ -74,7 +74,6 @@ export default function StarHandler({ renderedProduct, num, single }) {
         stroke="black"/>)
     }
     while(starResult.length < 5) {
-      console.log('here')
       starResult.push(<StarOutline  width="20px"
       height="20px"
       />)
