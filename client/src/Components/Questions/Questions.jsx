@@ -13,8 +13,9 @@ import { sortResults, imcrementVote } from '../../utils/helper.js';
 /* Define style for component*/
 const Container = styled.div`
   display: grid;
-  max-height: 100vh;
-  min-height: auto;
+  max-height: 100%;
+  min-height: 100%;
+  ${'' /* min-height: auto; */}
   color: black;
   grid-template-columns: 0.4fr 0.6fr;
   grid-template-rows: 0.01fr 0.01fr 0.97fr 0.01fr;
@@ -108,15 +109,19 @@ export default function Questions({ renderedProduct, setqNum, qNum }) {
   const searchQuestion = (keyWord) => {
     console.log('Search questions with keyword : ', keyWord);
     let results = [];
+    let flag = false;
     questions.forEach((question, index) => {
       if (question.question_body.toLowerCase().includes(keyWord)) {
         console.log('find a match in question');
         results.push(question);
       } else {
         Object.values(question.answers).forEach((answer) => {
-          if (answer.body.toLowerCase().includes(keyWord)) {
-            console.log('find a match in answer')
-            results.push(question);
+          if (!flag) {
+            if (answer.body.toLowerCase().includes(keyWord)) {
+              console.log('find a match in answer')
+              results.push(question);
+              flag = true;
+            }
           }
         })
       }
