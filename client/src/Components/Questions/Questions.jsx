@@ -68,7 +68,7 @@ export default function Questions({ renderedProduct, setqNum, qNum }) {
 
   useEffect(() => {
     getQuestions();
-  }, [renderedProduct]);
+  }, [renderedProduct.id]);
 
   /* Get all questions back */
   const getQuestions = () => {
@@ -112,13 +112,13 @@ export default function Questions({ renderedProduct, setqNum, qNum }) {
     let flag = false;
     questions.forEach((question, index) => {
       if (question.question_body.toLowerCase().includes(keyWord)) {
-        console.log('find a match in question');
+        //console.log('find a match in question');
         results.push(question);
       } else {
         Object.values(question.answers).forEach((answer) => {
           if (!flag) {
             if (answer.body.toLowerCase().includes(keyWord)) {
-              console.log('find a match in answer')
+              //console.log('find a match in answer')
               results.push(question);
               flag = true;
             }
@@ -126,7 +126,7 @@ export default function Questions({ renderedProduct, setqNum, qNum }) {
         })
       }
     })
-    console.log('search result is : ', results);
+    //console.log('search result is : ', results);
     setDisplayedQuestions(results);
   }
 
