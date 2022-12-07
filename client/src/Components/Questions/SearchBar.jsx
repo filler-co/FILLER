@@ -5,6 +5,7 @@ import Clear from './clear.svg';
 import Search from './search.svg';
 
 
+
 const Container = styled.div`
   font-family: 'Arial';
   display: flex;

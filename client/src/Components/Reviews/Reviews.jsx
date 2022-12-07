@@ -3,10 +3,69 @@ import axios from 'axios';
 import ReviewItem from './ReviewItem.jsx';
 import RatingsBreakdown from './RatingsBreakdown.jsx';
 import MoreButton from '../Shared/MoreButton.jsx';
+import ProductBreakdown from './ProductBreakdown.jsx'
+import CreateReview from './CreateReview.jsx'
 
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import token from '../../../../config';
+
+const ReviewContainer = styled.div`
+display: grid;
+max-height: 100%;
+background: #d5bdaf;
+grid-template-columns: .35fr .65fr;
+grid-template-rows: .1fr .4fr .4fr .1fr;
+grid-template-areas:
+  "review-header review-header"
+  "ratings-breakdown review-list"
+  "product-breakdown review-list"
+  "review-buttons review-buttons";
+text-align: left;
+grid-gap: .5rem;
+`
+;
+const PBreakdown = styled.div`
+grid-area: product-breakdown;
+background: #d6ccc2;
+margin: 5px;
+padding: 5px;
+`
+
+  const RBreakdown = styled.div`
+  grid-area: ratings-breakdown;
+  background: #d6ccc2;
+  margin: 5px;
+  padding: 5px;
+  `;
+
+  const RList = styled.div`
+  grid-area: review-list;
+  background: cornflowerblue;
+  border: solid black 1px;
+  margin: 5px;
+  min-height: 450px;
+  max-height: 600px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  `;
+
+  const RButtons = styled.div`
+  grid-area: review-buttons;
+  background: #d6ccc2;
+  margin: 5px;
+  display: flex;
+  border-radius: 10px;
+  justify-content: space-around;
+  `;
+
+  const RHeader = styled.div`
+  grid-area: review-header;
+  backgroud-color: #d6ccc2;
+  text-align: center;
+  `;
+
+
 
 
 export default function Reviews({ renderedProduct, revNum, setRevNum }) {
@@ -23,10 +82,19 @@ export default function Reviews({ renderedProduct, revNum, setRevNum }) {
 
   useEffect(() => {if (renderedProduct.id) {getProductReview()}}, [revNum, renderedProduct.id])
 
+
   return (
-    <div className="review-container">
-      <h2>Ratings & Reviews</h2>
+    <ReviewContainer>
+      <RHeader>
+    <h2>Ratings & Reviews</h2>
+      </RHeader>
+      <RBreakdown>
       <RatingsBreakdown renderedProduct={renderedProduct} />
+      </RBreakdown>
+      <PBreakdown>
+        <ProductBreakdown />
+      </PBreakdown>
+      <RList>
       {reviewList.length > 0 ? reviewList.map((review, idx) => (
         <ReviewItem
           key={idx}
@@ -41,7 +109,11 @@ export default function Reviews({ renderedProduct, revNum, setRevNum }) {
           </h2>
         </nav>
       )}
+      </RList>
+      <RButtons>
       <MoreButton buttonName={'Get More Reviews'} actionNeed={getProductReview} revNum={revNum} setRevNum={setRevNum} qNum={false}/>
-    </div>
+      <CreateReview />
+      </RButtons>
+    </ReviewContainer>
   );
 }
