@@ -5,7 +5,7 @@ import { report } from '../../utils/helper';
 /* Define style for component*/
 const Container = styled.div`
   display: grid;
-  max-height: 100vh;
+  max-height: 50%;
   color: black;
   grid-template-rows: 0.4fr 0.2fr 0.4fr;
   grid-template-areas:
@@ -14,6 +14,8 @@ const Container = styled.div`
     "photocontainer";
   text-align: left;
   grid-gap: 0.25rem;
+  overflow-y: scroll;
+
  `;
 
 const Answer = styled.div`
@@ -21,6 +23,7 @@ const Answer = styled.div`
   grid-area: answer;
   padding: 0.25rem;
   font-size: 0.85em;
+  ${'' /* overflow-y:scroll; */}
 
 `;
 

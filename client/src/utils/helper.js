@@ -4,7 +4,7 @@ import token from '../../../config.js';
 
   // sorting helper function
   export function sortResults(array, criteria, cb) {
-    console.log('sorting')
+    //console.log('sorting')
 
     function compare(a, b) {
       if (a[criteria] < b[criteria]) {
@@ -17,7 +17,7 @@ import token from '../../../config.js';
     }
 
     array.sort(compare);
-    console.log('sort result is : ', array);
+    //console.log('sort result is : ', array);
     cb(array);
   }
 

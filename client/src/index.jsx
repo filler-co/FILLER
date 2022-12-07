@@ -68,7 +68,7 @@ export default function App() {
   }, []);
 
   const [revNum, setRevNum] = useState(2);
-  const [qNum, setqNum] = useState(2);
+  const [qNum, setqNum] = useState(10);
 
 
   return (
@@ -90,6 +90,7 @@ export default function App() {
           changeRenderedProduct={changeRenderedProduct}
           productId={renderedProduct.id}
           setRevNum={setRevNum}
+          setqNum={setqNum}
         />
       </RPdiv>
     </Container>
