@@ -1,6 +1,8 @@
 import React from 'react';
 // import RelatedProducts from './RelatedProducts.jsx';
 import styled from 'styled-components';
+import ModalWindow from '../Shared/ModalWindow';
+import * as Pos from '../Shared/ModalWindow';
 
 const ImageContainer = styled.div`
   align-items: center;
@@ -9,10 +11,13 @@ const ImageContainer = styled.div`
   grid-template-columns: 1fr, 1fr, 1fr, 1fr, 1fr;
   grid-gap: 2rem;
   z-index: 1;
+  place-items: center;
+  height: 100%;
 `;
 
 const SelectedImage = styled.img`
   max-height: 500px;
+  object-fit: cover;
   margin: 0 auto;
   grid-column: 1 / -1;
   grid-row: 1/ -1;
@@ -21,11 +26,14 @@ const SelectedImage = styled.img`
 
 const GalleryDiv = styled.div`
   grid-row: 2 / -1;
-  grid-column: 1 / 2;
+  grid-column: 1 / -1;
   z-index: 3;
   margin-top: auto;
-  display: flex;
+  display:flex;
+  align-items: center;
   backdrop-filter: blur(2px);
+  height: 20%;
+
 `;
 
 const ScrollLeftDiv = styled.div`
@@ -33,6 +41,9 @@ const ScrollLeftDiv = styled.div`
 `;
 
 const ScrollLeftButton = styled.button`
+  cursor: pointer;
+  border: none;
+  background: none;
 
   ${({ active }) => active && `
     disable: true;
@@ -46,6 +57,10 @@ const ScrollRightDiv = styled.div`
 `;
 
 const ScrollRightButton = styled.button`
+  cursor: pointer;
+  border: none;
+  background: none;
+
   ${({ active }) => active && `
   disable: true;
   pointer-events: none;
@@ -57,14 +72,50 @@ const LeftImageDiv = styled.div`
   padding: 3%;
 `;
 
+const LeftImage = styled.img`
+  cursor: pointer;
+  ${({ active }) => active && `
+  disable: true;
+  pointer-events: none;
+  border: solid 2px white;
+  `}
+`;
+
 const CenterImageDiv = styled.div`
   width: 20%;
   padding: 3%;
 `;
 
+const CenterImage = styled.img`
+  cursor: pointer:
+
+  ${({ active }) => active && `
+  disable: true;
+  pointer-events: none;
+  border: solid 2px white;
+  `}
+`;
+
 const RightImageDiv = styled.div`
   width: 20%;
   padding: 3%;
+`;
+
+const RightImage = styled.img`
+  cursor: pointer;
+  ${({ active }) => active && `
+  disable: true;
+  pointer-events: none;
+  border: solid 2px white;
+  `}
+`;
+
+const FullViewDiv = styled.div`
+  grid-column: 1/-1;
+  grid-row: 1/-1;
+  z-index: 3;
+  margin-bottom: auto;
+  margin-left: auto;
 `;
 
 export default function StyleImage({selectedStylePhotos}) {
@@ -87,27 +138,37 @@ export default function StyleImage({selectedStylePhotos}) {
     setCenterImg(centerImg+dir);
     setLeftImg(leftImg+dir);
     setRightImg(rightImg+dir);
+  };
+
+  const changeImg = (pos) => {
+    setCenterImg(pos);
+    setLeftImg(pos-1);
+    setRightImg(pos+1);
+    setSelectedPhoto(galleryList[pos]);
   }
   return (
     <ImageContainer>
       <SelectedImage onClick={() => {console.log(galleryList)}} src={selectedPhoto.url} alt="NO PHOTOS" />
+      <FullViewDiv>
+        O
+      </FullViewDiv>
       <GalleryDiv>
         <ScrollLeftDiv>
           <ScrollLeftButton onClick={() => shiftGallery(-1)} active={!galleryList[leftImg]}>{'<'}</ScrollLeftButton>
         </ScrollLeftDiv>
         <LeftImageDiv>
           {galleryList[leftImg] && (
-            <img src={galleryList[leftImg].thumbnail_url} alt="N/A" />
+            <LeftImage onClick={() => changeImg(leftImg)} active={galleryList[leftImg].url === selectedPhoto.url} src={galleryList[leftImg].thumbnail_url} alt="N/A" />
           )}
         </LeftImageDiv>
         <CenterImageDiv>
           {galleryList[centerImg] && (
-            <img src={galleryList[centerImg].thumbnail_url} alt="N/A" />
+            <CenterImage onClick={() => changeImg(centerImg)} active={galleryList[centerImg].url === selectedPhoto.url} src={galleryList[centerImg].thumbnail_url} alt="N/A" />
           )}
         </CenterImageDiv>
         <RightImageDiv>
           {galleryList[rightImg] && (
-            <img src={galleryList[rightImg].thumbnail_url} alt="N/A" />
+            <RightImage onClick={() => changeImg(rightImg)} active={galleryList[rightImg].url === selectedPhoto.url} src={galleryList[rightImg].thumbnail_url} alt="N/A" />
           )}
         </RightImageDiv>
         <ScrollRightDiv>

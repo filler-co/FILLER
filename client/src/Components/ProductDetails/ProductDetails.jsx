@@ -19,12 +19,16 @@ const PDContainer = styled.div`
   "product-image product-style"
   "product-image style-list"
   "product-image product-dropdowns";
+  height: 80vh;
+  min-height: 10px;
 `;
 
 const PDImgContainer = styled.div`
   grid-area: product-image;
   text-align: center;
   margin:5px;
+  display: flex;
+  align-items: center;
 `;
 
 const PDStarsContainer = styled.div`

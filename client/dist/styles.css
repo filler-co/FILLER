@@ -27,7 +27,7 @@
    -webkit-font-smoothing: antialiased;
  }
 
- /* img, */
+ img,
  picture,
  video,
  canvas,
@@ -62,31 +62,6 @@
    padding: 16px;
    margin: auto;
  }
-
- /* .container {
-  border: solid 1px black;
-  padding: 5px;
-  margin:5px;
- } */
-/*
- .product-details-container {
-  border: solid 1px cornflowerblue;
-  padding: 5px;
-  margin:5px;
- } */
-
- /* .related-products-container {
-  border: solid 1px maroon;
-  padding: 5px;
-  margin:5px;
- } */
-
-
- /* .review-container {
-  border: solid 1px blueviolet;
-  padding: 5px;
-  margin:5px;
- } */
 
  .review-item{
   border: solid 1px black;
