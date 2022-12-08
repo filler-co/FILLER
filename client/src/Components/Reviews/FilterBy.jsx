@@ -4,8 +4,8 @@ import FilterSelector from './FilterSelector.jsx'
 import axios from 'axios';
 
 
-export default function FilterBy({renderedProduct, reviewList, sortState, setSortState}) {
-  const [filterList, setFilterList] = useState([]);
+export default function FilterBy({renderedProduct, reviewList, sortState, setSortState, filterList, setFilterList}) {
+
 
   const reviewFilter = () => {
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta/?product_id=${renderedProduct.id}`, { headers: { Authorization: token.TOKEN } })

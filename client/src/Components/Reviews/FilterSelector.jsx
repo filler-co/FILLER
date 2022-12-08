@@ -10,8 +10,8 @@ const handleChange = (e) => {
 
   return (
     <select name="filter" placeholder="select" onChange={handleChange}>
-      <option value="newest">newest</option>
       <option value="relevant">relevance</option>
+      <option value="newest">newest</option>
       <option value="helpful">helpfulness</option>
     </select>
   )
