@@ -4,7 +4,8 @@ import ReviewItem from './ReviewItem.jsx';
 import RatingsBreakdown from './RatingsBreakdown.jsx';
 import MoreButton from '../Shared/MoreButton.jsx';
 import ProductBreakdown from './ProductBreakdown.jsx'
-import CreateReview from './CreateReview.jsx'
+import CreateReview from './CreateReview.jsx';
+import FilterBy from './FilterBy.jsx';
 
 import styled, { css } from 'styled-components';
 
@@ -47,7 +48,7 @@ padding: 5px;
   min-height: 450px;
   max-height: 600px;
   overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: scroll;
   `;
 
   const RButtons = styled.div`
@@ -70,23 +71,26 @@ padding: 5px;
 
 export default function Reviews({ renderedProduct, revNum, setRevNum }) {
   const [reviewList, setReviewList] = useState([]);
+  const [sortState, setSortState] = useState('')
   const id = renderedProduct.id
 
 
 
   const getProductReview = () => {
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=${id}&count=${revNum}&sort=newest`, { headers: { Authorization: token.TOKEN } })
-    .then((data) => { setReviewList(data.data.results); })
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=${id}&count=${revNum}&sort=${sortState}`, { headers: { Authorization: token.TOKEN } })
+    .then((data) => { setReviewList(data.data.results); console.log('ran')})
     .catch((err) => console.log(err));
   };
-
-  useEffect(() => {if (renderedProduct.id) {getProductReview()}}, [revNum, renderedProduct.id])
+console.log(sortState)
+  useEffect(() => {if (renderedProduct.id) {getProductReview()}}, [revNum, renderedProduct.id, sortState])
+  console.log(reviewList)
 
 
   return (
     <ReviewContainer>
       <RHeader>
     <h2>Ratings & Reviews</h2>
+        <FilterBy renderedProduct={renderedProduct} reviewList={reviewList} sortState={sortState} setSortState={setSortState}/>
       </RHeader>
       <RBreakdown>
       <RatingsBreakdown renderedProduct={renderedProduct} />
