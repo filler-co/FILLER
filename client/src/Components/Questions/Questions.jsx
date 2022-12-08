@@ -44,9 +44,13 @@ const QAList = styled.div`
   ${'' /* background: #0CBABA; */}
   grid-area: list;
   ${'' /* padding: 0.25rem; */}
-  max-height: 100vh;
+  ${'' /* max-height: 100vh;
+  min-height: auto; */}
   min-height: auto;
-  overflow: auto;
+  max-height: 80vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+
 `;
 const MoreQuestionBtn = styled.div`
   ${'' /* background: #FFD3BA; */}

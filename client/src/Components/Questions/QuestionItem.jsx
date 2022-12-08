@@ -11,7 +11,7 @@ const Container = styled.div`
   max-height: 100vh;
   min-height:auto;
   color: black;
-  grid-template-rows: 0.3fr 0.69fr 0.01fr;
+  grid-template-rows: 0.1fr 0.89fr 0.01fr;
   grid-template-columns: 0.7fr 0.2fr 0.1fr;
   grid-template-areas:
     "question helpful addanswer"
@@ -56,7 +56,11 @@ const AnswerList = styled.div`
   ${'' /* background: #1f2128; */}
   grid-area: list;
   padding: 0.25rem;
+  min-height: auto;
+  max-height: 65vh;
+  overflow-y: auto;
 `;
+
 
 export default function QuestionsItem({ question, handleVote }) {
 
@@ -73,7 +77,7 @@ export default function QuestionsItem({ question, handleVote }) {
       }
     });
 
-  },[question.question_id])
+  },[question])
 
   const [answers, setAnswers] = useState([]);
   const [displayedAnswers, setDisplayedAnswers] = useState([]);

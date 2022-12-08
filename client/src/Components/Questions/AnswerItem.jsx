@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { report } from '../../utils/helper';
+import PhotoGallery from './PhotoGallery';
 
 /* Define style for component*/
 const Container = styled.div`
@@ -14,7 +15,6 @@ const Container = styled.div`
     "photocontainer";
   text-align: left;
   grid-gap: 0.25rem;
-  overflow-y: scroll;
 
  `;
 
@@ -23,7 +23,6 @@ const Answer = styled.div`
   grid-area: answer;
   padding: 0.25rem;
   font-size: 0.85em;
-  ${'' /* overflow-y:scroll; */}
 
 `;
 
@@ -63,6 +62,7 @@ export default function AnswerItem({ answer, handleVote }) {
         <div>&nbsp;&nbsp;&nbsp;&nbsp;By {answer.answerer_name},{answer.date} | Helpful?<span style={{textDecoration: "underline"}} onClick={handleVoteClick}> Yes({answer.helpfulness})</span> | <span style={{textDecoration: "underline"}} onClick={handleReportClick}>Report</span></div>
       </AnswerInfo>
       <PhotoContainer>
+        <PhotoGallery images={answer.photos}/>
       </PhotoContainer>
     </Container>
   );
