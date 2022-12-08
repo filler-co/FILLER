@@ -1,8 +1,8 @@
 import React from 'react';
 import { useState } from 'react';
 import styled, { css } from 'styled-components';
-import Clear from './clear.svg';
-import Search from './search.svg';
+import Clear from './Clear.svg';
+import Search from './Search.svg';
 
 
 const Container = styled.div`
@@ -40,11 +40,11 @@ export default function SearchBar({ searchQuestion }) {
   const [keyWord, setKeyword] = useState('');
 
   const handleChange = (event) => {
-    console.log('handle on change');
+    //console.log('handle on change');
     setKeyword(event.target.value);
 
     if (event.target.value.length > 3) {
-      console.log('Searching with more than 3 characters : ',event.target.value);
+      //console.log('Searching with more than 3 characters : ',event.target.value);
       searchQuestion(event.target.value.toLowerCase());
     } else {
       searchQuestion('');
@@ -52,7 +52,7 @@ export default function SearchBar({ searchQuestion }) {
   };
 
   const handleClear = (event) => {
-    console.log('Clear the search bar');
+    //console.log('Clear the search bar');
     setKeyword('');
     searchQuestion('');
   };

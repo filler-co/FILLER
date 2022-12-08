@@ -6,7 +6,7 @@
   "scripts": {
     "react-dev": "webpack --mode development --watch",
     "server-dev": "npx nodemon server/server.js",
-    "test": "jest"
+    "test": "jest --silent"
   },
   "author": "BK-group",
   "license": "ISC",
