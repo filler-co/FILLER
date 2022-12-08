@@ -14,9 +14,7 @@ export default function RatingsBreakdown({ renderedProduct }) {
       .catch((err) => console.log(err));
   }
 
-  useEffect(() => {if(renderedProduct) {getGraphData()}}, [renderedProduct]);
-
-  console.log('cr', graphData)
+  useEffect(() => {if(renderedProduct.id) {getGraphData()}}, [renderedProduct]);
 
 
 
