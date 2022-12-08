@@ -18,7 +18,7 @@ const SizeDropdownContainer = styled.div`
   padding: 5px;
   margin: 5px 5px 0px 5px;
   margin-bottom: 25%;
-  max-height: 50px;
+  max-height: 40px;
 `;
 
 const SizeDropdownHeader = styled.div`
