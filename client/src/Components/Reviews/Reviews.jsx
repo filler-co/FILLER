@@ -71,26 +71,28 @@ padding: 5px;
 
 export default function Reviews({ renderedProduct, revNum, setRevNum }) {
   const [reviewList, setReviewList] = useState([]);
-  const [sortState, setSortState] = useState('')
+  const [sortState, setSortState] = useState('relevant')
+  const [filterList, setFilterList] = useState([]);
   const id = renderedProduct.id
 
 
-
+const uRl = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews?product_id=${id}&sort=${sortState}&count=${revNum}`
   const getProductReview = () => {
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=${id}&count=${revNum}&sort=${sortState}`, { headers: { Authorization: token.TOKEN } })
-    .then((data) => { setReviewList(data.data.results); console.log('ran')})
+    axios.get(uRl, { headers: { Authorization: token.TOKEN } })
+    .then((data) => { setReviewList(data.data.results); console.log(data.data)})
     .catch((err) => console.log(err));
   };
 console.log(sortState)
-  useEffect(() => {if (renderedProduct.id) {getProductReview()}}, [revNum, renderedProduct.id, sortState])
-  console.log(reviewList)
+  useEffect(() => {if (renderedProduct.id) {getProductReview()}}, [revNum, renderedProduct.id, sortState, filterList])
+
+
 
 
   return (
     <ReviewContainer>
       <RHeader>
     <h2>Ratings & Reviews</h2>
-        <FilterBy renderedProduct={renderedProduct} reviewList={reviewList} sortState={sortState} setSortState={setSortState}/>
+        <FilterBy renderedProduct={renderedProduct} reviewList={reviewList} sortState={sortState} setSortState={setSortState} setFilterList={setFilterList} filterList={filterList}/>
       </RHeader>
       <RBreakdown>
       <RatingsBreakdown renderedProduct={renderedProduct} />
