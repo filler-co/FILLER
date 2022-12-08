@@ -107,7 +107,7 @@ export default function Questions({ renderedProduct, setqNum, qNum }) {
 
   /* Filter for questions */
   const searchQuestion = (keyWord) => {
-    console.log('Search questions with keyword : ', keyWord);
+    //console.log('Search questions with keyword : ', keyWord);
     let results = [];
     let flag = false;
     questions.forEach((question, index) => {
