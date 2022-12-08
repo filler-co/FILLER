@@ -68,7 +68,7 @@ export default function App() {
   }, []);
 
   const [revNum, setRevNum] = useState(2);
-  const [qNum, setqNum] = useState(10);
+  const [qNum, setqNum] = useState(2);
 
 
   return (
