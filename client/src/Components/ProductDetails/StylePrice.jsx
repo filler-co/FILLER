@@ -7,7 +7,7 @@ export default function StylePrice({selectedStyle}) {
     return (
       <div>
         <b>USD</b>
-        {selectedStyle.sale_price}
+        <span style={{color: 'red'}}>{selectedStyle.sale_price}</span>
         <span style={{ textDecorationLine: 'line-through', textDecorationStyle: 'solid' }}>{selectedStyle.original_price}</span>
       </div>
     );

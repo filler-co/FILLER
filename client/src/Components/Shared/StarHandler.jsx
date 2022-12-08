@@ -3,6 +3,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStarHalf, faStar} from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import styled, { css } from 'styled-components';
+import BlackStar from './blackStar.svg'
+import StarOutline from './starOutline.svg'
+import HalfStar from './halfStar.svg'
+import QuarterStar from './quarterStar.svg'
 
 import token from '../../../../config';
 
@@ -36,25 +40,43 @@ export default function StarHandler({ renderedProduct, num, single }) {
   const starResult = [];
   let starNum = '';
   const getReviewMetaData = () => {
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta/?product_id=${renderedProduct.id}`, { headers: { Authorization: token.TOKEN } })
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta/?product_id=${renderedProduct}`, { headers: { Authorization: token.TOKEN } })
       .then((data) => { setCurrRatings(Object.entries(data.data.ratings)); })
       .catch((err) => console.log(err));
   };
-  console.log('curr',currRatings)
 
-  useEffect(() => { if(renderedProduct.id) {getReviewMetaData();}
-  }, [renderedProduct.id]);
+
+  useEffect(() => { if(renderedProduct) {getReviewMetaData();}
+  }, [renderedProduct]);
 
   const starGenerator = (starArr) => {
     let i = 0;
     while (i < starArr[0]) {
-      starResult.push(<FontAwesomeIcon icon={faStar} />);
+      //<FontAwesomeIcon icon={faStar} />
+      starResult.push(<BlackStar
+      width="20px"
+      height="20px"
+      stroke="black"/>);
       i += 1;
     }
-    if (starArr[1] >= 3 && starArr[1] <= 7) {
-      starResult.push( <FontAwesomeIcon icon={faStarHalf} />);
+    if (starArr[1] >= 5 && starArr[1] <= 7) {
+      //<FontAwesomeIcon icon={faStarHalf} />
+      starResult.push(<HalfStar width="20px"
+      height="20px"
+      stroke="black" />);
+    // } else if (starArr[1] >= 2 && starArr[1] <= 5) {
+    //   //<FontAwesomeIcon icon={faStarHalf} />
+    //   starResult.push(<QuarterStar />);
     } else if (starArr[1] >= 7 ){
-      starResult.push(faStar)
+      starResult.push(<BlackStar
+        width="20px"
+        height="20px"
+        stroke="black"/>)
+    }
+    while(starResult.length < 5) {
+      starResult.push(<StarOutline  width="20px"
+      height="20px"
+      />)
     }
 
   };
@@ -90,11 +112,11 @@ export default function StarHandler({ renderedProduct, num, single }) {
     <StyledStarHandler>
         {num ? <StyledRating>{starNum}</StyledRating>: ''}
       <StyledStars>
-      {starResult.map((star, idx) => (
+      {starResult.length > 0 ? starResult.map((star, idx) => (
         <i key={idx}>
           {star}
         </i>
-      ))}
+      )): <div></div>}
       </StyledStars>
     </StyledStarHandler>
   );
