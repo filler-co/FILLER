@@ -1,8 +1,8 @@
 import React from 'react';
 import { useState } from 'react';
 import styled, { css } from 'styled-components';
-import Clear from './clear.svg';
-import Search from './search.svg';
+// import Clear from './clear.svg';
+// import Search from './search.svg';
 
 
 const Container = styled.div`
@@ -59,27 +59,27 @@ export default function SearchBar({ searchQuestion }) {
 
   return (
     <Container>
-    <Icon>
+    {/* <Icon>
         <Search
           width="20px"
           height="20px"
           stroke="red"
           // onClick={handleSearch}
         />
-      </Icon>
+      </Icon> */}
       <TextInput
         value={keyWord}
         onChange={handleChange}
         placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..."
       />
-      <Icon>
+      {/* <Icon>
         <Clear
           width="20px"
           height="20px"
           stroke="red"
           onClick={handleClear}
         />
-      </Icon>
+      </Icon> */}
 
     </Container>
   );
