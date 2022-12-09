@@ -1,6 +1,9 @@
 import React, {useRef} from "react";
 import styled from "styled-components";
 import {CM_CENTER_CENTER, CM_TOP_CENTER, CM_TOP_LEFT, CM_TOP_RIGHT} from "./ModalWindow";
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faChevronRight} from '@fortawesome/free-solid-svg-icons';
+import {faChevronLeft} from '@fortawesome/free-solid-svg-icons';
 // import useEscapeKey from "../hooks/useEscapeKey";
 // import useOutsideClick from "../hooks/useOutsideClick";
 
@@ -8,7 +11,7 @@ import {CM_CENTER_CENTER, CM_TOP_CENTER, CM_TOP_LEFT, CM_TOP_RIGHT} from "./Moda
 
 // Modal background layer - visible or invisible, but always floating above client's elements
 const Model = styled.div`
-    z-index: 999;
+    z-index: 99;
     display: ${({show}) => (show ? 'block' : 'none')};
     position: fixed;
     top: 0;
@@ -71,11 +74,16 @@ const Button = styled.button`
 
 const ImageDiv = styled.div`
     width: auto;
-    height: 100%;
-    display: flex;
-    align-items: center;
+    height: 90vh;
+    align-items: flex-start;
     border: none;
+    z-index: 100;
     ${'' /* background-color: rgba(80,80,150, 0.4); */}
+`;
+
+const NextImgDiv = styled.div`
+  z-index: 7;
+
 `;
 
 const ButtonBar = styled.div`
@@ -86,27 +94,37 @@ const ButtonBar = styled.div`
 `;
 
 const Image = styled.img`
-  max-height: 75%;
+  max-height: 80%;
 `;
 const GalleryBar = styled.div`
-  z-index: 999;
   display: flex;
   flex-direction: row;
   position: relative;
-  top: -300px;
+  top: -110px;
+  height: 10%;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  z-index: 103;
 
 `;
 
 ;
 
 const ScrollLeftDiv = styled.div`
-  width: 20%;
+  width: 15%;
 `;
 
 const ScrollLeftButton = styled.button`
   cursor: pointer;
   border: none;
   background: none;
+  font-size: 15px;
+  color: white;
+
+  &:hover {
+    font-size: 20px;
+  }
 
   ${({ active }) => active && `
     disable: true;
@@ -116,13 +134,19 @@ const ScrollLeftButton = styled.button`
 `;
 
 const ScrollRightDiv = styled.div`
-  width: 20%;
+  width: 15%;
 `;
 
 const ScrollRightButton = styled.button`
   cursor: pointer;
   border: none;
   background: none;
+  color: white;
+  font-size: 15px;
+
+  &:hover {
+    font-size: 20px;
+  }
 
   ${({ active }) => active && `
   disable: true;
@@ -130,8 +154,8 @@ const ScrollRightButton = styled.button`
   `}
 `;
 
-const LeftImageDiv = styled.div`
-  width: 20%;
+const GalleryImageDiv = styled.div`
+  width: 12%;
   padding: 3%;
 `;
 
@@ -144,11 +168,6 @@ const LeftImage = styled.img`
   `}
 `;
 
-const CenterImageDiv = styled.div`
-  width: 20%;
-  padding: 3%;
-`;
-
 const CenterImage = styled.img`
   cursor: pointer:
 
@@ -157,11 +176,6 @@ const CenterImage = styled.img`
   pointer-events: none;
   border: solid 2px white;
   `}
-`;
-
-const RightImageDiv = styled.div`
-  width: 20%;
-  padding: 3%;
 `;
 
 const RightImage = styled.img`
@@ -173,27 +187,62 @@ const RightImage = styled.img`
   `}
 `;
 
+const LeftScrollSpan = styled.span`
+    cursor: pointer;
+    border: none;
+    background: none;
+    width: 50%;
+    height: 75%;
+    z-index: 101;
+    left: 0%;
+    position: absolute;
+
+    ${({ active }) => active && `
+    disable: true;
+    pointer-events: none;
+    `}
+`;
+
+const RightScrollSpan = styled.span`
+    cursor: pointer;
+    border: none;
+    background: none;
+    width: 50%;
+    height: 75%;
+    z-index: 101;
+    right: 0%;
+    position: absolute;
+
+    ${({ active }) => active && `
+    disable: true;
+    pointer-events: none;
+    `}
+`;
+
 export default function ConfirmationModalImpl(props) {
     const {
         handleClose, // renderProp fn returns true or false
         show, // boolean - visible/invisible
         url,
         openPos,
-        galleryList // symbol for placement
+        galleryList,
+        centerVal
     } = { ...props };
 
-    const [centerImg, setCenterImg] = React.useState(0);
-    const [leftImg, setLeftImg] = React.useState(-1);
-    const [rightImg, setRightImg] = React.useState(1);
-    const [mainImg, setMainImg] = React.useState(url);
+    const [centerImg, setCenterImg] = React.useState(centerVal);
+    const [leftImg, setLeftImg] = React.useState(centerVal-1);
+    const [rightImg, setRightImg] = React.useState(centerVal+1);
+    const [mainImgUrl, setMainImgUrl] = React.useState(url);
+    const [mainImg, setMainImg] = React.useState(centerVal);
 
     React.useEffect(() => {
         if (galleryList && galleryList[0]) {
-          setMainImg(url);
+          setMainImgUrl(url);
+          setMainImg(centerVal);
         //   setGalleryList(selectedStylePhotos.reduce((acc, urlobj, index) => { acc[index] = urlobj; return acc; }, {}))
-          setCenterImg(0);
-          setRightImg(1);
-          setLeftImg(-1);
+          setCenterImg(centerVal);
+          setRightImg(centerVal+1);
+          setLeftImg(centerVal-1);
         }
       }, [url]);
 
@@ -201,7 +250,8 @@ export default function ConfirmationModalImpl(props) {
         setCenterImg(pos);
         setLeftImg(pos-1);
         setRightImg(pos+1);
-        setMainImg(galleryList[pos].url);
+        setMainImgUrl(galleryList[pos].url);
+        setMainImg(pos);
     }
 
     const shiftGallery = (dir) => {
@@ -224,28 +274,32 @@ export default function ConfirmationModalImpl(props) {
             <ButtonBar>
                     <Button onClick={closeWindow} primary={false}>X</Button>
                 </ButtonBar>
-            <ImageDiv><Image src={mainImg} alt="..." /></ImageDiv>
+            <ImageDiv>
+                <LeftScrollSpan onClick={() => {shiftGallery(-1); setMainImgUrl(galleryList[leftImg].url); setMainImg(leftImg) }} active={!galleryList[mainImg-1]}></LeftScrollSpan>
+                <RightScrollSpan active={!galleryList[mainImg+1]} onClick={() => {shiftGallery(1); setMainImgUrl(galleryList[rightImg].url); setMainImg(rightImg) }}></RightScrollSpan>
+                <Image src={mainImgUrl} alt="..." />
+            </ImageDiv>
             <GalleryBar>
                 <ScrollLeftDiv>
-                    <ScrollLeftButton onClick={() => shiftGallery(-1)} active={!galleryList[leftImg]}>{'<'}</ScrollLeftButton>
+                    <ScrollLeftButton onClick={() => shiftGallery(-1)} active={!galleryList[leftImg]}><FontAwesomeIcon icon={faChevronLeft} /></ScrollLeftButton>
                 </ScrollLeftDiv>
-                <LeftImageDiv>
+                <GalleryImageDiv>
                     {galleryList[leftImg] && (
-                    <LeftImage onClick={() => changeImg(leftImg)} active={galleryList[leftImg].url === mainImg} src={galleryList[leftImg].thumbnail_url} alt="N/A" />
+                    <LeftImage onClick={() => changeImg(leftImg)} active={galleryList[leftImg].url === mainImgUrl} src={galleryList[leftImg].thumbnail_url} alt="N/A" />
                     )}
-                </LeftImageDiv>
-                <CenterImageDiv>
+                </GalleryImageDiv>
+                <GalleryImageDiv>
                     {galleryList[centerImg] && (
-                    <CenterImage onClick={() => changeImg(centerImg)} active={galleryList[centerImg].url === mainImg} src={galleryList[centerImg].thumbnail_url} alt="N/A" />
+                    <CenterImage onClick={() => changeImg(centerImg)} active={galleryList[centerImg].url === mainImgUrl} src={galleryList[centerImg].thumbnail_url} alt="N/A" />
                      )}
-                </CenterImageDiv>
-                <RightImageDiv>
+                </GalleryImageDiv>
+                <GalleryImageDiv>
                     {galleryList[rightImg] && (
-                    <RightImage onClick={() => changeImg(rightImg)} active={galleryList[rightImg].url === mainImg} src={galleryList[rightImg].thumbnail_url} alt="N/A" />
+                    <RightImage onClick={() => changeImg(rightImg)} active={galleryList[rightImg].url === mainImgUrl} src={galleryList[rightImg].thumbnail_url} alt="N/A" />
                     )}
-                    </RightImageDiv>
+                    </GalleryImageDiv>
                 <ScrollRightDiv>
-                    <ScrollRightButton active={!galleryList[rightImg]} onClick={() => shiftGallery(1)}>{'>'}</ScrollRightButton>
+                    <ScrollRightButton active={!galleryList[rightImg]} onClick={() => shiftGallery(1)}><FontAwesomeIcon icon={faChevronRight} /></ScrollRightButton>
                 </ScrollRightDiv>
             </GalleryBar>
             </Container>

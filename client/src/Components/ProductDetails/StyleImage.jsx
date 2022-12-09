@@ -3,6 +3,9 @@ import React from 'react';
 import styled from 'styled-components';
 import ProductDetailModalWindow from '../Shared/ProductDetailModal';
 import * as Pos from '../Shared/ModalWindow';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faChevronRight} from '@fortawesome/free-solid-svg-icons';
+import {faChevronLeft} from '@fortawesome/free-solid-svg-icons';
 
 const ImageContainer = styled.div`
   align-items: center;
@@ -44,6 +47,11 @@ const ScrollLeftButton = styled.button`
   cursor: pointer;
   border: none;
   background: none;
+  font-size: 15px;
+
+  &:hover {
+    font-size: 20px;
+  }
 
   ${({ active }) => active && `
     disable: true;
@@ -60,6 +68,11 @@ const ScrollRightButton = styled.button`
   cursor: pointer;
   border: none;
   background: none;
+  font-size: 15px;
+
+  &:hover {
+    font-size: 20px;
+  }
 
   ${({ active }) => active && `
   disable: true;
@@ -168,7 +181,7 @@ export default function StyleImage({selectedStylePhotos}) {
       </FullViewDiv>
       <GalleryDiv>
         <ScrollLeftDiv>
-          <ScrollLeftButton onClick={() => shiftGallery(-1)} active={!galleryList[leftImg]}>{'<'}</ScrollLeftButton>
+          <ScrollLeftButton onClick={() => shiftGallery(-1)} active={!galleryList[leftImg]}><FontAwesomeIcon icon={faChevronLeft} /></ScrollLeftButton>
         </ScrollLeftDiv>
         <LeftImageDiv>
           {galleryList[leftImg] && (
@@ -186,7 +199,7 @@ export default function StyleImage({selectedStylePhotos}) {
           )}
         </RightImageDiv>
         <ScrollRightDiv>
-          <ScrollRightButton active={!galleryList[rightImg]} onClick={() => shiftGallery(1)}>{'>'}</ScrollRightButton>
+          <ScrollRightButton active={!galleryList[rightImg]} onClick={() => shiftGallery(1)}><FontAwesomeIcon icon={faChevronRight} /></ScrollRightButton>
         </ScrollRightDiv>
       </GalleryDiv>
       <ProductDetailModalWindow
@@ -194,7 +207,8 @@ export default function StyleImage({selectedStylePhotos}) {
         url={url}
         handleClose={hideModal}
         openPos={Pos.CM_CENTER_CENTER}
-        galleryList={galleryList}>
+        galleryList={galleryList}
+        centerVal={centerImg}>
       </ProductDetailModalWindow>
     </ImageContainer>
   );

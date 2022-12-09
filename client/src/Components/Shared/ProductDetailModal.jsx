@@ -13,7 +13,8 @@ export default function ProductDetailModalWindow(props) {
         show, // boolean
         url, // text
         openPos,
-        galleryList
+        galleryList,
+        centerVal
     } = {...props};
 
     return (
@@ -23,6 +24,7 @@ export default function ProductDetailModalWindow(props) {
             url={url}
             openPos={openPos}
             galleryList={galleryList}
+            centerVal={centerVal}
         />
     );
 }
