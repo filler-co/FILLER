@@ -36,6 +36,8 @@ const GalleryDiv = styled.div`
   align-items: center;
   backdrop-filter: blur(2px);
   height: 20%;
+  justify-content: center;
+  width: 100%;
 
 `;
 
@@ -47,10 +49,11 @@ const ScrollLeftButton = styled.button`
   cursor: pointer;
   border: none;
   background: none;
-  font-size: 15px;
+  font-size: 25px;
+  color: rgb(0,0,0, 0.4);
 
   &:hover {
-    font-size: 20px;
+    color: rgb(0,0,0,1);
   }
 
   ${({ active }) => active && `
@@ -68,10 +71,11 @@ const ScrollRightButton = styled.button`
   cursor: pointer;
   border: none;
   background: none;
-  font-size: 15px;
+  font-size: 25px;
+  color: rgb(0,0,0, 0.4);
 
   &:hover {
-    font-size: 20px;
+    color: rgb(0,0,0, 1);
   }
 
   ${({ active }) => active && `
@@ -82,7 +86,7 @@ const ScrollRightButton = styled.button`
 
 const LeftImageDiv = styled.div`
   width: 20%;
-  padding: 3%;
+  padding: 10px;
 `;
 
 const LeftImage = styled.img`
@@ -96,7 +100,7 @@ const LeftImage = styled.img`
 
 const CenterImageDiv = styled.div`
   width: 20%;
-  padding: 3%;
+  padding: 10px;
 `;
 
 const CenterImage = styled.img`
@@ -111,7 +115,7 @@ const CenterImage = styled.img`
 
 const RightImageDiv = styled.div`
   width: 20%;
-  padding: 3%;
+  padding: 10px;
 `;
 
 const RightImage = styled.img`
@@ -176,9 +180,9 @@ export default function StyleImage({selectedStylePhotos}) {
   return (
     <ImageContainer>
       <SelectedImage onClick={showModal} src={selectedPhoto.url} alt="NO PHOTOS" />
-      <FullViewDiv>
+      {/* <FullViewDiv>
         <button onClick={handleClick}>O</button>
-      </FullViewDiv>
+      </FullViewDiv> */}
       <GalleryDiv>
         <ScrollLeftDiv>
           <ScrollLeftButton onClick={() => shiftGallery(-1)} active={!galleryList[leftImg]}><FontAwesomeIcon icon={faChevronLeft} /></ScrollLeftButton>

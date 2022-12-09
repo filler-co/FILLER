@@ -244,7 +244,7 @@ export default function ConfirmationModalImpl(props) {
           setRightImg(centerVal+1);
           setLeftImg(centerVal-1);
         }
-      }, [url]);
+      }, [url, show]);
 
     const changeImg = (pos) => {
         setCenterImg(pos);

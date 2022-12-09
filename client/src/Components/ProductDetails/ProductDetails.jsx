@@ -29,6 +29,7 @@ const PDImgContainer = styled.div`
   margin:5px;
   display: flex;
   align-items: center;
+  justify-content: center;
 `;
 
 const PDStarsContainer = styled.div`
