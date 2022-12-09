@@ -12,8 +12,11 @@ export default function ModalWindow(props) {
         handleClose, // renderProp
         show, // boolean
         url, // text
+        usage,
         openPos
     } = {...props};
+
+    console.log('modal is : ', show, usage);
 
     return (
         <ModalWindowImpl
@@ -21,6 +24,7 @@ export default function ModalWindow(props) {
             show={show}
             url={url}
             openPos={openPos}
+            usage={usage}
         />
     );
 }
