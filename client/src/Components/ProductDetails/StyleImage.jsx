@@ -1,7 +1,7 @@
 import React from 'react';
 // import RelatedProducts from './RelatedProducts.jsx';
 import styled from 'styled-components';
-import ModalWindow from '../Shared/ModalWindow';
+import ProductDetailModalWindow from '../Shared/ProductDetailModal';
 import * as Pos from '../Shared/ModalWindow';
 
 const ImageContainer = styled.div`
@@ -10,7 +10,7 @@ const ImageContainer = styled.div`
   grid-template-rows: 0.8fr, 0.2fr;
   grid-template-columns: 1fr, 1fr, 1fr, 1fr, 1fr;
   grid-gap: 2rem;
-  z-index: 1;
+  z-index: 6;
   place-items: center;
   height: 100%;
 `;
@@ -27,7 +27,7 @@ const SelectedImage = styled.img`
 const GalleryDiv = styled.div`
   grid-row: 2 / -1;
   grid-column: 1 / -1;
-  z-index: 3;
+  z-index: 8;
   margin-top: auto;
   display:flex;
   align-items: center;
@@ -113,7 +113,7 @@ const RightImage = styled.img`
 const FullViewDiv = styled.div`
   grid-column: 1/-1;
   grid-row: 1/-1;
-  z-index: 3;
+  z-index: 8;
   margin-bottom: auto;
   margin-left: auto;
 `;
@@ -124,6 +124,19 @@ export default function StyleImage({selectedStylePhotos}) {
   const [centerImg, setCenterImg] = React.useState(0);
   const [leftImg, setLeftImg] = React.useState(-1);
   const [rightImg, setRightImg] = React.useState(1);
+  const [show, setShow] = React.useState(false);
+  const [url, setUrl] = React.useState('');
+
+  const showModal = () => {
+      setUrl(selectedPhoto.url)
+      setShow(true);
+  };
+  const hideModal = (arg) => {
+      setShow(false);
+  };
+  const handleClick = (url) => {
+    showModal();
+  }
   React.useEffect(() => {
     if (selectedStylePhotos && selectedStylePhotos.length > 0) {
       setSelectedPhoto(selectedStylePhotos[0]);
@@ -145,12 +158,13 @@ export default function StyleImage({selectedStylePhotos}) {
     setLeftImg(pos-1);
     setRightImg(pos+1);
     setSelectedPhoto(galleryList[pos]);
+    setUrl(galleryList[pos].url)
   }
   return (
     <ImageContainer>
-      <SelectedImage onClick={() => {console.log(galleryList)}} src={selectedPhoto.url} alt="NO PHOTOS" />
+      <SelectedImage onClick={showModal} src={selectedPhoto.url} alt="NO PHOTOS" />
       <FullViewDiv>
-        O
+        <button onClick={handleClick}>O</button>
       </FullViewDiv>
       <GalleryDiv>
         <ScrollLeftDiv>
@@ -175,7 +189,13 @@ export default function StyleImage({selectedStylePhotos}) {
           <ScrollRightButton active={!galleryList[rightImg]} onClick={() => shiftGallery(1)}>{'>'}</ScrollRightButton>
         </ScrollRightDiv>
       </GalleryDiv>
-
+      <ProductDetailModalWindow
+        show={show}
+        url={url}
+        handleClose={hideModal}
+        openPos={Pos.CM_CENTER_CENTER}
+        galleryList={galleryList}>
+      </ProductDetailModalWindow>
     </ImageContainer>
   );
 }
