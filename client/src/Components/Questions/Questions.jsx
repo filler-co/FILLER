@@ -114,6 +114,10 @@ export default function Questions({ renderedProduct, setqNum, qNum }) {
       });
   }
 
+  const askQuestion = () => {
+
+  }
+
   /* get questions with manual sorting */
   // const getQuestions = () => {
   //   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions?product_id=${renderedProduct.id}`, { headers: { Authorization: token.TOKEN } })
@@ -160,6 +164,19 @@ export default function Questions({ renderedProduct, setqNum, qNum }) {
     imcrementVote(voteName, id, () => {
       getQuestions();
     });
+  }
+
+  const postQuestion = (voteName, id , cb) => {
+    console.log('Voting for : ', voteName, id);
+      let url = `/${voteName}/${id}/helpful`;
+      axios.put(url)
+      .then((response) => {
+        console.log('Client side response is : ', response);
+        cb();
+      })
+      .catch((error) => {
+        console.log('Client side error is : ', error);
+      });
   }
 
   return (
