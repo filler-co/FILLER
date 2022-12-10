@@ -30,7 +30,7 @@ const PDImgContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 60vw;
+  width: 55vw;
 `;
 
 const PDStarsContainer = styled.div`
@@ -108,7 +108,7 @@ export default function ProductDetails({renderedProduct, changeRenderedProduct})
       </PDStyleNameContainer>
       <StyleListContainer>
         <StyleButtons
-          selectedStyleId={selectedStyle.id}
+          selectedStyleId={selectedStyle.style_id}
           productStyles={productStyles}
           changeStyle={changeStyle}
         />
