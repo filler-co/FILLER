@@ -70,7 +70,7 @@ export default function PhotoGallery({ images }) {
   };
 
   const handleImgClick = (url) => {
-    console.log('handle the 1st photo modal');
+    //console.log('handle the 1st photo modal');
     setUrl(url);
     showModal();
 

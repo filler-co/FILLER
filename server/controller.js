@@ -119,4 +119,20 @@ module.exports.report = (req, res) => {
     });
 }
 
+module.exports.askQuestion = (req, res) => {
+  // console.log('server side ask question with params with body ', req.body);
+  let url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions';
+
+  axios.post(url, {body:req.body.question, name:req.body.name, email:req.body.email, product_id:req.body.product_id}, { headers: { Authorization: token.TOKEN } } )
+  // axios.post(url, {body:'test',name:'test',email:'test',product_id:40344 }, { headers: { Authorization: token.TOKEN }})
+    .then((response) => {
+      console.log('response from ask a question', response);
+      res.send('asked');
+    }).catch((err) => {
+      console.log('error here for ask a question', err);
+      res.sendStatus(404);
+
+    });
+}
+
 

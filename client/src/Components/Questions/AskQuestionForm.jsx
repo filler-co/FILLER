@@ -1,25 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
+import { ProductContext } from "./Questions";
+import validateForm from "../Shared/validateForm";
+
 
 /* Define style for component*/
-const Container = styled.div`
-  display: grid;
-  max-height: 100%;
-  min-height: 100%;
-  color: black;
-  grid-template-rows: 0.05fr 0.45fr 0.05fr 0.25fr 0.05fr 0.15fr;
-  grid-template-areas:
-    "label"
-    "question"
-    "label"
-    "nickname"
-    "label"
-    "email";
-  text-align: left;
-  grid-gap: 0.05rem;
-  overflow-y:auto;
- `;
-
  const Line = styled.hr`
   color: rgba(0, 0, 0, 0.65);
   margin-bottom: 0.5em;
@@ -86,21 +71,30 @@ const SubmitBtn = styled.input.attrs({
   }
   `
 
-  const Message = styled.span `
-    font-size : 0.7em;
-    color: grey;
+  const Message = styled.div `
+    font-size : 0.6em;
+    color: ${({type}) => (type)};
     margin-top : 0.7em;
   `
 
+  const ErrorMsg = styled.div `
+    font-size : 0.6em;
+    color: 'red';
+
+  `
 
 export default function AskQuestionForm() {
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [question, setQuestion] = useState('');
+  const [error, setError] = useState(null);
+
+  const [product, postQuestion, closeWindow] = useContext(ProductContext);
+  // console.log('product id is : ', product);
 
   const handleOnchange = (event) => {
-    console.log('handle onchange with : ', event.target.name);
+    //console.log('handle onchange with : ', event.target.name);
     let name = event.target.name;
     if (name === 'name') {
       setName(event.target.value);
@@ -113,20 +107,36 @@ export default function AskQuestionForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    const resultError = validateForm({name, email, question});
+
+    if (resultError !== null) {
+			setError(resultError);
+			return;
+		}
+
+    setName('');
+		setEmail('');
+		setQuestion('');
+    setError(null);
+
+    postQuestion(name, email, question);
+
+    closeWindow()
   }
 
   return (
 
-      <form >
+      <form onSubmit={handleSubmit}>
       <Line />
-        <label>Your name<span>&#42;</span></label>
+        <div>Your name<span>&#42;</span></div>
         <Input placeholder="Example: bob (Maximum of 25 characters)" name="name" value={name} onChange={handleOnchange}/>
-        <label>Your Email<span>&#42;</span></label>
+        <div>Your Email<span>&#42;</span></div>
         <Input placeholder="Example: youremail@example.com" name="email" onChange={handleOnchange} value={email}/>
-        <label>Your Question<span>&#42;</span> <Message>(Up to 1000 characters)</Message></label>
+        <div>Your Question<span>&#42;</span> <Message type='grey'>(Up to 1000 characters)</Message></div>
         <Question placeholder="What do you want to know about this product?" name="question" onChange={handleOnchange} value={question}/>
         <SubmitBtn />
-        <Message>Asterisk(*) indicated mandatory field</Message>
+        <Message type='grey' >Asterisk(*) indicated mandatory field</Message>
+        {error && <Message type="red" >{error}</Message>}
       </form>
   )
 }

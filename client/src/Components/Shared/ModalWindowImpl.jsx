@@ -2,10 +2,11 @@ import React, { useRef } from "react";
 import styled from "styled-components";
 import { CM_CENTER_CENTER, CM_TOP_CENTER, CM_TOP_LEFT, CM_TOP_RIGHT } from "./ModalWindow";
 import ModalForm from "./ModalForm";
+import Clear from '../Questions/Clear.svg';
 
 // Modal background layer - visible or invisible, but always floating above client's elements
 const Model = styled.div`
-    z-index: auto;
+    z-index: 999;
     display: ${({ show }) => (show ? 'block' : 'none')};
     position: fixed;
     top: 0;
@@ -18,7 +19,7 @@ const Model = styled.div`
 // Rendered popup - a positional demo confirmation box
 const Container = styled.div`
     position:fixed;
-    background: white;
+    background:  ${({ usage }) => (usage === 'image' ? 'transparent' : 'white')};
     width: auto;
     align-items:center;
     height: auto;
@@ -72,8 +73,8 @@ const Image = styled.div`
 `;
 
 const Form = styled.div`
-    width: 69vw;
-    height: 60vh;
+    width: 50vw;
+    height: 50vh;
     ${'' /* border: solid 1px black; */}
     ${'' /* background-color: rgba(80,80,150, 0.4); */}
 `;
@@ -85,7 +86,7 @@ const ButtonBar = styled.div`
     justify-content: flex-end;
 `;
 
-export default function ConfirmationModalImpl(props) {
+export default function ModalWindowImpl(props) {
   const {
     handleClose, // renderProp fn returns true or false
     show, // boolean - visible/invisible
@@ -113,9 +114,16 @@ export default function ConfirmationModalImpl(props) {
   console.log('url is : ', url);
   return (
     <Model show={show}>
-      <Container openPos={openPos} >
+      <Container openPos={openPos} usage={usage}>
+
         <ButtonBar>
-          <Button onClick={closeWindow} primary={false}>X</Button>
+        <Clear
+          width="20px"
+          height="20px"
+          stroke="red"
+          onClick={closeWindow}
+        />
+          {/* <Button onClick={closeWindow} primary={false}>X</Button> */}
         </ButtonBar>
         {renderForm(usage)}
       </Container>

@@ -5,9 +5,10 @@
      3. Add review
 */
 
-import React from 'react';
+import {React, useContext} from 'react';
 import styled, { css } from 'styled-components';
 import AskQuestionForm from '../Questions/AskQuestionForm';
+import { ProductContext } from '../Questions/Questions';
 
 /* Define style for component*/
 const Container = styled.div`
@@ -16,10 +17,10 @@ const Container = styled.div`
   min-height: auto;
   color: black;
   grid-template-rows: 0.2fr 0.8fr;
-  grid-template-columns: 0.5fr 0.5fr;
+  ${'' /* grid-template-columns: 0.5fr 0.5fr; */}
   grid-template-areas:
-    "image header"
-    "image form";
+    "header"
+    "form";
   text-align: left;
   grid-gap: 0.25rem;
   overflow-y: auto;
@@ -51,14 +52,16 @@ const Image = styled.div`
 
 export default function ModalForm({ productName, }) {
 
+  const [product, postQuestion] = useContext(ProductContext);
+
   return (
     <Container>
-      <Image>
+      {/* <Image>
       <img style={{border:"none"}} src='./img1.jpg' alt="img" width="300" height='400' />
-      </Image>
+      </Image> */}
       <Header>
         <label>Ask a Question for</label><br/>
-        <label>a product </label>
+        <label>{product.name}</label>
       </Header>
       <Form>
         <AskQuestionForm />

@@ -68,7 +68,7 @@ export default function QuestionsItem({ question, handleVote }) {
     sortResults(Object.values(question.answers),'helpfulness', (result) => {
       setAnswers(result);
       if (result.length > 2) {
-        console.log('here is true');
+        //console.log('here is true');
         setDisplayedAnswers(result.slice(0,2));
         setShowLoadmore(true);
       } else {
@@ -84,9 +84,9 @@ export default function QuestionsItem({ question, handleVote }) {
   const [showLoadmore, setShowLoadmore] = useState(false);
 
   const handleLoadMore = () => {
-    console.log('load more answers');
+    //console.log('load more answers');
     let totalNumber = answers.length;
-    console.log('totalnumber is : ', totalNumber, displayedAnswers.length, showLoadmore);
+    //console.log('totalnumber is : ', totalNumber, displayedAnswers.length, showLoadmore);
 
     if (totalNumber > displayedAnswers.length) {
       if (totalNumber > displayedAnswers.length + 2) {

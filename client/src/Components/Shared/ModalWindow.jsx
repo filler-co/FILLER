@@ -16,7 +16,7 @@ export default function ModalWindow(props) {
         openPos
     } = {...props};
 
-    console.log('modal is : ', show, usage);
+    //console.log('modal is : ', show, usage);
 
     return (
         <ModalWindowImpl
