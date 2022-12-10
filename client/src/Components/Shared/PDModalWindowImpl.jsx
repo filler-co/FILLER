@@ -254,10 +254,10 @@ export default function ConfirmationModalImpl(props) {
         setMainImg(pos);
     }
 
-    const shiftGallery = (dir) => {
-        setCenterImg(centerImg+dir);
-        setLeftImg(leftImg+dir);
-        setRightImg(rightImg+dir);
+    const shiftGallery = (img) => {
+        setCenterImg(img);
+        setLeftImg(img-1);
+        setRightImg(img+1);
       };
 
     // const sendYes = () => handleClose(true);
@@ -275,13 +275,13 @@ export default function ConfirmationModalImpl(props) {
                     <Button onClick={closeWindow} primary={false}>X</Button>
                 </ButtonBar>
             <ImageDiv>
-                <LeftScrollSpan onClick={() => {shiftGallery(-1); setMainImgUrl(galleryList[leftImg].url); setMainImg(leftImg) }} active={!galleryList[mainImg-1]}></LeftScrollSpan>
-                <RightScrollSpan active={!galleryList[mainImg+1]} onClick={() => {shiftGallery(1); setMainImgUrl(galleryList[rightImg].url); setMainImg(rightImg) }}></RightScrollSpan>
+                <LeftScrollSpan onClick={() => {shiftGallery(mainImg-1); setMainImgUrl(galleryList[mainImg-1].url); setMainImg(mainImg-1) }} active={!galleryList[mainImg-1]}></LeftScrollSpan>
+                <RightScrollSpan active={!galleryList[mainImg+1]} onClick={() => {shiftGallery(mainImg+1); setMainImgUrl(galleryList[mainImg+1].url); setMainImg(mainImg+1) }}></RightScrollSpan>
                 <Image src={mainImgUrl} alt="..." />
             </ImageDiv>
             <GalleryBar>
                 <ScrollLeftDiv>
-                    <ScrollLeftButton onClick={() => shiftGallery(-1)} active={!galleryList[leftImg]}><FontAwesomeIcon icon={faChevronLeft} /></ScrollLeftButton>
+                    <ScrollLeftButton onClick={() => shiftGallery(centerImg-1)} active={!galleryList[leftImg]}><FontAwesomeIcon icon={faChevronLeft} /></ScrollLeftButton>
                 </ScrollLeftDiv>
                 <GalleryImageDiv>
                     {galleryList[leftImg] && (
@@ -299,7 +299,7 @@ export default function ConfirmationModalImpl(props) {
                     )}
                     </GalleryImageDiv>
                 <ScrollRightDiv>
-                    <ScrollRightButton active={!galleryList[rightImg]} onClick={() => shiftGallery(1)}><FontAwesomeIcon icon={faChevronRight} /></ScrollRightButton>
+                    <ScrollRightButton active={!galleryList[rightImg]} onClick={() => shiftGallery(centerImg+1)}><FontAwesomeIcon icon={faChevronRight} /></ScrollRightButton>
                 </ScrollRightDiv>
             </GalleryBar>
             </Container>

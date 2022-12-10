@@ -16,6 +16,7 @@ const ImageContainer = styled.div`
   z-index: 6;
   place-items: center;
   height: 100%;
+  width: 100%;
 `;
 
 const SelectedImage = styled.img`
@@ -87,10 +88,14 @@ const ScrollRightButton = styled.button`
 const LeftImageDiv = styled.div`
   width: 20%;
   padding: 10px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
 `;
 
 const LeftImage = styled.img`
   cursor: pointer;
+  max-height: 100%;
   ${({ active }) => active && `
   disable: true;
   pointer-events: none;
@@ -101,10 +106,14 @@ const LeftImage = styled.img`
 const CenterImageDiv = styled.div`
   width: 20%;
   padding: 10px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
 `;
 
 const CenterImage = styled.img`
   cursor: pointer:
+  max-height: 100%;
 
   ${({ active }) => active && `
   disable: true;
@@ -116,14 +125,20 @@ const CenterImage = styled.img`
 const RightImageDiv = styled.div`
   width: 20%;
   padding: 10px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
 `;
 
 const RightImage = styled.img`
   cursor: pointer;
+  max-height: 100%;
   ${({ active }) => active && `
   disable: true;
   pointer-events: none;
   border: solid 2px white;
+
+
   `}
 `;
 
