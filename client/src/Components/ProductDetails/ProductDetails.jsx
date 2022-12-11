@@ -64,6 +64,7 @@ const StyleListContainer = styled.div`
   border: solid 1px cornflowerblue;
   padding: 5px;
   margin:5px;
+  width: 100%;
 `;
 const PDDropdownsContainer = styled.div`
   grid-area: product-dropdowns;
@@ -73,9 +74,10 @@ const PDDropdownsContainer = styled.div`
 `;
 
 
-export default function ProductDetails({renderedProduct, changeRenderedProduct}) {
+export default function ProductDetails({handleReviewScrollClick,renderedProduct, changeRenderedProduct}) {
   const [productStyles, setProductStyles] = React.useState([]);
   const [selectedStyle, setSelectedStyle] = React.useState({});
+  let myRef = React.useRef();
   React.useEffect(() => {
     if (renderedProduct.id) {
       axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${renderedProduct.id}/styles`, { headers: { Authorization: token.TOKEN } })
@@ -93,11 +95,10 @@ export default function ProductDetails({renderedProduct, changeRenderedProduct})
       <PDImgContainer>
         <StyleImage selectedStylePhotos={selectedStyle.photos} />
       </PDImgContainer>
-      <PDStarsContainer>
-        STARS
+      <PDStarsContainer onClick={handleReviewScrollClick}>
+        Scroll to Reviews
       </PDStarsContainer>
       <PDNameContainer>
-        PRODUCT NAME:
         {renderedProduct.name}
       </PDNameContainer>
       <PDPriceContainer>

@@ -69,6 +69,11 @@ export default function App() {
 
   const [revNum, setRevNum] = useState(2);
   const [qNum, setqNum] = useState(2);
+  const ref = React.useRef(null);
+
+  const handleReviewScrollClick = () => {
+    ref.current.scrollIntoView({behavior: 'smooth'});
+  };
 
 
   return (
@@ -77,10 +82,11 @@ export default function App() {
       <PDdiv>
         <ProductDetails
           renderedProduct={renderedProduct}
+          handleReviewScrollClick={handleReviewScrollClick}
         />
       </PDdiv>
       <Rdiv>
-        <Reviews renderedProduct={renderedProduct} setRevNum={setRevNum} revNum={revNum}/>
+        <Reviews refProp={ref} renderedProduct={renderedProduct} setRevNum={setRevNum} revNum={revNum}/>
       </Rdiv>
       <Qdiv>
         <Questions renderedProduct={renderedProduct} setqNum={setqNum} qNum={qNum}/>

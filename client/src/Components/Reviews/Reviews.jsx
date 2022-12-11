@@ -69,7 +69,7 @@ padding: 5px;
 
 
 
-export default function Reviews({ renderedProduct, revNum, setRevNum }) {
+export default function Reviews({ renderedProduct, revNum, setRevNum, refProp }) {
   const [reviewList, setReviewList] = useState([]);
   const [sortState, setSortState] = useState('relevant')
   const [filterList, setFilterList] = useState([]);
@@ -89,7 +89,7 @@ console.log(sortState)
 
 
   return (
-    <ReviewContainer>
+    <ReviewContainer ref={refProp}>
       <RHeader>
     <h2>Ratings & Reviews</h2>
         <FilterBy renderedProduct={renderedProduct} reviewList={reviewList} sortState={sortState} setSortState={setSortState} setFilterList={setFilterList} filterList={filterList}/>

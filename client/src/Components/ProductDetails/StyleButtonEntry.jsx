@@ -11,10 +11,10 @@ const SBButton = styled.button`
   cursor: pointer;
   border: none;
   background: none;
+
   ${({ active }) => active && `
   disable: true;
   pointer-events: none;
-  border: solid 2px white;
   `}
 `;
 
