@@ -121,6 +121,8 @@ export default function StyleDropdowns ({selectedStyle, favoritesInfo, updateFav
       if (favoritesInfo) {
         if (favoritesInfo[selectedStyle.style_id]) {
           setFavorite(true);
+        } else {
+          setFavorite(false);
         }
       }
     }
@@ -179,5 +181,3 @@ export default function StyleDropdowns ({selectedStyle, favoritesInfo, updateFav
     </StyleContainer>
   )
 }
-
-// {(!favoritesInfo[selectedStyle.style_id])?'Add to Favorites':'Favorited'}
