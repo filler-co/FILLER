@@ -1,6 +1,9 @@
 import React from 'react';
 // import RelatedProducts from './RelatedProducts.jsx';
 import styled from 'styled-components';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faHeart as hollowHeart} from '@fortawesome/free-regular-svg-icons';
+import {faHeart} from '@fortawesome/free-solid-svg-icons';
 
 const StyleContainer = styled.div`
   display: grid;
@@ -176,7 +179,7 @@ export default function StyleDropdowns ({selectedStyle, favoritesInfo, updateFav
         <AddCartButton type="submit" onClick={() => addCartSubmit()}>Add to Cart</AddCartButton>
       </AddCartContainer>
       <FavContainer>
-        <FavButton onClick={() => {updateFavorites(selectedStyle.style_id); setFavorite(!favorite)}}>{favorite?'favorited':'add to favorites'}</FavButton>
+        <FavButton onClick={() => {updateFavorites(selectedStyle.style_id); setFavorite(!favorite)}}>{favorite?(<FontAwesomeIcon icon={faHeart} />):(<FontAwesomeIcon icon={hollowHeart} />)}</FavButton>
       </FavContainer>
     </StyleContainer>
   )
