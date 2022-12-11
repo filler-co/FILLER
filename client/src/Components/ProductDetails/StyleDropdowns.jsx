@@ -93,16 +93,20 @@ const FavContainer = styled.div`
   z-index: 1;
 `;
 
+const FavButton =styled.button`
+
+`;
 
 
 
-export default function StyleDropdowns ({selectedStyle}) {
+export default function StyleDropdowns ({selectedStyle, favoritesInfo, updateFavorites}) {
   const [sizeOpen, setSizeOpen] = React.useState(false);
   const [sizeOption, setSizeOption] = React.useState('Select Size');
   const [sizeList, setSizeList] = React.useState([]);
   const [qtyOpen, setQtyOpen] = React.useState(false);
   const [QtyOption, setQtyOption] = React.useState('-');
   const [qtyList, setQtyList] = React.useState([]);
+  const [favorite, setFavorite] = React.useState(false);
 
   React.useEffect(() => {
     if (selectedStyle && selectedStyle.skus) {
@@ -114,6 +118,11 @@ export default function StyleDropdowns ({selectedStyle}) {
       setQtyOption('-');
       setQtyOpen(false);
       setQtyList([]);
+      if (favoritesInfo) {
+        if (favoritesInfo[selectedStyle.style_id]) {
+          setFavorite(true);
+        }
+      }
     }
   },  [selectedStyle])
 
@@ -165,8 +174,10 @@ export default function StyleDropdowns ({selectedStyle}) {
         <AddCartButton type="submit" onClick={() => addCartSubmit()}>Add to Cart</AddCartButton>
       </AddCartContainer>
       <FavContainer>
-        FAV BUTTON
+        <FavButton onClick={() => {updateFavorites(selectedStyle.style_id); setFavorite(!favorite)}}>{favorite?'favorited':'add to favorites'}</FavButton>
       </FavContainer>
     </StyleContainer>
   )
 }
+
+// {(!favoritesInfo[selectedStyle.style_id])?'Add to Favorites':'Favorited'}

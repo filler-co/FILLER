@@ -74,7 +74,7 @@ const PDDropdownsContainer = styled.div`
 `;
 
 
-export default function ProductDetails({handleReviewScrollClick,renderedProduct, changeRenderedProduct}) {
+export default function ProductDetails({handleReviewScrollClick,renderedProduct, favoritesInfo, updateFavorites}) {
   const [productStyles, setProductStyles] = React.useState([]);
   const [selectedStyle, setSelectedStyle] = React.useState({});
   let myRef = React.useRef();
@@ -115,7 +115,7 @@ export default function ProductDetails({handleReviewScrollClick,renderedProduct,
         />
       </StyleListContainer>
       <PDDropdownsContainer>
-        <StyleDropdowns selectedStyle={selectedStyle} />
+        <StyleDropdowns updateFavorites={updateFavorites} favoritesInfo={favoritesInfo} selectedStyle={selectedStyle} />
       </PDDropdownsContainer>
 
     </PDContainer>

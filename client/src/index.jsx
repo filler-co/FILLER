@@ -56,6 +56,7 @@ const RPdiv = styled.div`
 
 export default function App() {
   const [renderedProduct, setRenderedProduct] = useState({});
+  const [localInfo, setLocalInfo] = useState(JSON.parse(localStorage.getItem('cookie')));
 
   const changeRenderedProduct = (id) => {
     axios.get(`/products/${id}`, { headers: { Authorization: token.TOKEN } })
@@ -63,6 +64,12 @@ export default function App() {
   };
 
   useEffect(() => {
+    if (JSON.parse(localStorage.getItem('favorites'))) {
+      setLocalInfo(JSON.parse(localStorage.getItem('favorites')))
+    } else {
+      localStorage.setItem('favorites', JSON.stringify({}))
+      setLocalInfo(JSON.parse(localStorage.getItem('favorites')))
+    }
     axios.get('/products', { headers: { Authorization: token.TOKEN } })
       .then((data) => { setRenderedProduct(data.data[0]); });
   }, []);
@@ -70,6 +77,18 @@ export default function App() {
   const [revNum, setRevNum] = useState(2);
   const [qNum, setqNum] = useState(2);
   const ref = React.useRef(null);
+
+  const updateFavorites = (styleId) => {
+    if (localInfo[styleId]) {
+      delete localInfo[styleId];
+      localStorage.setItem('favorites', JSON.stringify(localInfo))
+      setLocalInfo(JSON.parse(localStorage.getItem('favorites')));
+    } else {
+      localInfo[styleId] = true;
+      localStorage.setItem('favorites', JSON.stringify(localInfo))
+      setLocalInfo(JSON.parse(localStorage.getItem('favorites')));
+    }
+  }
 
   const handleReviewScrollClick = () => {
     ref.current.scrollIntoView({behavior: 'smooth'});
@@ -83,6 +102,8 @@ export default function App() {
         <ProductDetails
           renderedProduct={renderedProduct}
           handleReviewScrollClick={handleReviewScrollClick}
+          favoritesInfo ={localInfo}
+          updateFavorites={updateFavorites}
         />
       </PDdiv>
       <Rdiv>
