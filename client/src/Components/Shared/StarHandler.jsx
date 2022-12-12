@@ -3,10 +3,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStarHalf, faStar} from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import styled, { css } from 'styled-components';
-import BlackStar from './blackStar.svg'
-import StarOutline from './starOutline.svg'
-import HalfStar from './halfStar.svg'
-import QuarterStar from './quarterStar.svg'
+import BlackStar from './blackStar.svg';
+import StarOutline from './starOutline.svg';
+import HalfStar from './halfStar.svg';
+import QuarterStar from './quarterStar.svg';
 
 import token from '../../../../config';
 

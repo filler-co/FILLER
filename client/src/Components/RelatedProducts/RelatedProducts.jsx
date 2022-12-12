@@ -3,7 +3,7 @@ import axios from 'axios';
 import token from './../../../../config.js';
 import RenderRelatedEntry from './RenderRelatedEntry.jsx';
 
-export default function RelatedProducts({productId, changeRenderedProduct, setRevNum, setqNum}) {
+export default function RelatedProducts({productId, changeRenderedProduct, setRevNum, setqNum, setRevCount}) {
   const [relatedList, setRelatedList] = React.useState([]);
 
 
@@ -26,6 +26,7 @@ export default function RelatedProducts({productId, changeRenderedProduct, setRe
         relatedId={relatedId}
         setRevNum={setRevNum}
         setqNum={setqNum}
+        setRevCount={setRevCount}
       />
       ) })}
     </div>

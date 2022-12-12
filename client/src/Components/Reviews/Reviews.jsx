@@ -23,7 +23,7 @@ grid-template-areas:
   "product-breakdown review-list"
   "review-buttons review-buttons";
 text-align: left;
-grid-gap: .5rem;
+grid-gap: 1 rem;
 `
 ;
 const PBreakdown = styled.div`
@@ -105,7 +105,7 @@ const uRl = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews?product
       <RatingsBreakdown renderedProduct={renderedProduct} reviewList={reviewList} setReviewList={setReviewList}  setFilterByRating={setFilterByRating} breakdownList={breakdownList} setBreakdownList={setBreakdownList}/>
       </RBreakdown>
       <PBreakdown>
-        <ProductBreakdown />
+        <ProductBreakdown renderedProduct={renderedProduct} />
       </PBreakdown>
       <RList>
       {reviewList.length > 0  && !filterByRating ?  reviewList.map((review, idx) => (

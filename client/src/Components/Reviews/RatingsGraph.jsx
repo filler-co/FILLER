@@ -78,6 +78,7 @@ export default function RatingsGraph({graphData, reviewList, setReviewList, filt
 
 
     if(!Object.values(ratingFilter).includes(true)) {
+
       setFilterByRating(false)
     }
 

@@ -10,6 +10,7 @@ import token from '../../../../config';
 const Bdown = styled.div`
 display: grid;
 grid-template-rows: .1fr .3fr .6fr;
+grid-gap: .5rem;
 grid-template-areas:
   "header-template"
   "stars-template"
