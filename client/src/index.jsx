@@ -4,7 +4,7 @@ import axios from 'axios';
 import token from '../../config.js'
 import Reviews from './Components/Reviews/Reviews.jsx'
 import ProductDetails from './Components/ProductDetails/ProductDetails.jsx';
-import Questions from './Components/Questions/Questions.jsx';
+import {Questions} from './Components/Questions/Questions.jsx';
 import RelatedProducts from './Components/RelatedProducts/RelatedProducts.jsx';
 import styled from 'styled-components';
 
