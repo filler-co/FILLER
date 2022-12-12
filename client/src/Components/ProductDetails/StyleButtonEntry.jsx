@@ -23,6 +23,14 @@ const SBDiv = styled.div`
   height: 40px;
   width: 40px;
 
+  ${({ active }) => !active && `
+  &:hover {
+    height: 38px;
+    width: 38px;
+    border: solid 2px black;
+  }
+  `}
+
   ${({ active }) => active && `
   height: 39px;
   width: 39px;

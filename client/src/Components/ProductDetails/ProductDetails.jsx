@@ -13,12 +13,12 @@ const PDContainer = styled.div`
   grid-template-columns: 50%, 50%;
   grid-template-rows: 1fr, 1.5fr, 0.5fr, 1fr, 2.5fr, 1.5fr;
   grid-template-areas:
-  "product-image product-stars"
-  "product-image product-title"
-  "product-image product-price"
-  "product-image product-style"
-  "product-image style-list"
-  "product-image product-dropdowns";
+  "product-image product-details"
+  "product-image product-details"
+  "product-image product-details"
+  "product-image product-details"
+  "product-image product-details"
+  "product-image product-details";
   height: 80vh;
   min-height: 10px;
 `;
@@ -33,8 +33,15 @@ const PDImgContainer = styled.div`
   width: 55vw;
 `;
 
+const PDDetailsDiv = styled.div`
+  grid-area: product-details;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
+
 const PDStarsContainer = styled.div`
-  grid-area: product-stars;
   border: solid 1px cornflowerblue;
   padding: 5px;
   margin:5px;
@@ -48,7 +55,6 @@ const ScrollSpan = styled.span`
 `;
 
 const PDNameContainer = styled.div`
-  grid-area: product-title;
   border: solid 1px cornflowerblue;
   padding: 5px;
   margin:5px;
@@ -57,21 +63,23 @@ const PDNameContainer = styled.div`
 `;
 
 const PDPriceContainer = styled.div`
-  grid-area: product-price;
   border: solid 1px cornflowerblue;
   padding: 5px;
   margin:5px;
   width: 35vw;
 `;
 const PDStyleNameContainer = styled.div`
-  grid-area: product-style;
   border: solid 1px cornflowerblue;
   padding: 5px;
   margin:5px;
   width: 35vw;
+  font-size: large;
+`;
+
+const SelectStyleDiv = styled.div`
+  font-size: unset;
 `;
 const StyleListContainer = styled.div`
-  grid-area: style-list;
   border: solid 1px cornflowerblue;
   padding: 5px;
   margin:5px;
@@ -79,7 +87,6 @@ const StyleListContainer = styled.div`
   width: 35vw;
 `;
 const PDDropdownsContainer = styled.div`
-  grid-area: product-dropdowns;
   border: solid 1px cornflowerblue;
   padding: 5px;
   margin:5px;
@@ -108,19 +115,21 @@ export default function ProductDetails({handleReviewScrollClick,renderedProduct,
       <PDImgContainer>
         <StyleImage selectedStylePhotos={selectedStyle.photos} />
       </PDImgContainer>
-      <PDStarsContainer onClick={handleReviewScrollClick}>
-        <ScrollSpan>Scroll to reviews.</ScrollSpan>
-      </PDStarsContainer>
-      <PDNameContainer>
-        {renderedProduct.name}
-      </PDNameContainer>
-      <PDPriceContainer>
-        <StylePrice selectedStyle={selectedStyle} />
-      </PDPriceContainer>
-      <PDStyleNameContainer>
-        {selectedStyle.name}
-      </PDStyleNameContainer>
-      <StyleListContainer>
+      <PDDetailsDiv>
+        <PDStarsContainer onClick={handleReviewScrollClick}>
+          <ScrollSpan>See product reviews.</ScrollSpan>
+        </PDStarsContainer>
+        <PDNameContainer>
+          {renderedProduct.name}
+        </PDNameContainer>
+        <PDPriceContainer>
+          <StylePrice selectedStyle={selectedStyle} />
+        </PDPriceContainer>
+        <PDStyleNameContainer>
+          {selectedStyle.name}
+        </PDStyleNameContainer>
+        <StyleListContainer>
+        <SelectStyleDiv>Select Style:</SelectStyleDiv>
         <StyleButtons
           selectedStyleId={selectedStyle.style_id}
           productStyles={productStyles}
@@ -130,6 +139,8 @@ export default function ProductDetails({handleReviewScrollClick,renderedProduct,
       <PDDropdownsContainer>
         <StyleDropdowns updateFavorites={updateFavorites} favoritesInfo={favoritesInfo} selectedStyle={selectedStyle} />
       </PDDropdownsContainer>
+      </PDDetailsDiv>
+
 
     </PDContainer>
   );
