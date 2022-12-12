@@ -11,13 +11,38 @@ const SBButton = styled.button`
   cursor: pointer;
   border: none;
   background: none;
+
+  ${({ active }) => active && `
+  disable: true;
+  pointer-events: none;
+  `}
+`;
+
+const SBDiv = styled.div`
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+
+  ${({ active }) => !active && `
+  &:hover {
+    height: 38px;
+    width: 38px;
+    border: solid 2px black;
+  }
+  `}
+
+  ${({ active }) => active && `
+  height: 39px;
+  width: 39px;
+  border: solid 1px black;
+  `}
 `;
 
 export default function StyleButtonEntry({ selectedStyleId, productStyle, changeStyle}) {
   return (
     <SBContainer>
-      <SBButton type="button" onClick={() => changeStyle(productStyle)}>
-        <div style={{ backgroundImage: `url(${productStyle.photos[0].thumbnail_url})`, borderRadius: '50%', width: '40px', height: '40px'}} />
+      <SBButton active={productStyle.style_id === selectedStyleId} type="button" onClick={() => changeStyle(productStyle)}>
+        <SBDiv active={productStyle.style_id === selectedStyleId} style={{ backgroundImage: `url(${productStyle.photos[0].thumbnail_url})`}} />
       </SBButton>
     </SBContainer>
   );
