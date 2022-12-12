@@ -1,8 +1,8 @@
 import React, { useRef } from "react";
 import styled from "styled-components";
 import { CM_CENTER_CENTER, CM_TOP_CENTER, CM_TOP_LEFT, CM_TOP_RIGHT } from "./ModalWindow";
-import ModalForm from "./ModalForm";
 import Clear from '../Questions/Clear.svg';
+import ModalForm from "./ModalForm";
 
 // Modal background layer - visible or invisible, but always floating above client's elements
 const Model = styled.div`
@@ -24,6 +24,8 @@ const Container = styled.div`
     align-items:center;
     height: auto;
     overflow-y: auto;
+    border: solid 1px transparent;
+    border-radius : 10px;
 
     top: ${({ openPos }) => (
     {
@@ -75,6 +77,8 @@ const Image = styled.div`
 const Form = styled.div`
     width: 50vw;
     height: 50vh;
+    border-radius: 5px;
+    color: black
     ${'' /* border: solid 1px black; */}
     ${'' /* background-color: rgba(80,80,150, 0.4); */}
 `;
@@ -98,14 +102,11 @@ export default function ModalWindowImpl(props) {
   const closeWindow = () => handleClose(false);
 
   const renderForm = (usage) => {
-    if (usage === 'question') {
+    if (usage === 'question'|| usage === 'answer') {
       return <Form>
-        <ModalForm />
+        <ModalForm type={usage}/>
       </Form>
-    }
-    if (usage === 'answer') {
-    }
-    if (usage === 'image') {
+    } else {
       return <Image><img src={url} alt="..." width="600" height="600" /></Image>
     }
   }

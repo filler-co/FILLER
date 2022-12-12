@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect, createContext } from 'react';
 import axios from 'axios';
-import QuestionItem from './QuestionItem.jsx';
+import { QuestionsItem } from './QuestionsItem.jsx';
 import SearchBar from './SearchBar.jsx';
 import MoreButton from '../Shared/MoreButton.jsx';
 import token from '../../../../config.js';
@@ -88,7 +88,6 @@ export function Questions({ renderedProduct, setqNum, qNum }) {
     //console.log('handle ask question modal window popup');
     setUrl('');
     showModal();
-
   }
 
   useEffect(() => {
@@ -114,9 +113,6 @@ export function Questions({ renderedProduct, setqNum, qNum }) {
       });
   }
 
-  const askQuestion = () => {
-
-  }
 
   /* get questions with manual sorting */
   // const getQuestions = () => {
@@ -185,14 +181,11 @@ export function Questions({ renderedProduct, setqNum, qNum }) {
         QUESTIONS & ANSWERS
       </Header>
       <Search>
-
       <SearchBar searchQuestion={searchQuestion} />
-
-
       </Search>
       <QAList>
         {/* {displayedQuestions.length > 0 ? displayedQuestions.map((question, index) => <QuestionItem question={question} handleVote={handleVote} key={index} />) : 'Still loading'} */}
-        {displayedQuestions.length > 0 ? displayedQuestions.map((question, index) => <QuestionItem question={question} handleVote={handleVote} key={index} />) : 'No questions for this product, try another product'}
+        {displayedQuestions.length > 0 ? displayedQuestions.map((question, index) => <QuestionsItem question={question} handleVote={handleVote} key={index} />) : 'No questions for this product, try another product'}
       </QAList>
 
       {showMoreBtn && <MoreQuestionBtn>

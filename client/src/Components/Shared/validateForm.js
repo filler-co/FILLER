@@ -1,7 +1,9 @@
 // validate for presence
-export default function validateForm({ name, email, question }) {
+export default function validateForm({ name, email, inputField }) {
 	if (!name.trim()) {
 		return `Name is required`;
+	} else if (name.length > 25) {
+		return 'Name needs to be less than 25 characters.';
 	}
 
 	const regex =
@@ -18,8 +20,11 @@ export default function validateForm({ name, email, question }) {
 		}
 	}
 
-	if (!question) {
+	console.log('validation : ', inputField);
+	if (!inputField) {
 		return `Question is required`;
+	} else if (inputField.length > 1000) {
+		return 'Question needs to be less than 1000 characters.';
 	}
 
 	return null;
