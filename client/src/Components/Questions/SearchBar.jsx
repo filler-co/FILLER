@@ -1,8 +1,9 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import styled, { css } from 'styled-components';
 import Clear from './Clear.svg';
 import Search from './Search.svg';
+import  {ProductContext}  from "./Questions.jsx";
 
 
 const Container = styled.div`
@@ -38,6 +39,7 @@ const Icon = styled.div`
 
 export default function SearchBar({ searchQuestion }) {
   const [keyWord, setKeyword] = useState('');
+
 
   const handleChange = (event) => {
     //console.log('handle on change');

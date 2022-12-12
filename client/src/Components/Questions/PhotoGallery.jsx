@@ -18,7 +18,7 @@ const Container = styled.div`
   grid-gap: 0.05rem;
  `;
 
- const P1 = styled.span`
+const P1 = styled.span`
   ${'' /* background: #3a3a55; */}
   grid-area: p1;
   padding: 0.25rem;
@@ -55,40 +55,41 @@ const P5 = styled.span`
 
 // grid-template-columns: repeat(auto-fill, 40px);
 
-export default function PhotoGallery({images}) {
+export default function PhotoGallery({ images }) {
 
-    const [show, setShow] = useState(false);
+  const [show, setShow] = useState(false);
 
-    const showModal = () => {
-        setShow(true);
-    };
+  const showModal = () => {
+    setShow(true);
+  };
 
-    const [url, setUrl] = useState('');
+  const [url, setUrl] = useState('');
 
-    const hideModal = (arg) => {
-        setShow(false);
-    };
+  const hideModal = (arg) => {
+    setShow(false);
+  };
 
-    const handleImgClick = (url) => {
-      console.log('handle the 1st photo modal');
-      setUrl(url);
-      showModal();
+  const handleImgClick = (url) => {
+    //console.log('handle the 1st photo modal');
+    setUrl(url);
+    showModal();
 
-    }
+  }
 
   return (
     <Container>
-    {images[0] && <P1 onClick={() => {handleImgClick(images[0])}}><img src={images[0]} alt="img" width="100" height="80" /></P1>}
-    {images[1] && <P2 onClick={() => {handleImgClick(images[1])}}><img src={images[1]} alt="img" width="100" height="80" /></P2>}
-    {images[2] && <P3 onClick={() => {handleImgClick(images[2])}}><img src={images[2]} alt="img" width="100" height="80" /></P3>}
-    {images[3] && <P4 onClick={() => {handleImgClick(images[3])}}><img src={images[3]} alt="img" width="100" height="80" /></P4>}
-    {images[4] && <P5 onClick={() => {handleImgClick(images[4])}}><img src={images[4]} alt="img" width="100" height="80" /></P5>}
-            <ModalWindow
-                show={show}
-                url={url}
-                handleClose={hideModal}
-                openPos={Pos.CM_CENTER_CENTER}>
-            </ModalWindow>
+      {images[0] && <P1 onClick={() => { handleImgClick(images[0]) }}><img src={images[0]} alt="img" width="100" height="80" /></P1>}
+      {images[1] && <P2 onClick={() => { handleImgClick(images[1]) }}><img src={images[1]} alt="img" width="100" height="80" /></P2>}
+      {images[2] && <P3 onClick={() => { handleImgClick(images[2]) }}><img src={images[2]} alt="img" width="100" height="80" /></P3>}
+      {images[3] && <P4 onClick={() => { handleImgClick(images[3]) }}><img src={images[3]} alt="img" width="100" height="80" /></P4>}
+      {images[4] && <P5 onClick={() => { handleImgClick(images[4]) }}><img src={images[4]} alt="img" width="100" height="80" /></P5>}
+      <ModalWindow
+        show={show}
+        url={url}
+        handleClose={hideModal}
+        usage='image'
+        openPos={Pos.CM_CENTER_CENTER}>
+      </ModalWindow>
     </Container>
   );
 }

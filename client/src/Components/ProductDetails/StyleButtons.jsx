@@ -5,6 +5,10 @@ import StyleButtonEntry from './StyleButtonEntry.jsx';
 
 const StyleButtonsContainer = styled.div`
   display: inline-flex;
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
 `;
 
 export default function StyleButtons({selectedStyleId, productStyles, changeStyle}) {
