@@ -43,6 +43,7 @@
     "jest": "^29.3.1",
     "jquery": "^3.1.1",
     "mongoose": "^5.10.15",
+    "multer": "^1.4.5-lts.1",
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
     "styled-components": "^5.3.6",
