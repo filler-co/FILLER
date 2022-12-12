@@ -38,6 +38,13 @@ const PDStarsContainer = styled.div`
   border: solid 1px cornflowerblue;
   padding: 5px;
   margin:5px;
+  font-size: smaller;
+  text-decoration: underline;
+  width: 35vw;
+`;
+
+const ScrollSpan = styled.span`
+  cursor: pointer;
 `;
 
 const PDNameContainer = styled.div`
@@ -45,6 +52,8 @@ const PDNameContainer = styled.div`
   border: solid 1px cornflowerblue;
   padding: 5px;
   margin:5px;
+  font-size: x-large;
+  width: 35vw
 `;
 
 const PDPriceContainer = styled.div`
@@ -52,12 +61,14 @@ const PDPriceContainer = styled.div`
   border: solid 1px cornflowerblue;
   padding: 5px;
   margin:5px;
+  width: 35vw;
 `;
 const PDStyleNameContainer = styled.div`
   grid-area: product-style;
   border: solid 1px cornflowerblue;
   padding: 5px;
   margin:5px;
+  width: 35vw;
 `;
 const StyleListContainer = styled.div`
   grid-area: style-list;
@@ -65,12 +76,14 @@ const StyleListContainer = styled.div`
   padding: 5px;
   margin:5px;
   width: 100%;
+  width: 35vw;
 `;
 const PDDropdownsContainer = styled.div`
   grid-area: product-dropdowns;
   border: solid 1px cornflowerblue;
   padding: 5px;
   margin:5px;
+  max-height: 10vh;
 `;
 
 
@@ -96,7 +109,7 @@ export default function ProductDetails({handleReviewScrollClick,renderedProduct,
         <StyleImage selectedStylePhotos={selectedStyle.photos} />
       </PDImgContainer>
       <PDStarsContainer onClick={handleReviewScrollClick}>
-        Scroll to Reviews
+        <ScrollSpan>Scroll to reviews.</ScrollSpan>
       </PDStarsContainer>
       <PDNameContainer>
         {renderedProduct.name}

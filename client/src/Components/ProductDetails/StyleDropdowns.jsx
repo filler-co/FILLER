@@ -8,24 +8,25 @@ import {faHeart} from '@fortawesome/free-solid-svg-icons';
 const StyleContainer = styled.div`
   display: grid;
   grid-template-columns: 50%, 50%;
-  grid-template-areas:
-    "size-dropdown qty-dropdown";
+  grid-template-rows: 75%, 50%;
   z-index: 1;
+  width: 35vw;
+  height: 8vw;
 `;
 
 const SizeDropdownContainer = styled.div`
-  grid-area: size-dropdown;
+  grid-column: 1;
+  grid-row: 1;
   text-align: center;
   z-index: 2;
   border: solid 1px cornflowerblue;
-  padding: 5px;
-  margin: 5px 5px 0px 5px;
-  margin-bottom: 25%;
   max-height: 40px;
+  width: 95%
 `;
 
 const SizeDropdownHeader = styled.div`
   z-index: 5;
+  width: 100%
 `;
 
 const SizeDropdownListContainer = styled.div`
@@ -34,27 +35,31 @@ const SizeDropdownListContainer = styled.div`
   overflow-x: hidden;
   background: white;
   max-height: 90px;
+  width: 100%;
 `;
 
 const SizeDropdownList = styled.ul`
+  list-style-type: none;
+  padding: 0;
 `;
 
 const SizeListItem = styled.li`
 `;
 
 const QtyDropdownContainer = styled.div`
-  grid-area: qty-dropdown;
+  grid-column: 2;
+  grid-row: 1;
   text-align: center;
   z-index: 2;
   border: solid 1px cornflowerblue;
-  padding: 5px;
-  margin: 5px 5px 0px 5px;
-  margin-bottom: 25%;
   max-height: 40px;
+  width: 100%;
+  padding-bottom: 10%;
 `;
 
 const QtyDropdownHeader = styled.div`
   z-index: 5;
+  max-width: 90%;
 `;
 
 const QtyDropdownListContainer = styled.div`
@@ -62,23 +67,27 @@ const QtyDropdownListContainer = styled.div`
   overflow-y: auto;
   overflow-x: hidden;
   background: white;
-  max-height: 70px;
+  max-height: 90px;
+  max-width: 90%;
 `;
 
 const QtyDropdownList = styled.ul`
+  list-style-type: none;
+  padding: 0;
 `;
 
 const QtyListItem = styled.li`
 `;
 
 const AddCartContainer = styled.div`
-  grid-area: size-dropdown;
+  grid-column: 1;
+  grid-row: 2;
   border: solid 1px cornflowerblue;
-  padding: 5px;
-  margin: 0px 5px 5px 5px;
-  margin-top: 25%;
   text-align: center;
   z-index: 1;
+  display: flex;
+  justify-content: center;
+  width: 95%
 `;
 
 const AddCartButton = styled.button`
@@ -87,13 +96,15 @@ const AddCartButton = styled.button`
 `;
 
 const FavContainer = styled.div`
-  grid-area: qty-dropdown;
+  grid-column: 2;
+  grid-row: 2;
   border: solid 1px cornflowerblue;
-  padding: 5px;
-  margin: 0px 5px 5px 5px;
-  margin-top: 25%;
   text-align: center;
   z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 95%;
 `;
 
 const FavButton =styled.button`
@@ -162,6 +173,7 @@ export default function StyleDropdowns ({selectedStyle, favoritesInfo, updateFav
           </SizeDropdownList>
         </SizeDropdownListContainer>
         )}
+
       </SizeDropdownContainer>
       <QtyDropdownContainer>
         <QtyDropdownHeader onClick={() => { if(qtyList.length > 0) {setQtyOpen(!qtyOpen)} }}>
@@ -174,6 +186,7 @@ export default function StyleDropdowns ({selectedStyle, favoritesInfo, updateFav
             </QtyDropdownList>
           </QtyDropdownListContainer>
         )}
+
       </QtyDropdownContainer>
       <AddCartContainer>
         <AddCartButton type="submit" onClick={() => addCartSubmit()}>Add to Cart</AddCartButton>
