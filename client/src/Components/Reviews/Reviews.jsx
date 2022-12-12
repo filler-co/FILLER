@@ -16,7 +16,7 @@ display: grid;
 max-height: 100%;
 background: #d5bdaf;
 grid-template-columns: .35fr .65fr;
-grid-template-rows: .1fr .4fr .4fr .1fr;
+grid-template-rows: .2fr .3fr .4fr .1fr;
 grid-template-areas:
   "review-header review-header"
   "ratings-breakdown review-list"
@@ -29,6 +29,7 @@ grid-gap: 1 rem;
 const PBreakdown = styled.div`
 grid-area: product-breakdown;
 background: #d6ccc2;
+height: 42vh;
 margin: 5px;
 padding: 5px;
 `
@@ -43,9 +44,9 @@ padding: 5px;
   const RList = styled.div`
   grid-area: review-list;
   margin: 5px;
-  height: 75vh;
+  max-height: 100vh;
   overflow-x: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
   `;
 
   const RButtons = styled.div`

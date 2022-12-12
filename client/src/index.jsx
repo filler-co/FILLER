@@ -14,7 +14,7 @@ const Container = styled.div`
   color: black;
   grid-template-rows: 6fr 2fr 1fr 2fr;
   grid-gap: 0.25rem;
-  text-align-center;
+  text-align: center;
   grid-template-areas:
     "product-details"
     "reviews"

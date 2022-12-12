@@ -17,7 +17,10 @@ grid-template-areas:
   "breakdown-box";
 `
 const BHeader = styled.h3`
-grid-area: header-template
+grid-area: header-template;
+display: flex;
+justify-content: center;
+margin-bottom: 7px;
 `
 
 const StarStyled = styled.div`
