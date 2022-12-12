@@ -42,11 +42,8 @@ padding: 5px;
 
   const RList = styled.div`
   grid-area: review-list;
-  background: cornflowerblue;
-  border: solid black 1px;
   margin: 5px;
-  min-height: 450px;
-  max-height: 600px;
+  height: 75vh;
   overflow-x: hidden;
   overflow-y: scroll;
   `;
@@ -73,18 +70,27 @@ export default function Reviews({ renderedProduct, revNum, setRevNum, refProp })
   const [reviewList, setReviewList] = useState([]);
   const [sortState, setSortState] = useState('relevant')
   const [filterList, setFilterList] = useState([]);
+  const [filterByRating, setFilterByRating] = useState(false)
+  const [breakdownList, setBreakdownList] = useState([])
+  const [totalRevs, setTotalRevs] = useState(0)
   const id = renderedProduct.id
 
 
 const uRl = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews?product_id=${id}&sort=${sortState}&count=${revNum}`
   const getProductReview = () => {
     axios.get(uRl, { headers: { Authorization: token.TOKEN } })
-    .then((data) => { setReviewList(data.data.results); console.log(data.data)})
+    .then((data) => { setReviewList(data.data.results); })
     .catch((err) => console.log(err));
   };
-console.log(sortState)
+
   useEffect(() => {if (renderedProduct.id) {getProductReview()}}, [revNum, renderedProduct.id, sortState, filterList])
 
+
+  reviewList.map((item) => {
+    item.display = true;
+  })
+
+  console.log(totalRevs)
 
 
 
@@ -92,32 +98,34 @@ console.log(sortState)
     <ReviewContainer ref={refProp}>
       <RHeader>
     <h2>Ratings & Reviews</h2>
-        <FilterBy renderedProduct={renderedProduct} reviewList={reviewList} sortState={sortState} setSortState={setSortState} setFilterList={setFilterList} filterList={filterList}/>
+        <FilterBy renderedProduct={renderedProduct} reviewList={reviewList} sortState={sortState} setSortState={setSortState} setFilterList={setFilterList} filterList={filterList} filterByRating={filterByRating} setFilterByRating={setFilterByRating} setTotalRevs={setTotalRevs}
+        />
       </RHeader>
       <RBreakdown>
-      <RatingsBreakdown renderedProduct={renderedProduct} />
+      <RatingsBreakdown renderedProduct={renderedProduct} reviewList={reviewList} setReviewList={setReviewList}  setFilterByRating={setFilterByRating} breakdownList={breakdownList} setBreakdownList={setBreakdownList}/>
       </RBreakdown>
       <PBreakdown>
         <ProductBreakdown />
       </PBreakdown>
       <RList>
-      {reviewList.length > 0 ? reviewList.map((review, idx) => (
+      {reviewList.length > 0  && !filterByRating ?  reviewList.map((review, idx) => (
         <ReviewItem
           key={idx}
           rating={review.rating}
           renderedProduct={renderedProduct}
           review={review}
         />
-      )) : (
-        <nav>
-          <h2>
-            Loading Reviews
-          </h2>
-        </nav>
-      )}
+        )) : breakdownList.map((review, idx) => (
+          <ReviewItem
+            key={idx}
+            rating={review.rating}
+            renderedProduct={renderedProduct}
+            review={review}
+          />
+          ))}
       </RList>
       <RButtons>
-      <MoreButton buttonName={'Get More Reviews'} actionNeed={getProductReview} revNum={revNum} setRevNum={setRevNum} qNum={false}/>
+        {revNum < totalRevs ? <MoreButton buttonName={'Get More Reviews'} actionNeed={getProductReview} revNum={revNum} setRevNum={setRevNum} qNum={false}/>: <div></div> }
       <CreateReview />
       </RButtons>
     </ReviewContainer>

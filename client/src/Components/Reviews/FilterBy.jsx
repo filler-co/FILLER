@@ -4,7 +4,7 @@ import FilterSelector from './FilterSelector.jsx'
 import axios from 'axios';
 
 
-export default function FilterBy({renderedProduct, reviewList, sortState, setSortState, filterList, setFilterList}) {
+export default function FilterBy({renderedProduct, reviewList, sortState, setSortState, filterList, setFilterList, filterByRating, setFilterByRating, setTotalRevs}) {
 
 
   const reviewFilter = () => {
@@ -15,9 +15,12 @@ export default function FilterBy({renderedProduct, reviewList, sortState, setSor
 
   useEffect(() => {if(renderedProduct.id){reviewFilter()}}, [renderedProduct.id])
 
+  const total = filterList.reduce((total, num) => {return total + Math.round(num)}, 0);
+  setTotalRevs(total)
+
 
   return (
-  filterList.length ? <div>{filterList.reduce((total, num) => {return total + Math.round(num)}, 0)} reviews, sorted by <FilterSelector sortState={sortState} setSortState={setSortState}/></div> : <div></div>
+  filterList.length ? <div>{total} reviews, sorted by <FilterSelector sortState={sortState} setSortState={setSortState} filterByRating={filterByRating} setFilterByRating={setFilterByRating}/></div> : <div></div>
   )
 
 }

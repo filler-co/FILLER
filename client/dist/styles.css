@@ -62,11 +62,40 @@
    /* max-width: 840px; */
    padding: 25px 50px;
    margin: auto;
- }
+ } */
 
+<<<<<<< HEAD
+ /* .container {
+  border: solid 1px black;
+  padding: 5px;
+  margin:5px;
+ } */
+/*
+ .product-details-container {
+  border: solid 1px cornflowerblue;
+  padding: 5px;
+  margin:5px;
+ } */
+
+ /* .related-products-container {
+  border: solid 1px maroon;
+  padding: 5px;
+  margin:5px;
+ } */
+
+
+ /* .review-container {
+  border: solid 1px blueviolet;
+  padding: 5px;
+  margin:5px;
+ } */
+
+ /* .review-item{
+=======
  .review-item{
+>>>>>>> 2541ee3fca47b7fd340cce76f746cdae1b344d12
   border: solid 1px black;
   padding: 5px;
   margin:5px;
 
- }
+ } */

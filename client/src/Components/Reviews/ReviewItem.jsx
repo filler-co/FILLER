@@ -101,6 +101,7 @@ const formatDate = (dateString) => {
 export default function ReviewItem({ review, renderedProduct, rating }) {
 
   return (
+    review.display ?
     <ReviewItemContainer>
       <StarItem>
         <StarHandler renderedProduct={renderedProduct.id} single={rating} />
@@ -125,9 +126,9 @@ export default function ReviewItem({ review, renderedProduct, rating }) {
             ) : <div></div>
             }
       <RFooter>
-        Helpful? Yes(9) | Report
+       <p>Helpful? Yes({review.helpfulness})</p>
       </RFooter>
       </Body>
-    </ReviewItemContainer>
+    </ReviewItemContainer> : <div></div>
   );
 }
