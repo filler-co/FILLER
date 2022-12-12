@@ -76,6 +76,8 @@ export default function PhotoGallery({ images }) {
 
   }
 
+  // {images[0] && <P1 onClick={() => { handleImgClick(images[0]) }}><img src='http://localhost:3000/dd92769dce988d7debb434de7192b7ed' alt="img" width="100" height="80" /></P1>}
+
   return (
     <Container>
       {images[0] && <P1 onClick={() => { handleImgClick(images[0]) }}><img src={images[0]} alt="img" width="100" height="80" /></P1>}

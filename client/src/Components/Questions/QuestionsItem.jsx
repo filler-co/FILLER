@@ -130,10 +130,11 @@ export function QuestionsItem({ question, handleVote }) {
     showModal();
   }
 
-  const postAnswer = (name, email, answer, photos) => {
-    console.log('add a answer for question : ', question.question_id, photos );
+  const postAnswer = (formData) => {
+    console.log('add a answer for question : ', question.question_id);
     let url = `/questions/${question.question_id}/answers`;
-    axios.post(url, {name:name, email:email, answer:answer, photos:photos})
+
+    axios.post(url, formData)
     .then((response) => {
       console.log('Client side response for ask a question is : ', response);
     })

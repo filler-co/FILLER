@@ -125,13 +125,12 @@ export default function ModalForm({type}) {
 
 
   // const [name, setName] = useState("");
-  const [selectedFile, setSelectedFile] = useState('');
+  const [selectedFiles, setSelectedFiles] = useState('');
   const fileInput = useRef('')
 
   const handleFileInput = (e) => {
     // handle validations
-    const file = e.target.files[0];
-    setSelectedFile(file);
+    setSelectedFiles(e.target.files);
   // if (file.size > 1024)
   //   console.log('size too big');
   // else setSelectedFile(file);
@@ -163,6 +162,15 @@ export default function ModalForm({type}) {
 			return;
 		}
 
+    const formData = new FormData()
+    formData.append('name', name);
+    formData.append('email', email);
+    formData.append(type, inputField);
+
+    for (let i = 0; i< selectedFiles.length; i++) {
+      formData.append('files', selectedFiles[i]);
+    }
+
     setName('');
 		setEmail('');
 		setQuestion('');
@@ -171,11 +179,10 @@ export default function ModalForm({type}) {
     if (type === 'question') {
       postQuestion(name, email, question);
     } else if ( type === 'answer') {
-      console.log('add answer with file : ', selectedFile);
-      const imgUrl = `http://localhost:3000/${selectedFile.name}`;
-      postAnswer(name, email, answer, [imgUrl]);
+      // console.log('add answer with file : ', selectedFile);
+      // const imgUrl = `http://localhost:3000/${selectedFile.name}`;
+      postAnswer(formData);
     }
-
 
     setShowSuccess(true);
 
@@ -201,7 +208,7 @@ export default function ModalForm({type}) {
       {type === 'answer' && <UploadPhoto>
         <Message>Add a photo (Optional)</Message>
         <Paragraph>Upload a PNG, GIF, JPG, JPEG, HEIC, or TIFF(Max 10MB)</Paragraph>
-        <input type="file"  onChange={handleFileInput}/>
+        <input type="file" name='files' onChange={handleFileInput} multiple/>
         {/* <button onClick={e => fileInput.current && fileInput.current.click()} className="btn btn-primary">phtoto name</button> */}
       </UploadPhoto>}
         <SubmitBtn />
