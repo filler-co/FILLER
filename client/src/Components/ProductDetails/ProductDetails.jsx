@@ -7,6 +7,7 @@ import StylePrice from './StylePrice.jsx';
 import StyleImage from './StyleImage.jsx';
 import StyleButtons from './StyleButtons.jsx';
 import StyleDropdowns from './StyleDropdowns.jsx';
+import StarHandler from './../Shared/StarHandler.jsx';
 
 const PDContainer = styled.div`
   display: grid;
@@ -19,7 +20,7 @@ const PDContainer = styled.div`
   "product-image product-details"
   "product-image product-details"
   "product-image product-details";
-  height: 80vh;
+  height: 75vh;
   min-height: 10px;
 `;
 
@@ -43,22 +44,22 @@ const PDDetailsDiv = styled.div`
 
 
 const PDStarsContainer = styled.div`
-  padding: 5px;
-  margin:5px;
   font-size: smaller;
   width: 35vw;
+  display: flex;
 `;
 
 const ScrollSpan = styled.span`
   text-decoration: underline;
+  padding-left: 2%;
   cursor: pointer;
-  color: #6cccdd;
+  color: rgb(0,0,0,0.7);
 `;
 
 const PDNameContainer = styled.div`
   padding: 5px;
   margin:5px;
-  font-size: 300%;
+  font-size: 2.25rem;
   font-weight: bold;
   width: 35vw;
   padding-top: 0;
@@ -75,11 +76,14 @@ const PDPriceContainer = styled.div`
   width: 35vw;
 `;
 const PDStyleNameSpan = styled.span`
-font-weight: bold;
+
+
 
 `;
 
 const SelectStyleSpan = styled.span`
+font-weight: bold;
+font-size: 0.9rem;
 
 `;
 
@@ -92,7 +96,7 @@ const StyleListContainer = styled.div`
   margin:5px;
   width: 100%;
   width: 35vw;
-  font-size: 120%;
+  font-size: 1.1rem;
 `;
 const PDDropdownsContainer = styled.div`
   padding: 5px;
@@ -124,7 +128,8 @@ export default function ProductDetails({handleReviewScrollClick,renderedProduct,
       </PDImgContainer>
       <PDDetailsDiv>
         <PDStarsContainer onClick={handleReviewScrollClick}>
-          <ScrollSpan>See product reviews.</ScrollSpan>
+          <StarHandler renderedProduct={renderedProduct.id} single={false}/>
+          <ScrollSpan>{' '+'Read product reviews.'}</ScrollSpan>
         </PDStarsContainer>
         <PDNameContainer>
           {renderedProduct.name}
@@ -133,7 +138,7 @@ export default function ProductDetails({handleReviewScrollClick,renderedProduct,
           <StylePrice selectedStyle={selectedStyle} />
         </PDPriceContainer>
         <StyleListContainer>
-          <SelectStyleDiv><SelectStyleSpan>Style:</SelectStyleSpan><PDStyleNameSpan>{" " + selectedStyle.name}</PDStyleNameSpan></SelectStyleDiv>
+          <SelectStyleDiv><SelectStyleSpan>STYLE:</SelectStyleSpan><PDStyleNameSpan>{" " + selectedStyle.name}</PDStyleNameSpan></SelectStyleDiv>
           <StyleButtons
             selectedStyleId={selectedStyle.style_id}
             productStyles={productStyles}
