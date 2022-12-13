@@ -19,7 +19,7 @@
  html,
  body {
    height: 100%;
-   width: 100vw;
+   max-width: 75rem;
  }
 
  body {
@@ -59,7 +59,7 @@
  }
 
  main {
-   /* max-width: 840px; */
+  max-width: 75rem;
    padding: 25px 50px;
    margin: auto;
  }

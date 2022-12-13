@@ -71,15 +71,17 @@ justify-content: flex-end;
 
 const DialogCloseButtonStyles = styled.button`
 
-marginBottom: 15px;
-padding: 3px 8px;
-cursor: pointer;
-borderRadius: 50%;
-border: none;
-width: 30px;
-height: 150px;
-fontWeight: bold;
-alignSelf: flex-end;
+background: white;
+font-size: 0.8em;
+margin: 1em;
+padding: 0.25em 1em;
+border: 1px solid black;
+height: 3em;
+font-weight:bold;
+cursor:pointer;
+&:hover {
+  background-color: grey;
+}
 
 `
 
@@ -103,13 +105,13 @@ export default function CreateReview() {
 
   return (
     <>
-    <ButtonStyle onClick={() => {setOpen(true)} }>CREATE A REVIEW </ButtonStyle>
-    { open ? <DialogStyles open>
+    <DialogCloseButtonStyles onClick={() => {setOpen(true)} }>CREATE A REVIEW </DialogCloseButtonStyles>
+    {/* { open ? <DialogStyles open>
       <FormHeader>
 
       </FormHeader>
 
-    </DialogStyles> : <div></div>}
+    </DialogStyles> : <div></div>} */}
     </>
 
   )

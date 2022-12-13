@@ -11,9 +11,14 @@ margin: 20px 0;
 `
 
 const StyledRatingNum = styled.button`
-color: black;
-border: none;
 background: none;
+border: none;
+border-radius: 5px;
+font-size: 0.8em;
+cursor:pointer;
+&:hover {
+  background-color: grey;
+}
 
 `
 const StyledRatingAmount = styled.p`
@@ -25,7 +30,7 @@ top: 5px;
 font-size: 13px;
 `
 const GraphBox = styled.div`
-backGround: grey;
+backGround: lightgrey;
 box-sizing: border-box;
 border-radius: 2px;
 margin-bottom: 12px;
@@ -94,8 +99,8 @@ export default function RatingsGraph({graphData, reviewList, setReviewList, filt
      {graphData.map((item, idx) => {
             return (<div key={idx}>
               <StyledRatingNum value={item[0]} onClick={(e) => {clickHandler(e)}} style={{
-                border: ratingFilter[item[0]] ? 'solid pink 2px' : ''
-              }} >{item[0]} Star</StyledRatingNum>
+                border: ratingFilter[item[0]] ? '1px solid black' : ''
+              }} >{item[0]} Stars</StyledRatingNum>
               <StyledRatingAmount>{item[1]} Reviews</StyledRatingAmount>
               <GraphBox >
                 <GraphLevels style={{width: `${(item[1]/ totals) * 100}%`}}></GraphLevels>

@@ -23,7 +23,7 @@ export default function FilterBy({renderedProduct, reviewList, sortState, setSor
 
 
   return (
-  filterList.length ? <div style={{"display": "flex", "justifyContent": "flex-start", "padding": "25px", "marginLeft": "25px"}}>{total} reviews, sorted by <FilterSelector sortState={sortState} setSortState={setSortState} filterByRating={filterByRating} setFilterByRating={setFilterByRating}/></div> : <div></div>
+  filterList.length ? <div style={{"display": "flex", "justifyContent": "flex-end", "padding": "25px", "marginRight": "25px"}}>{total} reviews, sorted by <FilterSelector sortState={sortState} setSortState={setSortState} filterByRating={filterByRating} setFilterByRating={setFilterByRating}/></div> : <div></div>
   )
 
 }

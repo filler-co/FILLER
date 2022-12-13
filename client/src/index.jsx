@@ -25,12 +25,8 @@ const Container = styled.div`
   height: 100vh;
 
   color: black;
-  grid-template-rows: .5fr .25fr 6fr 2fr 1fr 2fr;
+  grid-template-rows: .5fr .25fr .6fr .2fr .1fr .2fr;
   grid-gap: 0.25rem;
-<<<<<<< HEAD
-=======
-  ${'' /* text-align-center; */}
->>>>>>> 3f15db43feb390548094fcc273427d099b282b0a
   grid-template-areas:
     "header"
     "announcements"

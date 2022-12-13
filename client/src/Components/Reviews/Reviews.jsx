@@ -55,7 +55,7 @@ padding: 5px;
   display: flex;
   max-height: 10rem;
   border-radius: 10px;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: start
   `;
 
@@ -97,7 +97,7 @@ const uRl = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews?product
   return (
     <ReviewContainer ref={refProp}>
       <RHeader>
-    <h2>Ratings & Reviews</h2>
+    <h2 style={{"display": "flex", "justifyContent" : "flexStart"}}>Product Reviews</h2>
         <FilterBy renderedProduct={renderedProduct} reviewList={reviewList} sortState={sortState} setSortState={setSortState} setFilterList={setFilterList} filterList={filterList} filterByRating={filterByRating} setFilterByRating={setFilterByRating} setTotalRevs={setTotalRevs} totalRevs={totalRevs}
         />
       </RHeader>

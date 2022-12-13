@@ -115,7 +115,7 @@ export default function ReviewItem({ review, renderedProduct, rating }) {
             {review.body}
         </RevBod>
         <RevRec>
-          {review.recommend ? `${'\u2714'} I would recommend this product` : ` ${'\u2716'} I would not recommend this product.`}
+          {review.recommend ? `${'\u2714'} I would recommend this product` :  ''}
         </RevRec>
           {review.response ? <RevRes><h5>Response:</h5>
           {review.response} </RevRes>: <div></div>}

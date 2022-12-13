@@ -8,6 +8,7 @@ import UpArrow from './upArrow.svg';
 
 const GraphBox = styled.div`
 padding: 3px;
+background: lightgrey;
 box-sizing: border-box;
 border: 1px solid black;
 height: 7.5px;
@@ -26,6 +27,15 @@ padding: 5px;
 export default function ProductBreakdown({renderedProduct}) {
 
   const [pBList, setPBList] = useState([]);
+
+  const charType = [
+     ['Fit','Too Small', 'Too Large'],
+    ['Length', 'Short', 'Long'],
+   ['Comfort','Min.', 'Max.'],
+   ['Quality','Poor', 'Great'],
+   ['Size', 'Small', 'Large'],
+   ['Width', 'Narrow', 'Wide'],
+  ];
 
 
   const getBreakdownData = () => {
@@ -52,11 +62,20 @@ export default function ProductBreakdown({renderedProduct}) {
       <p style={{"display": "flex", "justifyContent": "center", "fontSize": "1rem"}}>{item[0]}</p>
       </div>
       <GraphBox >
-        <UpArrow style={{height: "16px", width: "20px", "marginLeft": `${item[1].value.slice(0,2)*10}%`, "marginTop": "-8.2px"}} />
+        <UpArrow style={{height: "14px", width: "20px", "marginLeft": `${item[1].value.slice(0,2)*10}%`, "marginTop": "-7px"}} />
       </GraphBox>
       <div >
-        <p style={{float: "left", "marginTop": "0px", "fontSize": "0.78rem", "marginLeft": "6.5px"}}>1</p>
-        <p style={{float: "right", "marginTop": "0px", "marginRight": "6.5px", "fontSize": "0.78rem"}}>5</p>
+        {charType.map((char) => {
+          if(char[0] === item[0]) {
+            return(
+              <>
+             <p style={{float: "left", "marginTop": "0px", "fontSize": "0.78rem", "marginLeft": "6.5px"}}>{char[1]}</p>
+            <p style={{float: "right", "marginTop": "0px", "marginRight": "6.5px", "fontSize": "0.78rem"}}>{char[2]}</p>
+              </>
+            )
+          }
+          })
+        }
       </div>
       </div>)
        })}
