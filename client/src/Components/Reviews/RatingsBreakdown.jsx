@@ -10,13 +10,18 @@ import token from '../../../../config';
 const Bdown = styled.div`
 display: grid;
 grid-template-rows: .1fr .3fr .6fr;
+max-height: 50vh;
 grid-template-areas:
   "header-template"
   "stars-template"
   "breakdown-box";
 `
 const BHeader = styled.h3`
-grid-area: header-template
+grid-area: header-template;
+display: flex;
+justify-content: center;
+margin-bottom: 0px;
+border-bottom: solid black .75px;
 `
 
 const StarStyled = styled.div`
@@ -24,10 +29,9 @@ grid-area: stars-template;
 `
 const Box = styled.div`
 grid-area: breakdown-box;
-padding: 20px;
-background: #333;
+padding: 5px;
 box-sizing: border-box;
-box-shadow: 0 20px 50px rgba(0,0,0,.5);
+
 `
 
 
@@ -55,7 +59,7 @@ export default function RatingsBreakdown({ renderedProduct, reviewList, setRevie
 
   return (
       <Bdown>
-        <BHeader>REVIEW BREAKDOWN</BHeader>
+        <BHeader>Review Breakdown</BHeader>
         <StarStyled>
         {renderedProduct.id ? <StarHandler renderedProduct={renderedProduct.id} num={num} single={false} /> : <div></div>}
         </StarStyled>

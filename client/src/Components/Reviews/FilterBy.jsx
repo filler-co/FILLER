@@ -13,14 +13,17 @@ export default function FilterBy({renderedProduct, reviewList, sortState, setSor
     .catch((err) => console.log(err));
   }
 
-  useEffect(() => {if(renderedProduct.id){reviewFilter()}}, [renderedProduct.id])
+  useEffect(() => {if(renderedProduct.id ){reviewFilter()}}, [renderedProduct.id])
 
-  const total = filterList.reduce((total, num) => {return total + Math.round(num)}, 0);
-  setTotalRevs(total)
+  let total = filterList.reduce((total, num) => {return total + Math.round(num)}, 0);
+
+
+
+
 
 
   return (
-  filterList.length ? <div>{total} reviews, sorted by <FilterSelector sortState={sortState} setSortState={setSortState} filterByRating={filterByRating} setFilterByRating={setFilterByRating}/></div> : <div></div>
+  filterList.length ? <div style={{"display": "flex", "justifyContent": "flex-end", "padding": "25px", "marginRight": "25px"}}>{total} reviews, sorted by <FilterSelector sortState={sortState} setSortState={setSortState} filterByRating={filterByRating} setFilterByRating={setFilterByRating}/></div> : <div></div>
   )
 
 }
