@@ -36,8 +36,8 @@ const Helpful = styled.div`
   grid-area: helpful;
   padding: 0.25rem;
   font-size: 0.65em;
-  text-decoration: underline;
-  cursor: pointer;
+  text-decoration: ${({done}) => (!done ? 'underline' : 'none')};
+  cursor: ${({done}) => (done ? '' : 'pointer')}
 `;
 
 const AddAnswer = styled.div`
@@ -91,6 +91,8 @@ export function QuestionsItem({ question, handleVote }) {
   const [show, setShow] = useState(false);
   const [url, setUrl] = useState('');
 
+  const [votedFlag, setVotedFlag] = useState(!!localStorage.getItem(question.question_id));
+
   const showModal = () => {
     setShow(true);
   };
@@ -123,7 +125,13 @@ export function QuestionsItem({ question, handleVote }) {
   }
 
   const handleVoteClick = () => {
-    handleVote('questions',question.question_id);
+    console.log('votedflag is : ', localStorage.getItem(question.question_id))
+    if (!localStorage.getItem(question.question_id)) {
+      localStorage.setItem(question.question_id, true);
+      setVotedFlag(true);
+      handleVote('questions',question.question_id);
+    }
+
   }
 
   const handleAddAnswerClick = () => {
@@ -145,12 +153,12 @@ export function QuestionsItem({ question, handleVote }) {
   // console.log('test the array: ', [question, postAnswer]);
 
   return (
-    <QuestionContext.Provider value={[question, postAnswer]}>
+    <QuestionContext.Provider value={[question, postAnswer, hideModal]}>
       <Container>
       <Question>
         Q:{question.question_body}
       </Question>
-      <Helpful onClick={handleVoteClick}>
+      <Helpful onClick={handleVoteClick} done={votedFlag}>
         Helpful? Yes({question.question_helpfulness})
       </Helpful>
       <AddAnswer onClick={handleAddAnswerClick}>

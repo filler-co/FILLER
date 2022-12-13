@@ -6,7 +6,8 @@
   "scripts": {
     "react-dev": "webpack --mode development --watch",
     "server-dev": "npx nodemon server/server.js",
-    "test": "jest --silent"
+    "test": "jest --silent",
+    "test-coverage": "jest --coverage --silent --coverageDirectory='coverage' "
   },
   "author": "BK-group",
   "license": "ISC",
