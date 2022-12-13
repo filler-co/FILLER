@@ -9,7 +9,7 @@ const Message = styled.div`
 font-size : 0.8em;
 font-weight: bold;
 margin-top : 0.7em;
-color: white;
+color: black;
 ${'' /* padding-bottom: 0.8em; */}
 `
 

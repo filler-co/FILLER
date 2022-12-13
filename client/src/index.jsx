@@ -48,10 +48,9 @@ const Rdiv = styled.div`
 
 const RPdiv = styled.div`
   grid-area: related-products;
-  border: solid 1px black;
+  ${'' /* border: solid 1px black; */}
   padding: 2px;
   margin:2px;
-  background-color: black;
 `;
 
 
