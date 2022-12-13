@@ -24,11 +24,12 @@ const Container = styled.div`
   display: grid;
   height: 100vh;
   color: black;
-  grid-template-rows: .5fr 6fr 2fr 1fr 2fr;
+  grid-template-rows: .5fr .25fr 6fr 2fr 1fr 2fr;
   grid-gap: 0.25rem;
   text-align-center;
   grid-template-areas:
     "header"
+    "announcements"
     "product-details"
     "reviews"
     "questions"
@@ -39,21 +40,29 @@ const HeaderDiv = styled.div`
   padding: 5px;
   margin: 5px;
   display: flex;
-  max-height: 15vh;
+  max-height: 8vh;
   flex-direction: row;
 `;
 
 const HeaderFillerDiv = styled.div`
- background: #6cccdd;
+ background: black;
  width: 100%;
  height: 80%;
  color: white;
  font-weight: bold;
  display: flex;
  align-items: flex-end;
- font-size: 300%;
+ font-size: 1.2;
  padding-left: 4px;
 
+`;
+
+const AnnouncementDiv = styled.div`
+  color: rgb(0,0,0,0.7);
+  font-style: italic;
+  display: flex;
+  justify-content: center;
+  font-size: .8rem;
 `;
 
 const ImgLogo = styled.img`
@@ -159,19 +168,8 @@ export function App() {
           <ImgLogo src={imgLogo} alt="FILLER IMG"/>
           <TextLogo src={theme?textLogo:textLogoDark} alt = "FILLER TEXT"/>
           <HeaderFillerDiv> co.</HeaderFillerDiv>
-          {/* <ThemeButtonContainer>
-            <ThemeButton onClick={() => setTheme(!theme)}>Theme</ThemeButton>
-          </ThemeButtonContainer> */}
-          {/* <ThemeSliderContainer theme={theme}>
-            <div className="contain">
-              <h5 theme={theme}>Dark Mode</h5>
-              <label className="switch">
-                <input type="checkbox" onChange={(e) => setTheme(!theme)} />
-                <span className="slider round"></span>
-              </label>
-            </div>
-          </ThemeSliderContainer> */}
         </HeaderDiv>
+        <AnnouncementDiv>SITE-WIDE ANNOUNCEMENT MESSAGE - NEW PRODUCTS ON SALE</AnnouncementDiv>
         <PDdiv>
           <ProductDetails
             renderedProduct={renderedProduct}
