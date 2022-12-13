@@ -77,7 +77,11 @@ export default function AnswerItem({ answer, handleVote }) {
 
     }
 
+  }
 
+  const formatDate = (dateString) => {
+    const options = { year: "numeric", month: "long", day: "numeric" }
+    return new Date(dateString).toLocaleDateString(undefined, options)
   }
 
 
@@ -88,7 +92,7 @@ export default function AnswerItem({ answer, handleVote }) {
         A:{answer.body}
       </Answer>
       <AnswerInfo done={votedFlag && reporedFlag}>
-        <div>&nbsp;&nbsp;&nbsp;&nbsp;By {answer.answerer_name},{answer.date} | Helpful?<SpanElement done={votedFlag} onClick={handleVoteClick}> Yes({answer.helpfulness})</SpanElement> | <SpanElement done={reporedFlag} onClick={handleReportClick}>{!reporedFlag ? 'Report' : 'Reported'}</SpanElement></div>
+        <div>&nbsp;&nbsp;&nbsp;&nbsp;By&nbsp;{answer.answerer_name},&nbsp;&nbsp;{formatDate(answer.date)} | Helpful?<SpanElement done={votedFlag} onClick={handleVoteClick}> Yes({answer.helpfulness})</SpanElement> | <SpanElement done={reporedFlag} onClick={handleReportClick}>{!reporedFlag ? 'Report' : 'Reported'}</SpanElement></div>
       </AnswerInfo>
       <PhotoContainer>
         <PhotoGallery images={answer.photos}/>
