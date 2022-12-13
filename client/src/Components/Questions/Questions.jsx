@@ -92,19 +92,20 @@ export function Questions({ renderedProduct, setqNum, qNum }) {
 
   useEffect(() => {
     if (renderedProduct.id){
-            getQuestions();
+            getQuestions(100);
           }
 
   }, [renderedProduct.id]);
 
   /* Get all questions back */
   const getQuestions = (numberQuestions) => {
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions?product_id=${renderedProduct.id}&count=${qNum}`, { headers: { Authorization: token.TOKEN } })
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions?product_id=${renderedProduct.id}&count=${numberQuestions}`, { headers: { Authorization: token.TOKEN } })
       .then((response) => {
         //console.log('Client side response is : ', response.data);
         setQuestions(response.data.results);
         let displayed = response.data.results.length > 2 ? response.data.results.slice(0, 2) : response.data.results
         setDisplayedQuestions(response.data.results);
+        setDisplayedQuestions(displayed);
         // if (response.data.results.length === questions.length) {
         //   console.log('that is all the questions, no more load more button')
         //   setShowMoreBtn(false);
@@ -177,6 +178,26 @@ export function Questions({ renderedProduct, setqNum, qNum }) {
       });
   }
 
+  const handleLoadMoreQuestions = () => {
+    //console.log('load more answers');
+    let totalNumber = questions.length;
+    //console.log('totalnumber is : ', totalNumber, displayedQuestions.length, showLoadmore);
+
+    if (totalNumber > displayedQuestions.length) {
+      if (totalNumber > displayedQuestions.length + 2) {
+        setDisplayedQuestions(questions.slice(0,displayedQuestions.length+2));
+      } else {
+        setDisplayedQuestions(questions);
+        setShowLoadmore(false);
+      }
+    } else {
+      setShowLoadmore(false);
+      getQuestions(100);
+    }
+  }
+
+
+
   return (
     <ProductContext.Provider value={[renderedProduct, postQuestion, hideModal]}>
     <Container>
@@ -192,7 +213,8 @@ export function Questions({ renderedProduct, setqNum, qNum }) {
       </QAList>
 
       {showMoreBtn && <MoreQuestionBtn>
-        <MoreButton buttonName='MORE ANSWERED QUESTIONS' actionNeed={getQuestions} setqNum={setqNum} qNum={qNum} />
+        <MoreButton buttonName='MORE ANSWERED QUESTIONS' actionNeed={handleLoadMoreQuestions} setqNum={setqNum} qNum={qNum} />
+        {/* <MoreButton buttonName='MORE ANSWERED QUESTIONS' actionNeed={getQuestions} setqNum={setqNum} qNum={qNum} /> */}
       </MoreQuestionBtn>}
 
       <AskQuestionBtn>
