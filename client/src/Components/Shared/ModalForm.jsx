@@ -27,7 +27,7 @@ import validateForm from "./validateForm";
   padding: 1.5em;
   font-size : 0.7em;
   ${'' /* text-transform: uppercase; */}
-  width: 93%;
+  width: 100%;
   border-radius: 5px;
   border: solid 1px black;
   height: 2.5em;
@@ -43,7 +43,7 @@ import validateForm from "./validateForm";
 const Question = styled.textarea`
   color: black;
   ${'' /* text-transform: uppercase; */}
-  width: 93%;
+  width: 100%;
   border-radius: 5px;
   font-size : 0.7em;
   border: solid 1px black;
@@ -68,31 +68,65 @@ const SubmitBtn = styled.input.attrs({
   cursor: pointer;
   margin-bottom: 0;
   text-transform: uppercase;
-  width: 93%;
+  font-size:0.8em;
+  width: 100%;
   border-radius: 3px;
   height: 35px;
   border-color: transparent;
   outline: none;
   text-align: center;
-  &:active {
-    background-color: #red;
+  font-weight:bold;
+  &:hover {
+    background-color: grey;
   }
   `
+  const SuccessButton = styled.input.attrs({
+    type: 'submit',
+    value: 'Keep shopping'
+  })`
+    background: black;
+    color: #fff;
+    cursor: pointer;
+    margin-top: 1em;
+    text-transform: uppercase;
+    font-size:0.8em;
+    width: 100%;
+    border-radius: 3px;
+    height: 35px;
+    border-color: transparent;
+    outline: none;
+    text-align: center;
+    font-weight:bold;
+    &:hover {
+      background-color: grey;
+    }
+    `
+
 
   const Message = styled.div `
-    font-size : 0.6em;
-    color: ${({type}) => (type)};
+    font-size : 0.8em;
+    font-weight: bold;
     margin-top : 0.7em;
   `
 
+  const FormHeader = styled.span `
+  font-size : 0.8em;
+  font-weight: bold;
+  font-style:italic;
+  color:grey;
+
+`
+
   const ErrorMsg = styled.div `
     font-size : 0.6em;
-    color: 'red';
+    color: ${({type}) => (type)};
+    padding-top:0.5em;
 
   `
   const Paragraph = styled.div `
-    font-size : 1em;
+    font-size : 0.65em;
     color: black;
+    color:grey;
   `
 
   const Header = styled.div`
@@ -103,8 +137,12 @@ const SubmitBtn = styled.input.attrs({
 `;
 
 const UploadPhoto = styled.div`
-  font-size: 0.6em;
+  ${'' /* font-size: 0.6em; */}
+  padding-bottom:1em;
+
 `
+
+
 
 export default function ModalForm({type}) {
 
@@ -116,22 +154,21 @@ export default function ModalForm({type}) {
   const [showSuccess, setShowSuccess] = useState(false);
 
 
-  const [product, postQuestion] = useContext(ProductContext);
+  const [product, postQuestion, closeWindow] = useContext(ProductContext);
   const context_obj = useContext(QuestionContext);
   if (Array.isArray(context_obj)) {
-    var [question_obj, postAnswer] = useContext(QuestionContext)
+    var [question_obj, postAnswer, hideModal] = useContext(QuestionContext)
   }
   // console.log('question_obj is : ', Array.isArray(question_obj));
 
 
   // const [name, setName] = useState("");
-  const [selectedFile, setSelectedFile] = useState('');
+  const [selectedFiles, setSelectedFiles] = useState('');
   const fileInput = useRef('')
 
   const handleFileInput = (e) => {
     // handle validations
-    const file = e.target.files[0];
-    setSelectedFile(file);
+    setSelectedFiles(e.target.files);
   // if (file.size > 1024)
   //   console.log('size too big');
   // else setSelectedFile(file);
@@ -163,6 +200,15 @@ export default function ModalForm({type}) {
 			return;
 		}
 
+    const formData = new FormData()
+    formData.append('name', name);
+    formData.append('email', email);
+    formData.append(type, inputField);
+
+    for (let i = 0; i< selectedFiles.length; i++) {
+      formData.append('files', selectedFiles[i]);
+    }
+
     setName('');
 		setEmail('');
 		setQuestion('');
@@ -171,13 +217,18 @@ export default function ModalForm({type}) {
     if (type === 'question') {
       postQuestion(name, email, question);
     } else if ( type === 'answer') {
-      console.log('add answer with file : ', selectedFile);
-      const imgUrl = `http://localhost:3000/${selectedFile.name}`;
-      postAnswer(name, email, answer, [imgUrl]);
+      // console.log('add answer with file : ', selectedFile);
+      // const imgUrl = `http://localhost:3000/${selectedFile.name}`;
+      postAnswer(formData);
     }
 
-
     setShowSuccess(true);
+
+  }
+
+  const handleSuccessClick = (e) => {
+    setShowSuccess(false);
+    type === 'question' ?  closeWindow() : hideModal() ;
 
   }
 
@@ -186,27 +237,27 @@ export default function ModalForm({type}) {
 
   return (
     <>
-    {showSuccess ? <><Header>Thanks for your review!</Header><Paragraph>{successMsg}</Paragraph></> :
+    {showSuccess ? <><Header>Thanks for your review!</Header><Paragraph>{successMsg}</Paragraph><SuccessButton onClick={handleSuccessClick}/></> :
     <form onSubmit={handleSubmit}>
     <Header>
-    {type === 'question' ? <><label>Ask a Question for</label><label>{product.name}</label></> : <><div>Submit your Answer</div><div>{product.name}:{question_obj.question_body}</div></>}
+    {type === 'question' ? <><FormHeader>Ask a Question for </FormHeader><Message>{product.name}</Message></> : <><FormHeader>Submit your Answer</FormHeader><Message>{product.name}</Message><FormHeader>Q:{question_obj.question_body}</FormHeader></>}
       </Header>
       <Line />
-        <div>Your name<span>&#42;</span></div>
+        <Message>Your name<span>&#42;</span></Message>
         <Input placeholder="Example: bob (Maximum of 25 characters)" name="name" value={name} onChange={handleOnchange}/>
-        <div>Your Email<span>&#42;</span></div>
+        <Message>Your Email<span>&#42;</span></Message>
         <Input placeholder="Example: youremail@example.com" name="email" onChange={handleOnchange} value={email}/>
-        <div>Your Question<span>&#42;</span> <Message type='grey'>(Up to 1000 characters)</Message></div>
+        <Message>Your Question<span>&#42;</span> <Message type='grey'>(Up to 1000 characters)</Message></Message>
         <Question placeholder="What do you want to know about this product?" name="question" onChange={handleOnchange} value={type === 'question' ? question : answer}/>
       {type === 'answer' && <UploadPhoto>
-        <Message>Add a photo (Optional)</Message>
+        <Message>Add up to 5 photos (Optional)</Message>
         <Paragraph>Upload a PNG, GIF, JPG, JPEG, HEIC, or TIFF(Max 10MB)</Paragraph>
-        <input type="file"  onChange={handleFileInput}/>
+        <input type="file" name='files' onChange={handleFileInput} multiple />
         {/* <button onClick={e => fileInput.current && fileInput.current.click()} className="btn btn-primary">phtoto name</button> */}
       </UploadPhoto>}
         <SubmitBtn />
-        <Message type='grey' >Asterisk(*) indicated mandatory field</Message>
-        {error && <Message type="red" >{error}</Message>}
+        <ErrorMsg type='grey' >Asterisk(*) indicated mandatory field</ErrorMsg>
+        {error && <ErrorMsg type="red" >{error}</ErrorMsg>}
       </form>
     }
 
