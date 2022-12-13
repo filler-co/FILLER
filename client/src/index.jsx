@@ -11,10 +11,11 @@ import styled from 'styled-components';
 const Container = styled.div`
   display: grid;
   height: 100vh;
+
   color: black;
   grid-template-rows: 6fr 2fr 1fr 2fr;
   grid-gap: 0.25rem;
-  text-align-center;
+  ${'' /* text-align-center; */}
   grid-template-areas:
     "product-details"
     "reviews"
@@ -31,7 +32,7 @@ const PDdiv = styled.div`
 
 const Qdiv = styled.div`
   grid-area: questions;
-  border: solid 1px black;
+  ${'' /* border: solid 1px black; */}
   padding: 5px;
   margin:5px;
 `;
@@ -47,9 +48,10 @@ const Rdiv = styled.div`
 
 const RPdiv = styled.div`
   grid-area: related-products;
-  border: solid 1px maroon;
-  padding: 5px;
-  margin:5px;
+  border: solid 1px black;
+  padding: 2px;
+  margin:2px;
+  background-color: black;
 `;
 
 
