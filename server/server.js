@@ -3,6 +3,7 @@ const path = require('path');
 const cors = require('cors');
 const multer = require('multer');
 const upload = multer({dest:'server/uploads/'})
+require('dotenv').config();
 
 const app = express();
 const {
@@ -50,6 +51,8 @@ app.post('/questions', askQuestion)
 // app.post('/questions/:question_id/answers', upload.single('file'), addAnswer)
 app.post('/questions/:question_id/answers', upload.array('files', 5), addAnswer)
 
-app.listen(3000, () => {
-  console.log('listening on port 3000');
+var port = process.env.PORT || 3000;
+
+app.listen(port, () => {
+  console.log('listening on port ' + port);
 });

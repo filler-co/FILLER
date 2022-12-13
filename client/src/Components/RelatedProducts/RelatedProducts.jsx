@@ -14,7 +14,7 @@ ${'' /* padding-bottom: 0.8em; */}
 `
 
 
-export default function RelatedProducts({productId, changeRenderedProduct, setRevNum, setqNum}) {
+export default function RelatedProducts({productId, changeRenderedProduct, setRevNum, setqNum, setRevCount}) {
   const [relatedList, setRelatedList] = React.useState([]);
 
 
@@ -38,6 +38,7 @@ export default function RelatedProducts({productId, changeRenderedProduct, setRe
         relatedId={relatedId}
         setRevNum={setRevNum}
         setqNum={setqNum}
+        setRevCount={setRevCount}
       />
       ) })}
     </div>

@@ -22,6 +22,8 @@ const SBDiv = styled.div`
   border-radius: 50%;
   height: 62px;
   width: 62px;
+  background-position: center;
+  background-size: cover;
 
   ${({ active }) => !active && `
   &:hover {

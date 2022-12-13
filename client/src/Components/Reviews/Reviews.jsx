@@ -13,53 +13,54 @@ import token from '../../../../config';
 
 const ReviewContainer = styled.div`
 display: grid;
-max-height: 100%;
-background: #d5bdaf;
-grid-template-columns: .35fr .65fr;
-grid-template-rows: .1fr .4fr .4fr .1fr;
+
+max-height: 80vh;
+grid-template-columns: .25fr .75fr;
+grid-template-rows: .3fr .3fr .3fr .1fr;
 grid-template-areas:
   "review-header review-header"
   "ratings-breakdown review-list"
   "product-breakdown review-list"
-  "review-buttons review-buttons";
+  "prooduct-breakdown review-buttons";
 text-align: left;
-grid-gap: .5rem;
 `
 ;
 const PBreakdown = styled.div`
 grid-area: product-breakdown;
-background: #d6ccc2;
+
+max-height: 35vh;
 margin: 5px;
 padding: 5px;
 `
 
   const RBreakdown = styled.div`
   grid-area: ratings-breakdown;
-  background: #d6ccc2;
+
   margin: 5px;
   padding: 5px;
   `;
 
   const RList = styled.div`
   grid-area: review-list;
+  border-left: solid black 1px;
   margin: 5px;
-  height: 75vh;
+  max-height: 80vh;
   overflow-x: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
   `;
 
   const RButtons = styled.div`
   grid-area: review-buttons;
-  background: #d6ccc2;
   margin: 5px;
   display: flex;
+  max-height: 10rem;
   border-radius: 10px;
   justify-content: space-around;
+  align-items: start
   `;
 
   const RHeader = styled.div`
   grid-area: review-header;
-  backgroud-color: #d6ccc2;
   text-align: center;
   `;
 
@@ -90,22 +91,21 @@ const uRl = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews?product
     item.display = true;
   })
 
-  console.log(totalRevs)
 
 
 
   return (
     <ReviewContainer ref={refProp}>
       <RHeader>
-    <h2>Ratings & Reviews</h2>
-        <FilterBy renderedProduct={renderedProduct} reviewList={reviewList} sortState={sortState} setSortState={setSortState} setFilterList={setFilterList} filterList={filterList} filterByRating={filterByRating} setFilterByRating={setFilterByRating} setTotalRevs={setTotalRevs}
+    <h2 style={{"display": "flex", "justifyContent" : "flexStart"}}>Product Reviews</h2>
+        <FilterBy renderedProduct={renderedProduct} reviewList={reviewList} sortState={sortState} setSortState={setSortState} setFilterList={setFilterList} filterList={filterList} filterByRating={filterByRating} setFilterByRating={setFilterByRating} setTotalRevs={setTotalRevs} totalRevs={totalRevs}
         />
       </RHeader>
       <RBreakdown>
       <RatingsBreakdown renderedProduct={renderedProduct} reviewList={reviewList} setReviewList={setReviewList}  setFilterByRating={setFilterByRating} breakdownList={breakdownList} setBreakdownList={setBreakdownList}/>
       </RBreakdown>
       <PBreakdown>
-        <ProductBreakdown />
+        <ProductBreakdown renderedProduct={renderedProduct} />
       </PBreakdown>
       <RList>
       {reviewList.length > 0  && !filterByRating ?  reviewList.map((review, idx) => (
@@ -125,7 +125,7 @@ const uRl = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews?product
           ))}
       </RList>
       <RButtons>
-        {revNum < totalRevs ? <MoreButton buttonName={'Get More Reviews'} actionNeed={getProductReview} revNum={revNum} setRevNum={setRevNum} qNum={false}/>: <div></div> }
+        {<MoreButton buttonName={'MORE REVIEWS'} actionNeed={getProductReview} revNum={revNum} setRevNum={setRevNum} qNum={false}/> }
       <CreateReview />
       </RButtons>
     </ReviewContainer>

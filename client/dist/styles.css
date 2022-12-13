@@ -19,7 +19,7 @@
  html,
  body {
    height: 100%;
-   width: 100vw;
+   max-width: 75rem;
  }
 
  body {
@@ -59,37 +59,12 @@
  }
 
  main {
-   /* max-width: 840px; */
+  max-width: 75rem;
    padding: 25px 50px;
    margin: auto;
  }
 
 
-
- /* .container {
-  border: solid 1px black;
-  padding: 5px;
-  margin:5px;
- } */
-/*
- .product-details-container {
-  border: solid 1px cornflowerblue;
-  padding: 5px;
-  margin:5px;
- } */
-
- /* .related-products-container {
-  border: solid 1px maroon;
-  padding: 5px;
-  margin:5px;
- } */
-
-
- /* .review-container {
-  border: solid 1px blueviolet;
-  padding: 5px;
-  margin:5px;
- } */
 
  /* .review-item{
   border: solid 1px black;

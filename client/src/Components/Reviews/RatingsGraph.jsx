@@ -11,31 +11,32 @@ margin: 20px 0;
 `
 
 const StyledRatingNum = styled.button`
-color: #fff;
-font-weight: bold;
-border: none;
 background: none;
+border: none;
+border-radius: 5px;
+font-size: 0.8em;
+cursor:pointer;
+&:hover {
+  background-color: grey;
+}
 
 `
 const StyledRatingAmount = styled.p`
-color: #fff;
+color: black;
 float: right;
 margin: 0 0 10px;
-font-weight: bold;
 position: relative;
 top: 5px;
 font-size: 13px;
 `
 const GraphBox = styled.div`
-backGround: #262626;
-padding: 4px;
+backGround: lightgrey;
 box-sizing: border-box;
-border: 1px solid #0fffb7;
 border-radius: 2px;
 margin-bottom: 12px;
 `
 const GraphLevels = styled.div`
-background: #0fffb7;
+background: #04AA6D;
 height: 10px;
 
 `
@@ -78,6 +79,7 @@ export default function RatingsGraph({graphData, reviewList, setReviewList, filt
 
 
     if(!Object.values(ratingFilter).includes(true)) {
+
       setFilterByRating(false)
     }
 
@@ -97,8 +99,8 @@ export default function RatingsGraph({graphData, reviewList, setReviewList, filt
      {graphData.map((item, idx) => {
             return (<div key={idx}>
               <StyledRatingNum value={item[0]} onClick={(e) => {clickHandler(e)}} style={{
-                border: ratingFilter[item[0]] ? 'solid pink 2px' : ''
-              }} >{item[0]} Star</StyledRatingNum>
+                border: ratingFilter[item[0]] ? '1px solid black' : ''
+              }} >{item[0]} Stars</StyledRatingNum>
               <StyledRatingAmount>{item[1]} Reviews</StyledRatingAmount>
               <GraphBox >
                 <GraphLevels style={{width: `${(item[1]/ totals) * 100}%`}}></GraphLevels>
