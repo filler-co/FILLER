@@ -5,7 +5,7 @@ import StarHandler from '../Shared/StarHandler.jsx';
 
 const ReviewItemContainer = styled.div`
 display: grid;
-background: #e3d5ca;
+
 grid-template-columns: .50fr .50fr;
 grid-template-rows: .3fr .7fr ;
 grid-template-areas:
@@ -34,7 +34,6 @@ grid-template-areas:
 const Body = styled.div`
 grid-area: review-body;
 display: grid;
-background: #d6ccc2;
 margin: 5px;
 border-bottom: solid black 2px;
 grid-template-rows: .2fr .2fr .2fr .2fr .2f ;
@@ -78,7 +77,6 @@ grid-template-areas:
   text-align: left;
   padding: 5px;
   margin: 5px;
-  background: #edede9;
   border-radius: 5px;
   font-size: 12px;
   `;
@@ -122,7 +120,8 @@ export default function ReviewItem({ review, renderedProduct, rating }) {
           {review.response ? <RevRes><h5>Response:</h5>
           {review.response} </RevRes>: <div></div>}
             {review.photos.length > 0 ? review.photos.map((photo) =>
-              <RevPhoto src={photo.url} alt="reviewPhoto" />
+              // <RevPhoto src={photo.url} alt="reviewPhoto" />
+              <div></div>
             ) : <div></div>
             }
       <RFooter>

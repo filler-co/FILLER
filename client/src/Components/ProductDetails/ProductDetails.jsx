@@ -37,57 +37,64 @@ const PDDetailsDiv = styled.div`
   grid-area: product-details;
   display:flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  padding-top: 8%;
 `;
 
 
 const PDStarsContainer = styled.div`
-  border: solid 1px cornflowerblue;
   padding: 5px;
   margin:5px;
   font-size: smaller;
-  text-decoration: underline;
   width: 35vw;
 `;
 
 const ScrollSpan = styled.span`
+  text-decoration: underline;
   cursor: pointer;
+  color: #6cccdd;
 `;
 
 const PDNameContainer = styled.div`
-  border: solid 1px cornflowerblue;
   padding: 5px;
   margin:5px;
-  font-size: x-large;
-  width: 35vw
+  font-size: 300%;
+  font-weight: bold;
+  width: 35vw;
+  padding-top: 0;
+  margin-top: 0;
+  padding-bottom: 0;
+  margin-bottom: 0;
 `;
 
 const PDPriceContainer = styled.div`
-  border: solid 1px cornflowerblue;
+  padding-top: 0;
+  margin-top: 0;
   padding: 5px;
   margin:5px;
   width: 35vw;
 `;
-const PDStyleNameContainer = styled.div`
-  border: solid 1px cornflowerblue;
-  padding: 5px;
-  margin:5px;
-  width: 35vw;
-  font-size: large;
+const PDStyleNameSpan = styled.span`
+font-weight: bold;
+
+`;
+
+const SelectStyleSpan = styled.span`
+
 `;
 
 const SelectStyleDiv = styled.div`
   font-size: unset;
+  padding-bottom: 10px;
 `;
 const StyleListContainer = styled.div`
-  border: solid 1px cornflowerblue;
   padding: 5px;
   margin:5px;
   width: 100%;
   width: 35vw;
+  font-size: 120%;
 `;
 const PDDropdownsContainer = styled.div`
-  border: solid 1px cornflowerblue;
   padding: 5px;
   margin:5px;
   max-height: 10vh;
@@ -125,16 +132,13 @@ export default function ProductDetails({handleReviewScrollClick,renderedProduct,
         <PDPriceContainer>
           <StylePrice selectedStyle={selectedStyle} />
         </PDPriceContainer>
-        <PDStyleNameContainer>
-          {selectedStyle.name}
-        </PDStyleNameContainer>
         <StyleListContainer>
-        <SelectStyleDiv>Select Style:</SelectStyleDiv>
-        <StyleButtons
-          selectedStyleId={selectedStyle.style_id}
-          productStyles={productStyles}
-          changeStyle={changeStyle}
-        />
+          <SelectStyleDiv><SelectStyleSpan>Style:</SelectStyleSpan><PDStyleNameSpan>{" " + selectedStyle.name}</PDStyleNameSpan></SelectStyleDiv>
+          <StyleButtons
+            selectedStyleId={selectedStyle.style_id}
+            productStyles={productStyles}
+            changeStyle={changeStyle}
+          />
       </StyleListContainer>
       <PDDropdownsContainer>
         <StyleDropdowns updateFavorites={updateFavorites} favoritesInfo={favoritesInfo} selectedStyle={selectedStyle} />

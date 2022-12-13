@@ -11,31 +11,27 @@ margin: 20px 0;
 `
 
 const StyledRatingNum = styled.button`
-color: #fff;
-font-weight: bold;
+color: black;
 border: none;
 background: none;
 
 `
 const StyledRatingAmount = styled.p`
-color: #fff;
+color: black;
 float: right;
 margin: 0 0 10px;
-font-weight: bold;
 position: relative;
 top: 5px;
 font-size: 13px;
 `
 const GraphBox = styled.div`
-backGround: #262626;
-padding: 4px;
+backGround: grey;
 box-sizing: border-box;
-border: 1px solid #0fffb7;
 border-radius: 2px;
 margin-bottom: 12px;
 `
 const GraphLevels = styled.div`
-background: #0fffb7;
+background: #04AA6D;
 height: 10px;
 
 `

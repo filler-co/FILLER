@@ -16,6 +16,12 @@ border-radius: 10px;
 margin-bottom: 0px;
 `
 
+const CharBox = styled.div `
+padding: 20px;
+box-sizing: border-box;
+box-shadow: 0 20px 50px rgba(0,0,0,.5);
+`
+
 
 
 
@@ -40,10 +46,11 @@ export default function ProductBreakdown({renderedProduct}) {
 
 
   return(
-    <div style={{"maxHeight": "50vh"}}>
-      <h3 style={{"marginBottom": "10px", "display": "flex", "justifyContent": "center"}}>PRODUCT BREAKDOWN</h3>
+    <>
+      <h3 style={{"marginBottom": "10px", "display": "flex", "justifyContent": "center"}}>Product Characteristics</h3>
+    <CharBox style={{"maxHeight": "50vh"}}>
        { pBList.map((item, idx) => {
-     return (<div key={idx} style={{display: "flex", "flexDirection": "column", "justifyContent": "space-between", "border": "solid black 1px", "margin": "7px", "padding": "2%", "borderRadius": "5px"}}>
+     return (<div key={idx} style={{display: "flex", "flexDirection": "column", "justifyContent": "space-between", "border": "none", "margin": "7px", "padding": "2%", "borderRadius": "5px"}}>
       <div>
       <p style={{"fontWeight": "bold", "display": "flex", "justifyContent": "center", "fontSize": "larger"}}>{item[0]}</p>
       </div>
@@ -51,13 +58,14 @@ export default function ProductBreakdown({renderedProduct}) {
         <UpArrow style={{height: "20px", width: "20px", "marginLeft": `${item[1].value.slice(0,2)*10}%`, "marginTop": "-8.5px"}} />
       </GraphBox>
       <div>
-        <p style={{float: "left", "fontWeight": "bold", "marginTop": "0px", "fontSize": "medium"}}>1</p>
-        <p style={{float: "right", "fontWeight": "bold", "marginTop": "0px", "fontSize": "medium"}}>5</p>
+        <p style={{float: "left", "marginTop": "0px", "fontSize": "medium"}}>1</p>
+        <p style={{float: "right", "marginTop": "0px", "fontSize": "medium"}}>5</p>
       </div>
       </div>)
        })}
 
 
-    </div>
+    </CharBox>
+    </>
   )
 }

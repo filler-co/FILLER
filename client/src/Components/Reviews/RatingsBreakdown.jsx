@@ -29,9 +29,8 @@ grid-area: stars-template;
 const Box = styled.div`
 grid-area: breakdown-box;
 padding: 20px;
-background: #333;
 box-sizing: border-box;
-box-shadow: 0 20px 50px rgba(0,0,0,.5);
+
 `
 
 
@@ -59,7 +58,7 @@ export default function RatingsBreakdown({ renderedProduct, reviewList, setRevie
 
   return (
       <Bdown>
-        <BHeader>REVIEW BREAKDOWN</BHeader>
+        <BHeader>Review Breakdown</BHeader>
         <StarStyled>
         {renderedProduct.id ? <StarHandler renderedProduct={renderedProduct.id} num={num} single={false} /> : <div></div>}
         </StarStyled>

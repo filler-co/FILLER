@@ -14,8 +14,7 @@ import token from '../../../../config';
 const ReviewContainer = styled.div`
 display: grid;
 max-height: 100%;
-background: #d5bdaf;
-grid-template-columns: .35fr .65fr;
+grid-template-columns: .25fr .75fr;
 grid-template-rows: .2fr .3fr .4fr .1fr;
 grid-template-areas:
   "review-header review-header"
@@ -28,21 +27,23 @@ grid-gap: 1 rem;
 ;
 const PBreakdown = styled.div`
 grid-area: product-breakdown;
-background: #d6ccc2;
-height: 42vh;
+
+height: 35vh;
 margin: 5px;
 padding: 5px;
 `
 
   const RBreakdown = styled.div`
   grid-area: ratings-breakdown;
-  background: #d6ccc2;
+
   margin: 5px;
   padding: 5px;
   `;
 
   const RList = styled.div`
   grid-area: review-list;
+  border-left: solid black 1px;
+
   margin: 5px;
   max-height: 100vh;
   overflow-x: hidden;
@@ -51,7 +52,6 @@ padding: 5px;
 
   const RButtons = styled.div`
   grid-area: review-buttons;
-  background: #d6ccc2;
   margin: 5px;
   display: flex;
   border-radius: 10px;
@@ -60,7 +60,6 @@ padding: 5px;
 
   const RHeader = styled.div`
   grid-area: review-header;
-  backgroud-color: #d6ccc2;
   text-align: center;
   `;
 
