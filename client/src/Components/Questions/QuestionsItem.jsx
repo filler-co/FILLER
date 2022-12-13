@@ -55,6 +55,7 @@ const LoadMore = styled.div`
   padding: 0.25rem;
   font-weight: bold;
   font-size: 0.65em;
+  cursor:pointer;
 `;
 
 const AnswerList = styled.div`
