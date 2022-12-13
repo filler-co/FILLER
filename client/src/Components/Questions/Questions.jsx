@@ -91,7 +91,10 @@ export function Questions({ renderedProduct, setqNum, qNum }) {
   }
 
   useEffect(() => {
-    getQuestions();
+    if (renderedProduct.id){
+            getQuestions();
+          }
+
   }, [renderedProduct.id]);
 
   /* Get all questions back */
