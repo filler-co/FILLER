@@ -6,6 +6,8 @@ import * as Pos from '../Shared/ModalWindow';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faChevronRight} from '@fortawesome/free-solid-svg-icons';
 import {faChevronLeft} from '@fortawesome/free-solid-svg-icons';
+import {ThemeContext} from './../../index.jsx';
+
 
 const ImageContainer = styled.div`
   align-items: center;
@@ -17,6 +19,8 @@ const ImageContainer = styled.div`
   place-items: center;
   height: 100%;
   width: 100%;
+
+
 `;
 
 const SelectedImage = styled.img`
@@ -158,6 +162,7 @@ export default function StyleImage({selectedStylePhotos}) {
   const [rightImg, setRightImg] = React.useState(1);
   const [show, setShow] = React.useState(false);
   const [url, setUrl] = React.useState('');
+  const {theme} = React.useContext(ThemeContext);
 
   const showModal = () => {
       setUrl(selectedPhoto.url)
@@ -193,7 +198,7 @@ export default function StyleImage({selectedStylePhotos}) {
     setUrl(galleryList[pos].url)
   }
   return (
-    <ImageContainer>
+    <ImageContainer theme={theme === true} style={{background: theme?"#f1f1f1":"#0f0f0f"}}>
       <SelectedImage onClick={showModal} src={selectedPhoto.url} alt="NO PHOTOS" />
       {/* <FullViewDiv>
         <button onClick={handleClick}>O</button>

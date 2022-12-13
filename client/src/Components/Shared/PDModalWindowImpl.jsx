@@ -62,14 +62,18 @@ const Container = styled.div`
 `;
 
 const Button = styled.button`
-    background-color: grey;
-    color: ${({primary}) => (primary ? 'white' : 'white')};
-    border: solid 2px #9f7500;
-    border-radius: 8px;
-    width: 5.0rem;
-    padding: 0.2rem;
-    margin: 0.2rem;
+    cursor: pointer;
+    background: none;
+    color: rgb(255,255,255,0.8);
+    border: solid 2px white;
+    font-weight: bold;
+    width: 2.5rem;
+    height: 2.5rem;
     font-size: 1rem;
+    &:hover{
+      color: white;
+    }
+
 `;
 
 const ImageDiv = styled.div`

@@ -7,35 +7,61 @@ import {faHeart} from '@fortawesome/free-solid-svg-icons';
 
 const StyleContainer = styled.div`
   display: grid;
-  grid-template-columns: 50%, 50%;
   grid-template-rows: 75%, 50%;
   z-index: 1;
-  width: 35vw;
+  width: 100%;
   height: 8vw;
+  justify-content: start;
 `;
 
+const RowAGrid = styled.div`
+width: 100%;
+grid-row: 1;
+display: flex;
+justify-content: space-between;
+margin-bottom: 40px;
+height: 38px;
+`;
+
+const RowBGrid = styled.div`
+grid-row: 2;
+display: flex;
+`;
 const SizeDropdownContainer = styled.div`
-  grid-column: 1;
-  grid-row: 1;
+
   text-align: center;
   z-index: 2;
-  border: solid 1px cornflowerblue;
-  max-height: 40px;
-  width: 95%
+  width: 23vw;
+  margin-right: 10px;
 `;
 
 const SizeDropdownHeader = styled.div`
   z-index: 5;
-  width: 100%
+  width: 100%;
+  height: 44px;
+  font-weight: bold;
+  border: 1px solid black;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover{
+    border: 1px solid #6cccdd;
+  }
 `;
 
 const SizeDropdownListContainer = styled.div`
   z-index: 5;
-  overflow-y: auto;
+  overflow-y: scroll;
   overflow-x: hidden;
   background: white;
-  max-height: 90px;
-  width: 100%;
+  max-height: 20vh;
+  border-bottom: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  position: absolute;
+  width: inherit;
 `;
 
 const SizeDropdownList = styled.ul`
@@ -44,31 +70,47 @@ const SizeDropdownList = styled.ul`
 `;
 
 const SizeListItem = styled.li`
+  cursor: pointer;
+  font-weight: 200;
+  &:hover{
+    background: #6cccdd;
+    color: white;
+  }
 `;
 
 const QtyDropdownContainer = styled.div`
-  grid-column: 2;
-  grid-row: 1;
+
   text-align: center;
   z-index: 2;
-  border: solid 1px cornflowerblue;
-  max-height: 40px;
-  width: 100%;
-  padding-bottom: 10%;
+  width: 10vw;
 `;
 
 const QtyDropdownHeader = styled.div`
   z-index: 5;
-  max-width: 90%;
+  height: 44px;
+  font-weight: 500;
+  border: 1px solid black;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover{
+    border: 1px solid #6cccdd;
+  }
 `;
 
 const QtyDropdownListContainer = styled.div`
   z-index: 5;
   overflow-y: auto;
   overflow-x: hidden;
+  max-height: 20vh;
+  border-bottom: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
   background: white;
-  max-height: 90px;
-  max-width: 90%;
+  position: absolute;
+  width: inherit;
 `;
 
 const QtyDropdownList = styled.ul`
@@ -77,37 +119,67 @@ const QtyDropdownList = styled.ul`
 `;
 
 const QtyListItem = styled.li`
+  cursor: pointer;
+  font-weight: 200;
+  &:hover{
+    background: #6cccdd;
+    color: white;
+  }
 `;
 
 const AddCartContainer = styled.div`
-  grid-column: 1;
-  grid-row: 2;
-  border: solid 1px cornflowerblue;
   text-align: center;
   z-index: 1;
   display: flex;
   justify-content: center;
-  width: 95%
+  width: 100%;
+  height: 52px;
+  margin-right: 10px;
+
 `;
 
 const AddCartButton = styled.button`
   cursor: pointer;
+  background: none;
+  font-weight: 700;
+  height: 52px;
+  background: #e8a7cb;
+  width: 100%;
+  border: 1px solid #e8a7cb;
+  color: white;
+
+
+  &:hover{
+    background: #6cccdd;
+    border: 1px solid #6cccdd;
+  }
 
 `;
 
 const FavContainer = styled.div`
-  grid-column: 2;
-  grid-row: 2;
-  border: solid 1px cornflowerblue;
   text-align: center;
   z-index: 1;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
-  width: 95%;
+  height: 52px;
 `;
 
 const FavButton =styled.button`
+  cursor: pointer;
+  background: none;
+  border: 1px solid black;
+  height: 52px;
+  width: 52px;
+  color: #black;
+
+
+
+  &:hover{
+    background: #6cccdd;
+    border: 1px solid #6cccdd;
+    color: white;
+  }
 
 `;
 
@@ -115,7 +187,7 @@ const FavButton =styled.button`
 
 export default function StyleDropdowns ({selectedStyle, favoritesInfo, updateFavorites}) {
   const [sizeOpen, setSizeOpen] = React.useState(false);
-  const [sizeOption, setSizeOption] = React.useState('Select Size');
+  const [sizeOption, setSizeOption] = React.useState('SELECT SIZE');
   const [sizeList, setSizeList] = React.useState([]);
   const [qtyOpen, setQtyOpen] = React.useState(false);
   const [QtyOption, setQtyOption] = React.useState('-');
@@ -127,7 +199,7 @@ export default function StyleDropdowns ({selectedStyle, favoritesInfo, updateFav
       setSizeList(Object.keys(selectedStyle.skus)
       .filter((sizeId) => selectedStyle.skus[sizeId].quantity>0)
       .map((sizeId) => {return {sizeId: sizeId, quantity: selectedStyle.skus[sizeId].quantity, size: selectedStyle.skus[sizeId].size}}))
-      setSizeOption('Select Size');
+      setSizeOption('SELECT SIZE');
       setSizeOpen(false);
       setQtyOption('-');
       setQtyOpen(false);
@@ -157,43 +229,50 @@ export default function StyleDropdowns ({selectedStyle, favoritesInfo, updateFav
     // console.log('added to cart');
     if (sizeOption.length > 2) {
       setSizeOpen(true);
-      setSizeOption('Please Select Size');
+      setSizeOption('PLEASE SELECT SIZE');
     }
   }
   return (
     <StyleContainer>
-      <SizeDropdownContainer>
-        <SizeDropdownHeader onClick={() => setSizeOpen(!sizeOpen)} >
-          {sizeOption}
-        </SizeDropdownHeader>
-        {sizeOpen && (
-          <SizeDropdownListContainer>
-          <SizeDropdownList>
-            {sizeList.map((sizeObj) => <SizeListItem key={sizeObj.sizeId} onClick={() => {setSizeOption(sizeObj.size); setSizeOpen(!sizeOpen); loadQty(sizeObj.quantity); setQtyOption('1')}}>{sizeObj.size}</SizeListItem>)}
-          </SizeDropdownList>
-        </SizeDropdownListContainer>
-        )}
+      <RowAGrid>
+        <SizeDropdownContainer>
+          <SizeDropdownHeader onClick={() => setSizeOpen(!sizeOpen)} >
+            {sizeOption}
+          </SizeDropdownHeader>
+          {sizeOpen && (
+            <SizeDropdownListContainer>
+            <SizeDropdownList>
+              {sizeList.map((sizeObj) => <SizeListItem key={sizeObj.sizeId} onClick={() => {setSizeOption(sizeObj.size); setSizeOpen(!sizeOpen); loadQty(sizeObj.quantity); setQtyOption('1')}}>{sizeObj.size}</SizeListItem>)}
+            </SizeDropdownList>
+          </SizeDropdownListContainer>
+          )}
 
-      </SizeDropdownContainer>
-      <QtyDropdownContainer>
-        <QtyDropdownHeader onClick={() => { if(qtyList.length > 0) {setQtyOpen(!qtyOpen)} }}>
-          {QtyOption}
-        </QtyDropdownHeader>
-        {qtyOpen && (
-          <QtyDropdownListContainer>
-            <QtyDropdownList>
-              {qtyList.map((qty) => <QtyListItem key={qty} onClick={() => {setQtyOption(qty); setQtyOpen(!qtyOpen) }}>{qty}</QtyListItem>)}
-            </QtyDropdownList>
-          </QtyDropdownListContainer>
-        )}
+        </SizeDropdownContainer>
+        <QtyDropdownContainer>
+          <QtyDropdownHeader onClick={() => { if(qtyList.length > 0) {setQtyOpen(!qtyOpen)} }}>
+            {QtyOption}
+          </QtyDropdownHeader>
+          {qtyOpen && (
+            <QtyDropdownListContainer>
+              <QtyDropdownList>
+                {qtyList.map((qty) => <QtyListItem key={qty} onClick={() => {setQtyOption(qty); setQtyOpen(!qtyOpen) }}>{qty}</QtyListItem>)}
+              </QtyDropdownList>
+            </QtyDropdownListContainer>
+          )}
 
-      </QtyDropdownContainer>
-      <AddCartContainer>
-        <AddCartButton type="submit" onClick={() => addCartSubmit()}>Add to Cart</AddCartButton>
-      </AddCartContainer>
-      <FavContainer>
-        <FavButton onClick={() => {updateFavorites(selectedStyle.style_id); setFavorite(!favorite)}}>{favorite?(<FontAwesomeIcon icon={faHeart} />):(<FontAwesomeIcon icon={hollowHeart} />)}</FavButton>
-      </FavContainer>
+        </QtyDropdownContainer>
+
+      </RowAGrid>
+      <RowBGrid>
+        <AddCartContainer>
+          <AddCartButton type="submit" onClick={() => addCartSubmit()}>ADD TO CART</AddCartButton>
+        </AddCartContainer>
+        <FavContainer>
+          <FavButton onClick={() => {updateFavorites(selectedStyle.style_id); setFavorite(!favorite)}}>{favorite?(<FontAwesomeIcon icon={faHeart} />):(<FontAwesomeIcon icon={hollowHeart} />)}</FavButton>
+        </FavContainer>
+      </RowBGrid>
+
+
     </StyleContainer>
   )
 }
