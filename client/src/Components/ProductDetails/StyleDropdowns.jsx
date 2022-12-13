@@ -40,6 +40,7 @@ const SizeDropdownHeader = styled.div`
   width: 100%;
   height: 44px;
   font-weight: bold;
+  font-size: 0.85rem;
   border: 1px solid black;
   cursor: pointer;
   display: flex;
@@ -143,9 +144,9 @@ const AddCartButton = styled.button`
   background: none;
   font-weight: 700;
   height: 52px;
-  background: #e8a7cb;
+  background: black;
   width: 100%;
-  border: 1px solid #e8a7cb;
+  border: 1px solid black;
   color: white;
 
 
