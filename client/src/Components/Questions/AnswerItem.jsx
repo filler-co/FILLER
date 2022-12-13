@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
 import { report } from '../../utils/helper';
 import PhotoGallery from './PhotoGallery';
@@ -32,7 +32,8 @@ const AnswerInfo = styled.div`
   padding: 0.25rem;
   font-size: 0.65em;
   color:grey;
-  cursor: pointer;
+  ${'' /* cursor: pointer; */}
+  cursor: ${({done}) => (done ? '' : 'pointer')}
 `;
 
 const PhotoContainer = styled.div`
@@ -41,14 +42,46 @@ const PhotoContainer = styled.div`
   padding: 0.25rem;
 `;
 
+const SpanElement = styled.span`
+  text-decoration: ${({done}) => (!done ? 'underline' : 'none')}
+
+`
+
 export default function AnswerItem({ answer, handleVote }) {
 
+  // useEffect(() => {
+  //   localStorage.setItem("voted", false);
+  // },[])
+
+
+  const [votedFlag, setVotedFlag] = useState(!!localStorage.getItem(answer.id));
+  const [reporedFlag, setReportedFlag] = useState(!!localStorage.getItem(answer.id+'report'));
+
   const handleVoteClick = () => {
+    console.log('voted localstore is : ', localStorage.getItem(answer.id));
+    if (!localStorage.getItem(answer.id)) {
+      localStorage.setItem(answer.id, true);
+      setVotedFlag(true);
     handleVote('answers',answer.id);
+    }
   }
 
   const handleReportClick = () => {
-    report('answers',answer.id);
+
+    if (!localStorage.getItem(answer.id+'report')) {
+      localStorage.setItem(answer.id+'report', true);
+      // console.log('reported');
+      report('answers',answer.id);
+      setReportedFlag(true);
+    } else {
+
+    }
+
+  }
+
+  const formatDate = (dateString) => {
+    const options = { year: "numeric", month: "long", day: "numeric" }
+    return new Date(dateString).toLocaleDateString(undefined, options)
   }
 
 
@@ -58,8 +91,8 @@ export default function AnswerItem({ answer, handleVote }) {
       <Answer>
         A:{answer.body}
       </Answer>
-      <AnswerInfo>
-        <div>&nbsp;&nbsp;&nbsp;&nbsp;By {answer.answerer_name},{answer.date} | Helpful?<span style={{textDecoration: "underline"}} onClick={handleVoteClick}> Yes({answer.helpfulness})</span> | <span style={{textDecoration: "underline"}} onClick={handleReportClick}>Report</span></div>
+      <AnswerInfo done={votedFlag && reporedFlag}>
+        <div>&nbsp;&nbsp;&nbsp;&nbsp;By&nbsp;{answer.answerer_name},&nbsp;&nbsp;{formatDate(answer.date)} | Helpful?<SpanElement done={votedFlag} onClick={handleVoteClick}> Yes({answer.helpfulness})</SpanElement> | <SpanElement done={reporedFlag} onClick={handleReportClick}>{!reporedFlag ? 'Report' : 'Reported'}</SpanElement></div>
       </AnswerInfo>
       <PhotoContainer>
         <PhotoGallery images={answer.photos}/>

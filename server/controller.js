@@ -139,12 +139,17 @@ module.exports.addAnswer = (req, res) => {
 
   let url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${req.params.question_id}/answers`;
 
-  axios.post(url, {body:req.body.answer, name:req.body.name, email:req.body.email, photos:req.body.photos}, { headers: { Authorization: token.TOKEN } } )
+  const img_urls = [];
+  for (let i = 0; i<req.files.length; i++) {
+    img_urls.push(`http://localhost:3000/${req.files[i].filename}`)
+  }
+
+  axios.post(url, {body:req.body.answer, name:req.body.name, email:req.body.email, photos:img_urls}, { headers: { Authorization: token.TOKEN } } )
     .then((response) => {
-      console.log('response from ask a question', response);
+      console.log('response from add an answer', response);
       res.send('answered');
     }).catch((err) => {
-      console.log('error here for ask a question', err);
+      console.log('error here for add an answer', err);
       res.sendStatus(404);
 
     });

@@ -1,6 +1,8 @@
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
+const multer = require('multer');
+const upload = multer({dest:'server/uploads/'})
 
 const app = express();
 const {
@@ -12,6 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
 app.use(express.static(path.join(__dirname, '../client/dist/')));
+app.use(express.static(path.join(__dirname, '/uploads')));
 
 // get all products
 app.get('/products', getProducts);
@@ -44,7 +47,8 @@ app.put('/:reportName/:id/report', report);
 app.post('/questions', askQuestion)
 
 // add an answer for a specific question
-app.post('/questions/:question_id/answers', addAnswer)
+// app.post('/questions/:question_id/answers', upload.single('file'), addAnswer)
+app.post('/questions/:question_id/answers', upload.array('files', 5), addAnswer)
 
 app.listen(3000, () => {
   console.log('listening on port 3000');
