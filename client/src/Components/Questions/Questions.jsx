@@ -91,11 +91,14 @@ export function Questions({ renderedProduct, setqNum, qNum }) {
   }
 
   useEffect(() => {
-    getQuestions();
+    if (renderedProduct.id){
+            getQuestions();
+          }
+
   }, [renderedProduct.id]);
 
   /* Get all questions back */
-  const getQuestions = () => {
+  const getQuestions = (numberQuestions) => {
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions?product_id=${renderedProduct.id}&count=${qNum}`, { headers: { Authorization: token.TOKEN } })
       .then((response) => {
         //console.log('Client side response is : ', response.data);
@@ -158,7 +161,7 @@ export function Questions({ renderedProduct, setqNum, qNum }) {
   /* Handle helpful vote */
   const handleVote = (voteName, id) => {
     imcrementVote(voteName, id, () => {
-      getQuestions();
+      // getQuestions(qNum);
     });
   }
 

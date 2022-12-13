@@ -117,7 +117,7 @@ export default function ModalWindowImpl(props) {
   }
 
 
-  console.log('url is : ', url);
+  //console.log('url is : ', url);
   return (
     <Model show={show}>
       <Container openPos={openPos} usage={usage}>
