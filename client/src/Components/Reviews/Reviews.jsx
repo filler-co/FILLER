@@ -98,7 +98,7 @@ const uRl = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews?product
     <ReviewContainer ref={refProp}>
       <RHeader>
     <h2>Ratings & Reviews</h2>
-        <FilterBy renderedProduct={renderedProduct} reviewList={reviewList} sortState={sortState} setSortState={setSortState} setFilterList={setFilterList} filterList={filterList} filterByRating={filterByRating} setFilterByRating={setFilterByRating} setTotalRevs={setTotalRevs}
+        <FilterBy renderedProduct={renderedProduct} reviewList={reviewList} sortState={sortState} setSortState={setSortState} setFilterList={setFilterList} filterList={filterList} filterByRating={filterByRating} setFilterByRating={setFilterByRating} setTotalRevs={setTotalRevs} totalRevs={totalRevs}
         />
       </RHeader>
       <RBreakdown>
@@ -125,7 +125,7 @@ const uRl = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews?product
           ))}
       </RList>
       <RButtons>
-        {revNum < totalRevs ? <MoreButton buttonName={'Get More Reviews'} actionNeed={getProductReview} revNum={revNum} setRevNum={setRevNum} qNum={false}/>: <div></div> }
+        {<MoreButton buttonName={'Get More Reviews'} actionNeed={getProductReview} revNum={revNum} setRevNum={setRevNum} qNum={false}/> }
       <CreateReview />
       </RButtons>
     </ReviewContainer>

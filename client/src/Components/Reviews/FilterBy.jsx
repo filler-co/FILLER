@@ -13,9 +13,12 @@ export default function FilterBy({renderedProduct, reviewList, sortState, setSor
     .catch((err) => console.log(err));
   }
 
-  useEffect(() => {if(renderedProduct.id){reviewFilter()}}, [renderedProduct.id])
+  useEffect(() => {if(renderedProduct.id ){reviewFilter()}}, [renderedProduct.id])
 
-  const total = filterList.reduce((total, num) => {return total + Math.round(num)}, 0);
+  let total = filterList.reduce((total, num) => {return total + Math.round(num)}, 0);
+
+
+
 
 
 
