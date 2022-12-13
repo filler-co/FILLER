@@ -20,20 +20,20 @@ const SBButton = styled.button`
 
 const SBDiv = styled.div`
   border-radius: 50%;
-  height: 40px;
-  width: 40px;
+  height: 62px;
+  width: 62px;
 
   ${({ active }) => !active && `
   &:hover {
-    height: 38px;
-    width: 38px;
+    height: 60px;
+    width: 60px;
     border: solid 2px black;
   }
   `}
 
   ${({ active }) => active && `
-  height: 39px;
-  width: 39px;
+  height: 61px;
+  width: 61px;
   border: solid 1px black;
   `}
 `;

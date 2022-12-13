@@ -7,25 +7,79 @@ import ProductDetails from './Components/ProductDetails/ProductDetails.jsx';
 import {Questions} from './Components/Questions/Questions.jsx';
 import RelatedProducts from './Components/RelatedProducts/RelatedProducts.jsx';
 import styled from 'styled-components';
+import imgLogo from './Assets/fillerimglogo.png';
+import textLogo from './Assets/fillertextlogo.png';
+import textLogoDark from './Assets/fillertextlogodark.png';
+import {createGlobalStyle} from 'styled-components';
+
+export const ThemeContext = React.createContext(null);
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    font-family: 'Montserrat', sans-serif;
+  }
+`;
 
 const Container = styled.div`
   display: grid;
   height: 100vh;
 
   color: black;
-  grid-template-rows: 6fr 2fr 1fr 2fr;
+  grid-template-rows: .5fr 6fr 2fr 1fr 2fr;
   grid-gap: 0.25rem;
   ${'' /* text-align-center; */}
   grid-template-areas:
+    "header"
     "product-details"
     "reviews"
     "questions"
     "related-products";
 `;
 
+const HeaderDiv = styled.div`
+  padding: 5px;
+  margin: 5px;
+  display: flex;
+  max-height: 15vh;
+  flex-direction: row;
+`;
+
+const HeaderFillerDiv = styled.div`
+ background: #6cccdd;
+ width: 100%;
+ height: 80%;
+ color: white;
+ font-weight: bold;
+ display: flex;
+ align-items: flex-end;
+ font-size: 300%;
+ padding-left: 4px;
+
+`;
+
+const ImgLogo = styled.img`
+  width: auto;
+  height: 80%;
+  object-fit: scale-down;
+`;
+
+const TextLogo = styled.img`
+  width: auto;
+  height: 100%;
+  object-fit: scale-down;
+`;
+
+const ThemeButtonContainer = styled.div`
+
+`;
+
+const ThemeButton = styled.button`
+
+`;
+
+
 const PDdiv = styled.div`
   grid-area: product-details;
-  border: solid 1px cornflowerblue;
   padding: 5px;
   margin:5px;
 `;
@@ -55,9 +109,10 @@ const RPdiv = styled.div`
 
 
 
-export default function App() {
+export function App() {
   const [renderedProduct, setRenderedProduct] = useState({});
   const [localInfo, setLocalInfo] = useState(JSON.parse(localStorage.getItem('cookie')));
+  const [theme, setTheme] = useState(true);
 
   const changeRenderedProduct = (id) => {
     axios.get(`/products/${id}`, { headers: { Authorization: token.TOKEN } })
@@ -99,28 +154,48 @@ export default function App() {
   return (
 
     <Container>
-      <PDdiv>
-        <ProductDetails
-          renderedProduct={renderedProduct}
-          handleReviewScrollClick={handleReviewScrollClick}
-          favoritesInfo ={localInfo}
-          updateFavorites={updateFavorites}
-        />
-      </PDdiv>
-      <Rdiv>
-        <Reviews refProp={ref} renderedProduct={renderedProduct} setRevNum={setRevNum} revNum={revNum}/>
-      </Rdiv>
-      <Qdiv>
-        <Questions renderedProduct={renderedProduct} setqNum={setqNum} qNum={qNum}/>
-      </Qdiv>
-      <RPdiv>
-        <RelatedProducts
-          changeRenderedProduct={changeRenderedProduct}
-          productId={renderedProduct.id}
-          setRevNum={setRevNum}
-          setqNum={setqNum}
-        />
-      </RPdiv>
+      <GlobalStyle />
+      <ThemeContext.Provider value={{theme}}>
+        <HeaderDiv>
+          <ImgLogo src={imgLogo} alt="FILLER IMG"/>
+          <TextLogo src={theme?textLogo:textLogoDark} alt = "FILLER TEXT"/>
+          <HeaderFillerDiv> co.</HeaderFillerDiv>
+          {/* <ThemeButtonContainer>
+            <ThemeButton onClick={() => setTheme(!theme)}>Theme</ThemeButton>
+          </ThemeButtonContainer> */}
+          {/* <ThemeSliderContainer theme={theme}>
+            <div className="contain">
+              <h5 theme={theme}>Dark Mode</h5>
+              <label className="switch">
+                <input type="checkbox" onChange={(e) => setTheme(!theme)} />
+                <span className="slider round"></span>
+              </label>
+            </div>
+          </ThemeSliderContainer> */}
+        </HeaderDiv>
+        <PDdiv>
+          <ProductDetails
+            renderedProduct={renderedProduct}
+            handleReviewScrollClick={handleReviewScrollClick}
+            favoritesInfo ={localInfo}
+            updateFavorites={updateFavorites}
+          />
+        </PDdiv>
+        <Rdiv>
+          <Reviews refProp={ref} renderedProduct={renderedProduct} setRevNum={setRevNum} revNum={revNum}/>
+        </Rdiv>
+        <Qdiv>
+          <Questions renderedProduct={renderedProduct} setqNum={setqNum} qNum={qNum}/>
+        </Qdiv>
+        <RPdiv>
+          <RelatedProducts
+            changeRenderedProduct={changeRenderedProduct}
+            productId={renderedProduct.id}
+            setRevNum={setRevNum}
+            setqNum={setqNum}
+          />
+        </RPdiv>
+      </ThemeContext.Provider>
     </Container>
 
   );
