@@ -75,9 +75,10 @@ const Image = styled.div`
 `;
 
 const Form = styled.div`
-    width: 50vw;
-    height: 50vh;
+    min-width: 50vw;
+    min-height: 50vh;
     border-radius: 5px;
+    justify-content:center;
     color: black
     ${'' /* border: solid 1px black; */}
     ${'' /* background-color: rgba(80,80,150, 0.4); */}
@@ -88,6 +89,7 @@ const ButtonBar = styled.div`
     flex-direction: row;
     flex: 1 0 auto;
     justify-content: flex-end;
+    cursor:pointer;
 `;
 
 export default function ModalWindowImpl(props) {
@@ -99,7 +101,10 @@ export default function ModalWindowImpl(props) {
     openPos // symbol for placement
   } = { ...props };
 
-  const closeWindow = () => handleClose(false);
+  const closeWindow = () => {
+    handleClose(false);
+
+  }
 
   const renderForm = (usage) => {
     if (usage === 'question'|| usage === 'answer') {

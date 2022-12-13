@@ -153,7 +153,7 @@ export function QuestionsItem({ question, handleVote }) {
   // console.log('test the array: ', [question, postAnswer]);
 
   return (
-    <QuestionContext.Provider value={[question, postAnswer]}>
+    <QuestionContext.Provider value={[question, postAnswer, hideModal]}>
       <Container>
       <Question>
         Q:{question.question_body}
