@@ -8,11 +8,12 @@ const Container = styled.div`
   display: grid;
   max-height: 50%;
   color: black;
-  grid-template-rows: 0.4fr 0.2fr 0.4fr;
+  grid-template-rows: 0.3fr 0.2fr 0.4fr 0.1fr;
   grid-template-areas:
     "answer"
     "answerinfo"
-    "photocontainer";
+    "photocontainer"
+    "answerinfoimg";
   text-align: left;
   grid-gap: 0.25rem;
 
@@ -21,7 +22,7 @@ const Container = styled.div`
 const Answer = styled.div`
   ${'' /* background: #3a3a55; */}
   grid-area: answer;
-  padding: 0.25rem;
+  padding: 0.15rem;
   font-size: 0.85em;
 
 `;
@@ -29,6 +30,16 @@ const Answer = styled.div`
 const AnswerInfo = styled.div`
   ${'' /* background: #1f2128; */}
   grid-area: answerinfo;
+  padding: 0.25rem;
+  font-size: 0.65em;
+  color:grey;
+  ${'' /* cursor: pointer; */}
+  cursor: ${({done}) => (done ? '' : 'pointer')}
+`;
+
+const AnswerInfoImg = styled.div`
+  ${'' /* background: #1f2128; */}
+  grid-area: answerinfoimg;
   padding: 0.25rem;
   font-size: 0.65em;
   color:grey;
@@ -49,9 +60,9 @@ const SpanElement = styled.span`
 
 export default function AnswerItem({ answer, handleVote }) {
 
-  // useEffect(() => {
-  //   localStorage.setItem("voted", false);
-  // },[])
+  useEffect(() => {
+    localStorage.setItem(answer.id, false);
+  },[])
 
 
   const [votedFlag, setVotedFlag] = useState(!!localStorage.getItem(answer.id));
@@ -89,7 +100,7 @@ export default function AnswerItem({ answer, handleVote }) {
   return (
     <Container>
       <Answer>
-        A:{answer.body}
+        <strong>A:&nbsp;</strong>{answer.body}
       </Answer>
       <AnswerInfo done={votedFlag && reporedFlag}>
         <div>&nbsp;&nbsp;&nbsp;&nbsp;By&nbsp;{answer.answerer_name},&nbsp;&nbsp;{formatDate(answer.date)} | Helpful?<SpanElement done={votedFlag} onClick={handleVoteClick}> Yes({answer.helpfulness})</SpanElement> | <SpanElement done={reporedFlag} onClick={handleReportClick}>{!reporedFlag ? 'Report' : 'Reported'}</SpanElement></div>
@@ -97,6 +108,12 @@ export default function AnswerItem({ answer, handleVote }) {
       <PhotoContainer>
         <PhotoGallery images={answer.photos}/>
       </PhotoContainer>
+      {answer.photos.length > 0 &&
+        <AnswerInfoImg done={votedFlag && reporedFlag}>
+        <div>&nbsp;&nbsp;&nbsp;&nbsp;By&nbsp;{answer.answerer_name},&nbsp;&nbsp;{formatDate(answer.date)} | Helpful?<SpanElement done={votedFlag} onClick={handleVoteClick}> Yes({answer.helpfulness})</SpanElement> | <SpanElement done={reporedFlag} onClick={handleReportClick}>{!reporedFlag ? 'Report' : 'Reported'}</SpanElement></div>
+      </AnswerInfoImg>
+      }
+
     </Container>
   );
 }

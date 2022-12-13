@@ -27,7 +27,7 @@ const Container = styled.div`
 const Question = styled.div`
   ${'' /* background: #3a3a55; */}
   grid-area: question;
-  ${'' /* padding: 0.25rem; */}
+  padding: 0.25rem;
   font-weight: bold;
 `;
 
@@ -157,7 +157,7 @@ export function QuestionsItem({ question, handleVote }) {
     <QuestionContext.Provider value={[question, postAnswer, hideModal]}>
       <Container>
       <Question>
-        Q:{question.question_body}
+        Q:&nbsp;{question.question_body}
       </Question>
       <Helpful onClick={handleVoteClick} done={votedFlag}>
         Helpful? Yes({question.question_helpfulness})

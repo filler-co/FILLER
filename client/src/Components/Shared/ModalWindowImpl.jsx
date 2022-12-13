@@ -19,7 +19,7 @@ const Model = styled.div`
 // Rendered popup - a positional demo confirmation box
 const Container = styled.div`
     position:fixed;
-    background:  ${({ usage }) => (usage === 'image' ? 'transparent' : 'white')};
+    background:  ${({ usage }) => (usage === 'image' ? 'white' : 'white')};
     width: auto;
     align-items:center;
     height: auto;

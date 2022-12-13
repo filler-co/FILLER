@@ -19,7 +19,7 @@ const Container = styled.div`
   min-height: 100%;
   ${'' /* min-height: auto; */}
   color: black;
-  grid-template-columns: 0.4fr 0.6fr;
+  grid-template-columns: 0.3fr 0.7fr;
   grid-template-rows: 0.01fr 0.01fr 0.97fr 0.01fr;
 
   grid-template-areas:
@@ -75,6 +75,7 @@ export function Questions({ renderedProduct, setqNum, qNum }) {
 
   const [show, setShow] = useState(false);
   const [url, setUrl] = useState('');
+
 
   const showModal = () => {
     setShow(true);
@@ -162,7 +163,8 @@ export function Questions({ renderedProduct, setqNum, qNum }) {
   /* Handle helpful vote */
   const handleVote = (voteName, id) => {
     imcrementVote(voteName, id, () => {
-      // getQuestions(qNum);
+    // getQuestions();
+    set
     });
   }
 
