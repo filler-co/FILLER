@@ -16,7 +16,7 @@ export default function FilterBy({renderedProduct, reviewList, sortState, setSor
   useEffect(() => {if(renderedProduct.id){reviewFilter()}}, [renderedProduct.id])
 
   const total = filterList.reduce((total, num) => {return total + Math.round(num)}, 0);
-  setTotalRevs(total)
+
 
 
   return (

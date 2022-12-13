@@ -25,16 +25,16 @@ export default function ProductBreakdown({renderedProduct}) {
   const [pBList, setPBList] = useState([]);
 
 
-  const reviewFilter = () => {
+  const getBreakdownData = () => {
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta/?product_id=${renderedProduct.id}`, { headers: { Authorization: token.TOKEN } })
-    .then((data) => { setPBList(Object.entries(data.data.characteristics)); console.log(data.data.characteristics)})
+    .then((data) => { setPBList(Object.entries(data.data.characteristics))})
     .catch((err) => console.log(err));
   }
 
-  useEffect(() => {if(renderedProduct.id){reviewFilter()}}, [renderedProduct.id])
+  useEffect(() => {if(renderedProduct.id){getBreakdownData()}}, [renderedProduct.id])
 
 
-  console.log(pBList)
+
 
 
 
@@ -42,8 +42,8 @@ export default function ProductBreakdown({renderedProduct}) {
   return(
     <div style={{"maxHeight": "50vh"}}>
       <h3 style={{"marginBottom": "10px", "display": "flex", "justifyContent": "center"}}>PRODUCT BREAKDOWN</h3>
-       { pBList.map((item) => {
-     return (<div style={{display: "flex", "flexDirection": "column", "justifyContent": "space-between", "border": "solid black 1px", "margin": "7px", "padding": "2%", "borderRadius": "5px"}}>
+       { pBList.map((item, idx) => {
+     return (<div key={idx} style={{display: "flex", "flexDirection": "column", "justifyContent": "space-between", "border": "solid black 1px", "margin": "7px", "padding": "2%", "borderRadius": "5px"}}>
       <div>
       <p style={{"fontWeight": "bold", "display": "flex", "justifyContent": "center", "fontSize": "larger"}}>{item[0]}</p>
       </div>

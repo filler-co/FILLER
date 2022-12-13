@@ -2,7 +2,6 @@ import React from 'react';
 
 
 export default function FilterSelector({sortState, setSortState}) {
-  console.log('ss',sortState)
 const handleChange = (e) => {
   setSortState(e.target.value.slice())
 }
