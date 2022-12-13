@@ -26,7 +26,6 @@ const Container = styled.div`
   color: black;
   grid-template-rows: .5fr 6fr 2fr 1fr 2fr;
   grid-gap: 0.25rem;
-  text-align: center;
   grid-template-areas:
     "header"
     "product-details"
@@ -92,16 +91,17 @@ const Qdiv = styled.div`
 
 const Rdiv = styled.div`
   grid-area: reviews;
-  border: solid 1px lightblue;
   padding: 5px;
   margin:5px;
-  background: blushlavender
+ max-height: 20%;
+
 
 `;
 
 const RPdiv = styled.div`
   grid-area: related-products;
   border: solid 1px maroon;
+
   padding: 5px;
   margin:5px;
 `;

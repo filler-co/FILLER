@@ -10,7 +10,7 @@ import token from '../../../../config';
 const Bdown = styled.div`
 display: grid;
 grid-template-rows: .1fr .3fr .6fr;
-grid-gap: .5rem;
+max-height: 50vh;
 grid-template-areas:
   "header-template"
   "stars-template"
@@ -20,7 +20,8 @@ const BHeader = styled.h3`
 grid-area: header-template;
 display: flex;
 justify-content: center;
-margin-bottom: 7px;
+margin-bottom: 0px;
+border-bottom: solid black .75px;
 `
 
 const StarStyled = styled.div`
@@ -28,7 +29,7 @@ grid-area: stars-template;
 `
 const Box = styled.div`
 grid-area: breakdown-box;
-padding: 20px;
+padding: 5px;
 box-sizing: border-box;
 
 `

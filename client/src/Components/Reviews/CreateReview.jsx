@@ -103,7 +103,7 @@ export default function CreateReview() {
 
   return (
     <>
-    <ButtonStyle onClick={() => {setOpen(true)} }>Create A Review </ButtonStyle>
+    <ButtonStyle onClick={() => {setOpen(true)} }>CREATE A REVIEW </ButtonStyle>
     { open ? <DialogStyles open>
       <FormHeader>
 

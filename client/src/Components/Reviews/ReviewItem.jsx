@@ -36,7 +36,7 @@ grid-area: review-body;
 display: grid;
 margin: 5px;
 border-bottom: solid black 2px;
-grid-template-rows: .2fr .2fr .2fr .2fr .2f ;
+grid-template-rows: .2fr .2fr .2fr .2fr .2f;
 grid-template-columns: .75fr .25fr;
 grid-template-areas:
 "item-summary item-summary"

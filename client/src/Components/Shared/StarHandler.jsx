@@ -26,7 +26,7 @@ font-size: 35px;
 const StyledStars = styled.div`
 grid-area: stars;
 display: flex;
-align-items: flex-start;
+align-items: center;
 
 `
 

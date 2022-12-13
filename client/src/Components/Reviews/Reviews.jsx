@@ -13,22 +13,22 @@ import token from '../../../../config';
 
 const ReviewContainer = styled.div`
 display: grid;
-max-height: 100%;
+
+max-height: 80vh;
 grid-template-columns: .25fr .75fr;
-grid-template-rows: .2fr .3fr .4fr .1fr;
+grid-template-rows: .3fr .3fr .3fr .1fr;
 grid-template-areas:
   "review-header review-header"
   "ratings-breakdown review-list"
   "product-breakdown review-list"
-  "review-buttons review-buttons";
+  "prooduct-breakdown review-buttons";
 text-align: left;
-grid-gap: 1 rem;
 `
 ;
 const PBreakdown = styled.div`
 grid-area: product-breakdown;
 
-height: 35vh;
+max-height: 35vh;
 margin: 5px;
 padding: 5px;
 `
@@ -43,9 +43,8 @@ padding: 5px;
   const RList = styled.div`
   grid-area: review-list;
   border-left: solid black 1px;
-
   margin: 5px;
-  max-height: 100vh;
+  max-height: 80vh;
   overflow-x: hidden;
   overflow-y: auto;
   `;
@@ -54,8 +53,10 @@ padding: 5px;
   grid-area: review-buttons;
   margin: 5px;
   display: flex;
+  max-height: 10rem;
   border-radius: 10px;
-  justify-content: space-around;
+  justify-content: space-between;
+  align-items: start
   `;
 
   const RHeader = styled.div`
@@ -124,7 +125,7 @@ const uRl = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews?product
           ))}
       </RList>
       <RButtons>
-        {<MoreButton buttonName={'Get More Reviews'} actionNeed={getProductReview} revNum={revNum} setRevNum={setRevNum} qNum={false}/> }
+        {<MoreButton buttonName={'MORE REVIEWS'} actionNeed={getProductReview} revNum={revNum} setRevNum={setRevNum} qNum={false}/> }
       <CreateReview />
       </RButtons>
     </ReviewContainer>

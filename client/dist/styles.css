@@ -66,6 +66,34 @@
 
 
 
+<<<<<<< HEAD
+=======
+ /* .container {
+  border: solid 1px black;
+  padding: 5px;
+  margin:5px;
+ } */
+/*
+ .product-details-container {
+  border: solid 1px cornflowerblue;
+  padding: 5px;
+  margin:5px;
+ } */
+
+ /* .related-products-container {
+  border: solid 1px maroon;
+  padding: 5px;
+  margin:5px;
+ } */
+
+
+ /* .review-container {
+  border: solid 1px blueviolet;
+  padding: 5px;
+  margin:5px;
+ } */
+
+>>>>>>> 6e0cdeb7c44eec50dfef201a319f92719c9f66e2
  /* .review-item{
   border: solid 1px black;
   padding: 5px;

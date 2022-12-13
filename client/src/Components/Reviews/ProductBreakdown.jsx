@@ -7,19 +7,16 @@ import UpArrow from './upArrow.svg';
 
 
 const GraphBox = styled.div`
-background: grey;
 padding: 3px;
 box-sizing: border-box;
 border: 1px solid black;
-height: 10px;
-border-radius: 10px;
+height: 7.5px;
+max-height: 50vh;
 margin-bottom: 0px;
 `
 
 const CharBox = styled.div `
-padding: 20px;
-box-sizing: border-box;
-box-shadow: 0 20px 50px rgba(0,0,0,.5);
+padding: 5px;
 `
 
 
@@ -47,19 +44,19 @@ export default function ProductBreakdown({renderedProduct}) {
 
   return(
     <>
-      <h3 style={{"marginBottom": "10px", "display": "flex", "justifyContent": "center"}}>Product Characteristics</h3>
-    <CharBox style={{"maxHeight": "50vh"}}>
+      <h3 style={{"marginBottom": "10px", "display": "flex", "justifyContent": "center", "borderBottom": "solid black .75px"}}>Product Characteristics</h3>
+    <CharBox style={{"maxHeight": "50vh", }}>
        { pBList.map((item, idx) => {
-     return (<div key={idx} style={{display: "flex", "flexDirection": "column", "justifyContent": "space-between", "border": "none", "margin": "7px", "padding": "2%", "borderRadius": "5px"}}>
-      <div>
-      <p style={{"fontWeight": "bold", "display": "flex", "justifyContent": "center", "fontSize": "larger"}}>{item[0]}</p>
+     return (<div key={idx} style={{display: "flex", "flexDirection": "column", "justifyContent": "space-between", "border": "none", "margin": "0px", "padding": "0px", "borderRadius": "5px"}}>
+      <div  >
+      <p style={{"display": "flex", "justifyContent": "center", "fontSize": "1rem"}}>{item[0]}</p>
       </div>
       <GraphBox >
-        <UpArrow style={{height: "20px", width: "20px", "marginLeft": `${item[1].value.slice(0,2)*10}%`, "marginTop": "-8.5px"}} />
+        <UpArrow style={{height: "16px", width: "20px", "marginLeft": `${item[1].value.slice(0,2)*10}%`, "marginTop": "-8.2px"}} />
       </GraphBox>
-      <div>
-        <p style={{float: "left", "marginTop": "0px", "fontSize": "medium"}}>1</p>
-        <p style={{float: "right", "marginTop": "0px", "fontSize": "medium"}}>5</p>
+      <div >
+        <p style={{float: "left", "marginTop": "0px", "fontSize": "0.78rem", "marginLeft": "6.5px"}}>1</p>
+        <p style={{float: "right", "marginTop": "0px", "marginRight": "6.5px", "fontSize": "0.78rem"}}>5</p>
       </div>
       </div>)
        })}
