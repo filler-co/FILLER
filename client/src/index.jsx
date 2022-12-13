@@ -34,6 +34,8 @@ const Container = styled.div`
     "reviews"
     "questions"
     "related-products";
+
+  z-index: 1;
 `;
 
 const HeaderDiv = styled.div`
@@ -90,6 +92,9 @@ const PDdiv = styled.div`
   grid-area: product-details;
   padding: 5px;
   margin:5px;
+  z-index: 1;
+  height: 75vh;
+  padding-bottom: 3vh;
 `;
 
 const Qdiv = styled.div`

@@ -20,7 +20,7 @@ const PDContainer = styled.div`
   "product-image product-details"
   "product-image product-details"
   "product-image product-details";
-  height: 75vh;
+  height: 100%;
   min-height: 10px;
 `;
 
