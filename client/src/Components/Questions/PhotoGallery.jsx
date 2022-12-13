@@ -22,6 +22,7 @@ const P1 = styled.span`
   ${'' /* background: #3a3a55; */}
   grid-area: p1;
   padding: 0.25rem;
+  cursor:pointer;
 
 `;
 
@@ -29,28 +30,28 @@ const P2 = styled.span`
   ${'' /* background: #3a3a55; */}
   grid-area: p2;
   padding: 0.25rem;
-
+  cursor:pointer;
 `;
 
 const P3 = styled.span`
   ${'' /* background: #3a3a55; */}
   grid-area: p3;
   padding: 0.25rem;
-
+  cursor:pointer;
 `;
 
 const P4 = styled.span`
   ${'' /* background: #3a3a55; */}
   grid-area: p4;
   padding: 0.25rem;
-
+  cursor:pointer;
 `;
 
 const P5 = styled.span`
   ${'' /* background: #3a3a55; */}
   grid-area: p5;
   padding: 0.25rem;
-
+  cursor:pointer;
 `;
 
 // grid-template-columns: repeat(auto-fill, 40px);

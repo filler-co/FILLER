@@ -9,6 +9,10 @@ const ButtonStyle = styled.button`
   border: 1px solid black;
   height: 3em;
   font-weight:bold;
+  cursor:pointer;
+  &:hover {
+    background-color: grey;
+  }
 `;
 /*This is passed as my actionNeed from the component that is using the button
 
