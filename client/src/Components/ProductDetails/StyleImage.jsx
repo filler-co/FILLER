@@ -9,6 +9,7 @@ import {faChevronLeft} from '@fortawesome/free-solid-svg-icons';
 import {ThemeContext} from './../../index.jsx';
 
 
+
 const ImageContainer = styled.div`
   align-items: center;
   display: grid;

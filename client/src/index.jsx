@@ -11,6 +11,7 @@ import imgLogo from './Assets/fillerimglogo.png';
 import textLogo from './Assets/fillertextlogo.png';
 import textLogoDark from './Assets/fillertextlogodark.png';
 import {createGlobalStyle} from 'styled-components';
+import LoadingPage from './Components/LoadingPage.jsx';
 
 export const ThemeContext = React.createContext(null);
 
@@ -110,21 +111,13 @@ const Rdiv = styled.div`
   margin:5px;
  max-height: 20%;
 
-
 `;
 
 const RPdiv = styled.div`
   grid-area: related-products;
-<<<<<<< HEAD
-  border: solid 1px maroon;
-
-  padding: 5px;
-  margin:5px;
-=======
   ${'' /* border: solid 1px black; */}
   padding: 2px;
   margin:2px;
->>>>>>> 3f15db43feb390548094fcc273427d099b282b0a
 `;
 
 
@@ -170,8 +163,10 @@ export function App() {
     ref.current.scrollIntoView({behavior: 'smooth'});
   };
 
-
-  return (
+  if (!renderedProduct.id) {
+    return (<LoadingPage/>);
+  } else {
+    return (
 
     <Container>
       <GlobalStyle />
@@ -181,33 +176,36 @@ export function App() {
           <TextLogo src={theme?textLogo:textLogoDark} alt = "FILLER TEXT"/>
           <HeaderFillerDiv> co.</HeaderFillerDiv>
         </HeaderDiv>
-        <AnnouncementDiv>SITE-WIDE ANNOUNCEMENT MESSAGE - NEW PRODUCTS ON SALE</AnnouncementDiv>
-        <PDdiv>
-          <ProductDetails
-            renderedProduct={renderedProduct}
-            handleReviewScrollClick={handleReviewScrollClick}
-            favoritesInfo ={localInfo}
-            updateFavorites={updateFavorites}
-          />
-        </PDdiv>
-        <Rdiv>
-          <Reviews refProp={ref} renderedProduct={renderedProduct} setRevNum={setRevNum} revNum={revNum}/>
-        </Rdiv>
-        <Qdiv>
-          <Questions renderedProduct={renderedProduct} setqNum={setqNum} qNum={qNum}/>
-        </Qdiv>
-        <RPdiv>
-          <RelatedProducts
-            changeRenderedProduct={changeRenderedProduct}
-            productId={renderedProduct.id}
-            setRevNum={setRevNum}
-            setqNum={setqNum}
-          />
-        </RPdiv>
+
+
+          <AnnouncementDiv>SITE-WIDE ANNOUNCEMENT MESSAGE - NEW PRODUCTS ON SALE</AnnouncementDiv>
+          <PDdiv>
+            <ProductDetails
+              renderedProduct={renderedProduct}
+              handleReviewScrollClick={handleReviewScrollClick}
+              favoritesInfo ={localInfo}
+              updateFavorites={updateFavorites}
+            />
+          </PDdiv>
+          <Rdiv>
+            <Reviews refProp={ref} renderedProduct={renderedProduct} setRevNum={setRevNum} revNum={revNum}/>
+          </Rdiv>
+          <Qdiv>
+            <Questions renderedProduct={renderedProduct} setqNum={setqNum} qNum={qNum}/>
+          </Qdiv>
+          <RPdiv>
+            <RelatedProducts
+              changeRenderedProduct={changeRenderedProduct}
+              productId={renderedProduct.id}
+              setRevNum={setRevNum}
+              setqNum={setqNum}
+            />
+          </RPdiv>
+
       </ThemeContext.Provider>
     </Container>
-
-  );
+    );
+    }
 }
 
 ReactDOM.render(<App />, document.getElementById('root'));
