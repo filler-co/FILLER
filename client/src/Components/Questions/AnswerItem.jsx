@@ -62,21 +62,37 @@ const SpanElement = styled.span`
 export default function AnswerItem({ answer, handleVote }) {
 
   useEffect(() => {
-    localStorage.setItem(answer.id, false);
+    // localStorage.setItem(answer.id, false);
+    // localStorage.clear();
   },[])
 
 
   const [votedFlag, setVotedFlag] = useState(!!localStorage.getItem(answer.id));
   const [reporedFlag, setReportedFlag] = useState(!!localStorage.getItem(answer.id+'report'));
+  console.log('votedflag is : ', votedFlag);
 
   const handleVoteClick = () => {
-    console.log('voted localstore is : ', localStorage.getItem(answer.id));
+    console.log('voted localstore is : ', !localStorage.getItem(answer.id));
     if (!localStorage.getItem(answer.id)) {
+      console.log('should be able to vote');
       localStorage.setItem(answer.id, true);
       setVotedFlag(true);
     handleVote('answers',answer.id);
     }
   }
+
+  // const handleVoteClick = () => {
+  //   console.log('votedflag is : ', localStorage.getItem(question.question_id))
+  //   if (!localStorage.getItem(question.question_id)) {
+  //     localStorage.setItem(question.question_id, true);
+  //     setVotedFlag(true);
+  //     handleVote('questions',question.question_id);
+  //   }
+
+  // }
+
+
+
 
   const handleReportClick = () => {
 

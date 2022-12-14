@@ -163,8 +163,7 @@ export function Questions({ renderedProduct, setqNum, qNum }) {
   /* Handle helpful vote */
   const handleVote = (voteName, id) => {
     imcrementVote(voteName, id, () => {
-    // getQuestions();
-    set
+    getQuestions(100);
     });
   }
 
@@ -215,7 +214,7 @@ export function Questions({ renderedProduct, setqNum, qNum }) {
       </QAList>
 
       {showMoreBtn && <MoreQuestionBtn>
-        <MoreButton buttonName='MORE ANSWERED QUESTIONS' actionNeed={handleLoadMoreQuestions} setqNum={setqNum} qNum={qNum} />
+        <MoreButton buttonName='MORE QUESTIONS' actionNeed={handleLoadMoreQuestions} setqNum={setqNum} qNum={qNum} />
         {/* <MoreButton buttonName='MORE ANSWERED QUESTIONS' actionNeed={getQuestions} setqNum={setqNum} qNum={qNum} /> */}
       </MoreQuestionBtn>}
 
