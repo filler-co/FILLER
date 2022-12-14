@@ -27,9 +27,10 @@ const Container = styled.div`
   ${'' /* background-color:grey; */}
   ${'' /* color: black; */}
   color: ${props => props.theme.font};
-  grid-template-rows: .5fr .25fr .6fr .2fr .1fr .2fr;
+  grid-template-rows: .5fr .5fr .25fr .6fr .2fr .1fr .2fr;
   grid-gap: 0.25rem;
   grid-template-areas:
+    "themeswitcher"
     "header"
     "announcements"
     "product-details"
@@ -38,6 +39,10 @@ const Container = styled.div`
     "related-products";
 
   z-index: 1;
+`;
+
+const ThemeSwitch = styled.div`
+  font-weight:bold;
 `;
 
 const HeaderDiv = styled.div`
