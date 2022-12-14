@@ -10,7 +10,8 @@ import styled from 'styled-components';
 import imgLogo from './Assets/fillerimglogo.png';
 import textLogo from './Assets/fillertextlogo.png';
 import textLogoDark from './Assets/fillertextlogodark.png';
-import {createGlobalStyle} from 'styled-components';
+import {createGlobalStyle, ThemeProvider} from 'styled-components';
+import ToggleBar from './Components/Shared/Togglebar.jsx';
 
 export const ThemeContext = React.createContext(null);
 
@@ -23,8 +24,9 @@ const GlobalStyle = createGlobalStyle`
 const Container = styled.div`
   display: grid;
   height: 100vh;
-
-  color: black;
+  ${'' /* background-color:grey; */}
+  ${'' /* color: black; */}
+  color: ${props => props.theme.font};
   grid-template-rows: .5fr .25fr .6fr .2fr .1fr .2fr;
   grid-gap: 0.25rem;
   grid-template-areas:
@@ -126,6 +128,7 @@ export function App() {
   const [renderedProduct, setRenderedProduct] = useState({});
   const [localInfo, setLocalInfo] = useState(JSON.parse(localStorage.getItem('cookie')));
   const [theme, setTheme] = useState(true);
+  const [globalTheme, setGlobalTheme] = useState({bg:'white', font:'black'});
 
   const changeRenderedProduct = (id) => {
     axios.get(`/products/${id}`, { headers: { Authorization: token.TOKEN } })
@@ -163,11 +166,17 @@ export function App() {
     ref.current.scrollIntoView({behavior: 'smooth'});
   };
 
+  const handleTheme = (event) => {
+    const color = (globalTheme.bg === 'white') ? {bg:'black', font:'white'} : {bg:'white', font:'black'}
+    setGlobalTheme(color);
+  }
+
 
   return (
-
-    <Container>
+<ThemeProvider theme={globalTheme}>
+<Container>
       <GlobalStyle />
+      <button onClick={handleTheme}>GO {globalTheme.bg === 'white' ? 'black' : 'white'}</button>
       <ThemeContext.Provider value={{theme}}>
         <HeaderDiv>
           <ImgLogo src={imgLogo} alt="FILLER IMG"/>
@@ -198,7 +207,10 @@ export function App() {
           />
         </RPdiv>
       </ThemeContext.Provider>
-    </Container>
+      </Container>
+</ThemeProvider>
+
+
 
   );
 }

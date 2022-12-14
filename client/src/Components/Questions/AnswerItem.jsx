@@ -7,7 +7,7 @@ import PhotoGallery from './PhotoGallery';
 const Container = styled.div`
   display: grid;
   max-height: 50%;
-  color: black;
+  ${'' /* color: white; */}
   grid-template-rows: 0.3fr 0.2fr 0.4fr 0.1fr;
   grid-template-areas:
     "answer"

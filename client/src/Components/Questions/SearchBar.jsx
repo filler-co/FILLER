@@ -12,7 +12,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 5px;
-  border: 1px solid black;
+  border: 1px solid grey;
   border-radius: 5px;
   &:hover {
     box-shadow: 2px 2px 2px thistle;

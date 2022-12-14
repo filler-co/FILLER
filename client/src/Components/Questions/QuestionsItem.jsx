@@ -13,7 +13,7 @@ const Container = styled.div`
   display: grid;
   max-height: 100vh;
   min-height:auto;
-  color: black;
+  ${'' /* color: black; */}
   grid-template-rows: 0.1fr 0.89fr 0.01fr;
   grid-template-columns: 0.7fr 0.2fr 0.1fr;
   grid-template-areas:
