@@ -9,6 +9,8 @@ const Container = styled.div`
   display: grid;
   ${'' /* max-height: 25vh;
   min-height:auto; */}
+  max-width: 30vw;
+  min-width: 50vw;
   color: black;
   grid-template-rows: 1fr;
   grid-template-columns: repeat(5, 1fr);
@@ -21,7 +23,7 @@ const Container = styled.div`
 const P1 = styled.span`
   ${'' /* background: #3a3a55; */}
   grid-area: p1;
-  padding: 0.25rem;
+  ${'' /* padding: 0.25rem; */}
   cursor:pointer;
 
 `;
@@ -29,28 +31,28 @@ const P1 = styled.span`
 const P2 = styled.span`
   ${'' /* background: #3a3a55; */}
   grid-area: p2;
-  padding: 0.25rem;
+  ${'' /* padding: 0.25rem; */}
   cursor:pointer;
 `;
 
 const P3 = styled.span`
   ${'' /* background: #3a3a55; */}
   grid-area: p3;
-  padding: 0.25rem;
+  ${'' /* padding: 0.25rem; */}
   cursor:pointer;
 `;
 
 const P4 = styled.span`
   ${'' /* background: #3a3a55; */}
   grid-area: p4;
-  padding: 0.25rem;
+  ${'' /* padding: 0.25rem; */}
   cursor:pointer;
 `;
 
 const P5 = styled.span`
   ${'' /* background: #3a3a55; */}
   grid-area: p5;
-  padding: 0.25rem;
+  ${'' /* padding: 0.25rem; */}
   cursor:pointer;
 `;
 
@@ -81,11 +83,11 @@ export default function PhotoGallery({ images }) {
 
   return (
     <Container>
-      {images[0] && <P1 onClick={() => { handleImgClick(images[0]) }}><img src={images[0]} alt="img" width="100" height="80" /></P1>}
-      {images[1] && <P2 onClick={() => { handleImgClick(images[1]) }}><img src={images[1]} alt="img" width="100" height="80" /></P2>}
-      {images[2] && <P3 onClick={() => { handleImgClick(images[2]) }}><img src={images[2]} alt="img" width="100" height="80" /></P3>}
-      {images[3] && <P4 onClick={() => { handleImgClick(images[3]) }}><img src={images[3]} alt="img" width="100" height="80" /></P4>}
-      {images[4] && <P5 onClick={() => { handleImgClick(images[4]) }}><img src={images[4]} alt="img" width="100" height="80" /></P5>}
+      {images[0] && <P1 onClick={() => { handleImgClick(images[0]) }}><img className='border' src={images[0]} alt="img" width="100" height="80" /></P1>}
+      {images[1] && <P2 onClick={() => { handleImgClick(images[1]) }}><img className='border' src={images[1]} alt="img" width="100" height="80" /></P2>}
+      {images[2] && <P3 onClick={() => { handleImgClick(images[2]) }}><img className='border' src={images[2]} alt="img" width="100" height="80" /></P3>}
+      {images[3] && <P4 onClick={() => { handleImgClick(images[3]) }}><img className='border' src={images[3]} alt="img" width="100" height="80" /></P4>}
+      {images[4] && <P5 onClick={() => { handleImgClick(images[4]) }}><img className='border' src={images[4]} alt="img" width="100" height="80" /></P5>}
       <ModalWindow
         show={show}
         url={url}

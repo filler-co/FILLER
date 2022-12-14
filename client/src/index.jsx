@@ -101,6 +101,7 @@ const PDdiv = styled.div`
 const Qdiv = styled.div`
   grid-area: questions;
   ${'' /* border: solid 1px black; */}
+
   padding: 5px;
   margin:5px;
 `;
