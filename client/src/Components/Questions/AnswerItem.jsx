@@ -40,7 +40,8 @@ const AnswerInfo = styled.div`
 const AnswerInfoImg = styled.div`
   ${'' /* background: #1f2128; */}
   grid-area: answerinfoimg;
-  padding: 0.25rem;
+  margin-bottom: 3.5em;
+  ${'' /* padding: 0.25rem; */}
   font-size: 0.65em;
   color:grey;
   ${'' /* cursor: pointer; */}

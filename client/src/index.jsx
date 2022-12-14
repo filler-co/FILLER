@@ -100,6 +100,7 @@ const PDdiv = styled.div`
 const Qdiv = styled.div`
   grid-area: questions;
   ${'' /* border: solid 1px black; */}
+
   padding: 5px;
   margin:5px;
 `;
@@ -110,21 +111,13 @@ const Rdiv = styled.div`
   margin:5px;
  max-height: 20%;
 
-
 `;
 
 const RPdiv = styled.div`
   grid-area: related-products;
-<<<<<<< HEAD
-  border: solid 1px maroon;
-
-  padding: 5px;
-  margin:5px;
-=======
   ${'' /* border: solid 1px black; */}
   padding: 2px;
   margin:2px;
->>>>>>> 3f15db43feb390548094fcc273427d099b282b0a
 `;
 
 

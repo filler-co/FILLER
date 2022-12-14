@@ -32,7 +32,7 @@ const Container = styled.div`
  `;
 
 const Header = styled.div`
-  color:grey;
+  color:black;
   grid-area: header;
   ${'' /* padding: 0.25rem; */}
 `;
@@ -204,7 +204,7 @@ export function Questions({ renderedProduct, setqNum, qNum }) {
     <ProductContext.Provider value={[renderedProduct, postQuestion, hideModal]}>
     <Container>
       <Header>
-        QUESTIONS & ANSWERS
+      <h3>QUESTIONS & ANSWERS</h3>
       </Header>
       <Search>
       <SearchBar searchQuestion={searchQuestion} />
