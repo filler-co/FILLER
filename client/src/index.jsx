@@ -13,7 +13,6 @@ import textLogoDark from './Assets/fillertextlogodark.png';
 import {createGlobalStyle, ThemeProvider} from 'styled-components';
 import ToggleBar from './Components/Shared/Togglebar.jsx';
 import LoadingPage from './Components/LoadingPage.jsx';
-import LoadingPage from './Components/LoadingPage.jsx';
 
 export const ThemeContext = React.createContext(null);
 
