@@ -19,7 +19,7 @@
  html,
  body {
    height: 100%;
-   max-width: 75rem;
+
  }
 
  body {
@@ -34,7 +34,6 @@
  canvas,
  svg {
    display: block;
-   max-width: 100%;
  }
 
  img {
@@ -59,7 +58,6 @@
  }
 
  main {
-  max-width: 75rem;
    padding: 25px 50px;
    margin: auto;
  }

@@ -17,6 +17,8 @@ const Container = styled.div`
   display: grid;
   max-height: 100%;
   min-height: 100%;
+  max-width: 1000px;
+  margin: auto;
   ${'' /* min-height: auto; */}
   color: black;
   grid-template-columns: 0.4fr 0.6fr;

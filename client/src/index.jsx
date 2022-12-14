@@ -23,9 +23,10 @@ const GlobalStyle = createGlobalStyle`
 const Container = styled.div`
   display: grid;
   height: 100vh;
-
+  margin: auto;
+  max-width: 1200px;
   color: black;
-  grid-template-rows: .5fr .25fr .6fr .2fr .1fr .2fr;
+  grid-template-rows: .5fr .25fr 6fr 2fr 1fr 2fr;
   grid-gap: 0.25rem;
   grid-template-areas:
     "header"
@@ -34,8 +35,6 @@ const Container = styled.div`
     "reviews"
     "questions"
     "related-products";
-
-  z-index: 1;
 `;
 
 const HeaderDiv = styled.div`
@@ -92,9 +91,6 @@ const PDdiv = styled.div`
   grid-area: product-details;
   padding: 5px;
   margin:5px;
-  z-index: 1;
-  height: 75vh;
-  padding-bottom: 3vh;
 `;
 
 const Qdiv = styled.div`
@@ -107,24 +103,17 @@ const Qdiv = styled.div`
 const Rdiv = styled.div`
   grid-area: reviews;
   padding: 5px;
-  margin:5px;
- max-height: 20%;
+  margin: 5px;
+
 
 
 `;
 
 const RPdiv = styled.div`
   grid-area: related-products;
-<<<<<<< HEAD
-  border: solid 1px maroon;
-
-  padding: 5px;
-  margin:5px;
-=======
   ${'' /* border: solid 1px black; */}
   padding: 2px;
   margin:2px;
->>>>>>> 3f15db43feb390548094fcc273427d099b282b0a
 `;
 
 
