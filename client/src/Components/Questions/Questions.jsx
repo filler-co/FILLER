@@ -14,11 +14,12 @@ import * as Pos from '../Shared/ModalWindow';
 
 /* Define style for component*/
 const Container = styled.div`
+  background: ${props => props.theme.bg};
   display: grid;
   max-height: 100%;
   min-height: 100%;
   ${'' /* min-height: auto; */}
-  color: black;
+  ${'' /* color: black; */}
   grid-template-columns: 0.3fr 0.7fr;
   grid-template-rows: 0.01fr 0.01fr 0.97fr 0.01fr;
 
@@ -32,7 +33,7 @@ const Container = styled.div`
  `;
 
 const Header = styled.div`
-  color:black;
+  ${'' /* color:black; */}
   grid-area: header;
   ${'' /* padding: 0.25rem; */}
 `;
@@ -44,6 +45,7 @@ const Search = styled.div`
 `;
 const QAList = styled.div`
   ${'' /* background: #0CBABA; */}
+
   grid-area: list;
   ${'' /* padding: 0.25rem; */}
   ${'' /* max-height: 100vh;

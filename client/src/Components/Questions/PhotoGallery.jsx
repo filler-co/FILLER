@@ -11,7 +11,7 @@ const Container = styled.div`
   min-height:auto; */}
   max-width: 30vw;
   min-width: 50vw;
-  color: black;
+  ${'' /* color: black; */}
   grid-template-rows: 1fr;
   grid-template-columns: repeat(5, 1fr);
   grid-template-areas:
