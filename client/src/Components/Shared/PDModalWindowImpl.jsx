@@ -281,6 +281,7 @@ export default function ConfirmationModalImpl(props) {
             <ImageDiv>
                 <LeftScrollSpan onClick={() => {shiftGallery(mainImg-1); setMainImgUrl(galleryList[mainImg-1].url); setMainImg(mainImg-1) }} active={!galleryList[mainImg-1]}></LeftScrollSpan>
                 <RightScrollSpan active={!galleryList[mainImg+1]} onClick={() => {shiftGallery(mainImg+1); setMainImgUrl(galleryList[mainImg+1].url); setMainImg(mainImg+1) }}></RightScrollSpan>
+
                 <Image src={mainImgUrl} alt="..." />
             </ImageDiv>
             <GalleryBar>
