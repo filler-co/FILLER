@@ -13,7 +13,7 @@ import textLogoDark from './Assets/fillertextlogodark.png';
 import {createGlobalStyle, ThemeProvider} from 'styled-components';
 import ToggleBar from './Components/Shared/Togglebar.jsx';
 import LoadingPage from './Components/LoadingPage.jsx';
-
+import LoadingPage from './Components/LoadingPage.jsx';
 
 export const ThemeContext = React.createContext(null);
 
@@ -174,6 +174,7 @@ export function App() {
   };
 
 
+
   const handleTheme = (event) => {
     const color = (globalTheme.bg === 'white') ? {bg:'black', font:'white'} : {bg:'white', font:'black'}
     setGlobalTheme(color);
@@ -223,8 +224,8 @@ export function App() {
       </ThemeContext.Provider>
       </Container>
 </ThemeProvider>
-  );
-}
+  )
+    }
 }
 
 ReactDOM.render(<App />, document.getElementById('root'));
