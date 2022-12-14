@@ -14,14 +14,15 @@ import * as Pos from '../Shared/ModalWindow';
 
 /* Define style for component*/
 const Container = styled.div`
+  background: ${props => props.theme.bg};
   display: grid;
   max-height: 100%;
   min-height: 100%;
   max-width: 1000px;
   margin: auto;
   ${'' /* min-height: auto; */}
-  color: black;
-  grid-template-columns: 0.4fr 0.6fr;
+  ${'' /* color: black; */}
+  grid-template-columns: 0.3fr 0.7fr;
   grid-template-rows: 0.01fr 0.01fr 0.97fr 0.01fr;
 
   grid-template-areas:
@@ -34,7 +35,7 @@ const Container = styled.div`
  `;
 
 const Header = styled.div`
-  color:grey;
+  ${'' /* color:black; */}
   grid-area: header;
   ${'' /* padding: 0.25rem; */}
 `;
@@ -46,6 +47,7 @@ const Search = styled.div`
 `;
 const QAList = styled.div`
   ${'' /* background: #0CBABA; */}
+
   grid-area: list;
   ${'' /* padding: 0.25rem; */}
   ${'' /* max-height: 100vh;
@@ -78,6 +80,7 @@ export function Questions({ renderedProduct, setqNum, qNum }) {
   const [show, setShow] = useState(false);
   const [url, setUrl] = useState('');
 
+
   const showModal = () => {
     setShow(true);
   };
@@ -94,19 +97,20 @@ export function Questions({ renderedProduct, setqNum, qNum }) {
 
   useEffect(() => {
     if (renderedProduct.id){
-            getQuestions();
+            getQuestions(100);
           }
 
   }, [renderedProduct.id]);
 
   /* Get all questions back */
   const getQuestions = (numberQuestions) => {
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions?product_id=${renderedProduct.id}&count=${qNum}`, { headers: { Authorization: token.TOKEN } })
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions?product_id=${renderedProduct.id}&count=${numberQuestions}`, { headers: { Authorization: token.TOKEN } })
       .then((response) => {
         //console.log('Client side response is : ', response.data);
         setQuestions(response.data.results);
         let displayed = response.data.results.length > 2 ? response.data.results.slice(0, 2) : response.data.results
         setDisplayedQuestions(response.data.results);
+        setDisplayedQuestions(displayed);
         // if (response.data.results.length === questions.length) {
         //   console.log('that is all the questions, no more load more button')
         //   setShowMoreBtn(false);
@@ -163,7 +167,7 @@ export function Questions({ renderedProduct, setqNum, qNum }) {
   /* Handle helpful vote */
   const handleVote = (voteName, id) => {
     imcrementVote(voteName, id, () => {
-      // getQuestions(qNum);
+    getQuestions(100);
     });
   }
 
@@ -179,11 +183,31 @@ export function Questions({ renderedProduct, setqNum, qNum }) {
       });
   }
 
+  const handleLoadMoreQuestions = () => {
+    //console.log('load more answers');
+    let totalNumber = questions.length;
+    //console.log('totalnumber is : ', totalNumber, displayedQuestions.length, showLoadmore);
+
+    if (totalNumber > displayedQuestions.length) {
+      if (totalNumber > displayedQuestions.length + 2) {
+        setDisplayedQuestions(questions.slice(0,displayedQuestions.length+2));
+      } else {
+        setDisplayedQuestions(questions);
+        setShowLoadmore(false);
+      }
+    } else {
+      setShowLoadmore(false);
+      getQuestions(100);
+    }
+  }
+
+
+
   return (
     <ProductContext.Provider value={[renderedProduct, postQuestion, hideModal]}>
     <Container>
       <Header>
-        QUESTIONS & ANSWERS
+      <h3>QUESTIONS & ANSWERS</h3>
       </Header>
       <Search>
       <SearchBar searchQuestion={searchQuestion} />
@@ -194,7 +218,8 @@ export function Questions({ renderedProduct, setqNum, qNum }) {
       </QAList>
 
       {showMoreBtn && <MoreQuestionBtn>
-        <MoreButton buttonName='MORE ANSWERED QUESTIONS' actionNeed={getQuestions} setqNum={setqNum} qNum={qNum} />
+        <MoreButton buttonName='MORE QUESTIONS' actionNeed={handleLoadMoreQuestions} setqNum={setqNum} qNum={qNum} />
+        {/* <MoreButton buttonName='MORE ANSWERED QUESTIONS' actionNeed={getQuestions} setqNum={setqNum} qNum={qNum} /> */}
       </MoreQuestionBtn>}
 
       <AskQuestionBtn>
