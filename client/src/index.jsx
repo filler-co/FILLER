@@ -110,8 +110,6 @@ const Rdiv = styled.div`
   padding: 5px;
   margin:5px;
  max-height: 20%;
- padding-bottom: 32vh;
-
 
 `;
 
