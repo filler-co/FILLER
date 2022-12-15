@@ -103,16 +103,16 @@ const ButtonBar = styled.div`
 
 const Image = styled.img`
   max-height: 80%;
-  cursor: pointer;
+  cursor: zoom-in;
 `;
 
 const ZoomImage = styled.img`
   max-height: 80%;
-  cursor: pointer;
 
   &:hover {
+    cursor: zoom-out;
     transform: scale(2.5) translate(${(props)=>(props.xCoor).toString()}%,${(props)=>(props.yCoor).toString()}% );
-
+  }
 `;
 const GalleryBar = styled.div`
   display: flex;
