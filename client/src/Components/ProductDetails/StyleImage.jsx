@@ -20,6 +20,7 @@ const ImageContainer = styled.div`
   place-items: center;
   height: 100%;
   width: 100%;
+  background: ${(props) => props.theme.bg === 'white'? '#F1F1F1' : '#36454f94'};
 
 
 `;
@@ -56,11 +57,12 @@ const ScrollLeftButton = styled.button`
   border: none;
   background: none;
   font-size: 25px;
-  color: rgb(0,0,0, 0.4);
+  color: ${(props) => props.theme.bg === 'white'? 'rgb(0,0,0, 0.4)' : 'rgb(255,255,255, 0.4)'};
 
   &:hover {
-    color: rgb(0,0,0,1);
+    color: ${(props) => props.theme.bg === 'white'? 'rgb(0,0,0, 1)' : 'rgb(255,255,255, 1)'};
   }
+
 
   ${({ active }) => active && `
     disable: true;
@@ -78,10 +80,11 @@ const ScrollRightButton = styled.button`
   border: none;
   background: none;
   font-size: 25px;
-  color: rgb(0,0,0, 0.4);
+
+  color: ${(props) => props.theme.bg === 'white'? 'rgb(0,0,0, 0.4)' : 'rgb(255,255,255, 0.4)'};
 
   &:hover {
-    color: rgb(0,0,0, 1);
+    color: ${(props) => props.theme.bg === 'white'? 'rgb(0,0,0, 1)' : 'rgb(255,255,255, 1)'};
   }
 
   ${({ active }) => active && `
@@ -199,7 +202,7 @@ export default function StyleImage({selectedStylePhotos}) {
     setUrl(galleryList[pos].url)
   }
   return (
-    <ImageContainer theme={theme === true} style={{background: theme?"#f1f1f1":"#0f0f0f"}}>
+    <ImageContainer>
       <SelectedImage onClick={showModal} src={selectedPhoto.url} alt="NO PHOTOS" />
       {/* <FullViewDiv>
         <button onClick={handleClick}>O</button>

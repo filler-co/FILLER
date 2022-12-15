@@ -41,7 +41,7 @@ const SizeDropdownHeader = styled.div`
   height: 44px;
   font-weight: bold;
   font-size: 0.85rem;
-  border: 1px solid black;
+  border:  ${(props) => props.theme.bg === 'white'? '1px solid black' : '1px solid white'};
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -56,11 +56,11 @@ const SizeDropdownListContainer = styled.div`
   z-index: 5;
   overflow-y: scroll;
   overflow-x: hidden;
-  background: white;
+  background: ${(props) => props.theme.bg === 'white'? 'white' : 'black'};
   max-height: 20vh;
-  border-bottom: 1px solid black;
-  border-left: 1px solid black;
-  border-right: 1px solid black;
+  border-bottom: ${(props) => props.theme.bg === 'white'? '1px solid black' : '1px solid white'};
+  border-left: ${(props) => props.theme.bg === 'white'? '1px solid black' : '1px solid white'};
+  border-right: ${(props) => props.theme.bg === 'white'? '1px solid black' : '1px solid white'};
   position: absolute;
   width: inherit;
 `;
@@ -72,10 +72,9 @@ const SizeDropdownList = styled.ul`
 
 const SizeListItem = styled.li`
   cursor: pointer;
-  font-weight: 200;
   &:hover{
     background: #6cccdd;
-    color: white;
+    color: ${(props) => props.theme.bg === 'white'? 'white' : 'black'};
   }
 `;
 
@@ -90,7 +89,7 @@ const QtyDropdownHeader = styled.div`
   z-index: 5;
   height: 44px;
   font-weight: 500;
-  border: 1px solid black;
+  border: ${(props) => props.theme.bg === 'white'? '1px solid black' : '1px solid white'};
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -106,10 +105,10 @@ const QtyDropdownListContainer = styled.div`
   overflow-y: auto;
   overflow-x: hidden;
   max-height: 20vh;
-  border-bottom: 1px solid black;
-  border-left: 1px solid black;
-  border-right: 1px solid black;
-  background: white;
+  border-bottom: ${(props) => props.theme.bg === 'white'? '1px solid black' : '1px solid white'};
+  border-left: ${(props) => props.theme.bg === 'white'? '1px solid black' : '1px solid white'};
+  border-right: ${(props) => props.theme.bg === 'white'? '1px solid black' : '1px solid white'};
+  background: ${(props) => props.theme.bg === 'white'? 'white' : 'black'};
   position: absolute;
   width: inherit;
 `;
@@ -121,10 +120,9 @@ const QtyDropdownList = styled.ul`
 
 const QtyListItem = styled.li`
   cursor: pointer;
-  font-weight: 200;
   &:hover{
     background: #6cccdd;
-    color: white;
+    color: ${(props) => props.theme.bg === 'white'? 'white' : 'black'};
   }
 `;
 
@@ -144,10 +142,10 @@ const AddCartButton = styled.button`
   background: none;
   font-weight: 700;
   height: 52px;
-  background: black;
+  background: ${(props) => props.theme.bg === 'white'? 'black' : 'white'};
   width: 100%;
-  border: 1px solid black;
-  color: white;
+  border: ${(props) => props.theme.bg === 'white'? '1px solid black' : '1px solid white'};
+  color: ${(props) => props.theme.bg === 'white'? 'white' : 'black'};
 
 
   &:hover{
@@ -169,17 +167,17 @@ const FavContainer = styled.div`
 const FavButton =styled.button`
   cursor: pointer;
   background: none;
-  border: 1px solid black;
+  border: ${(props) => props.theme.bg === 'white'? '1px solid black' : '1px solid white'};
   height: 52px;
   width: 52px;
-  color: #black;
+  color: ${(props) => props.theme.bg === 'white'? 'black' : 'white'};
 
 
 
   &:hover{
     background: #6cccdd;
     border: 1px solid #6cccdd;
-    color: white;
+    color: ${(props) => props.theme.bg === 'white'? 'white' : 'black'};
   }
 
 `;
