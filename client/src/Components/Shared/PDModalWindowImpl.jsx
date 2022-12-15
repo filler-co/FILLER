@@ -4,7 +4,6 @@ import {CM_CENTER_CENTER, CM_TOP_CENTER, CM_TOP_LEFT, CM_TOP_RIGHT} from "./Moda
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faChevronRight} from '@fortawesome/free-solid-svg-icons';
 import {faChevronLeft} from '@fortawesome/free-solid-svg-icons';
-import Magnifier from 'react-magnifier';
 // import useEscapeKey from "../hooks/useEscapeKey";
 // import useOutsideClick from "../hooks/useOutsideClick";
 
@@ -108,6 +107,7 @@ const Image = styled.img`
 
 const ZoomImage = styled.img`
   max-height: 80%;
+
 
   &:hover {
     cursor: zoom-out;
