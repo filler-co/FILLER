@@ -76,6 +76,7 @@ export function Questions({ renderedProduct, setqNum, qNum }) {
   const [showMoreBtn, setShowMoreBtn] = useState(true);
   const [searchResults, setSearchResults] = useState([]);
   const [searchFlag, setSearchFlag] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
 
   const [show, setShow] = useState(false);
   const [url, setUrl] = useState('');
@@ -141,6 +142,7 @@ export function Questions({ renderedProduct, setqNum, qNum }) {
 
   /* Filter for questions */
   const searchQuestion = (keyWord) => {
+    setSearchTerm(keyWord);
     //console.log('Search questions with keyword : ', keyWord);
     let results = [];
     let flag = false;
@@ -210,7 +212,7 @@ export function Questions({ renderedProduct, setqNum, qNum }) {
 
 
   return (
-    <ProductContext.Provider value={[renderedProduct, postQuestion, hideModal]}>
+    <ProductContext.Provider value={[renderedProduct, postQuestion, hideModal, searchTerm]}>
     <Container>
       <Header>
       <h3>QUESTIONS & ANSWERS</h3>

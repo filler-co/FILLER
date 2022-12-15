@@ -25,7 +25,7 @@ const Container = styled.div`
     height: auto;
     overflow-y: auto;
     border: solid 1px transparent;
-    border-radius : 10px;
+    ${'' /* border-radius : 10px; */}
 
     top: ${({ openPos }) => (
     {

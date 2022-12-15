@@ -5,54 +5,31 @@ import ModalWindow from '../Shared/ModalWindow';
 import * as Pos from '../Shared/ModalWindow';
 
 /* Define style for component*/
-const Container = styled.div`
-  display: grid;
-  ${'' /* max-height: 25vh;
-  min-height:auto; */}
-  max-width: 30vw;
-  min-width: 50vw;
-  ${'' /* color: black; */}
-  grid-template-rows: 1fr;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-areas:
-    "p1 p2 p3 p4 p5";
-  align-items: start;
-  grid-gap: 0.05rem;
+// const Container = styled.div`
+//   display: grid;
+//   ${'' /* max-height: 25vh;
+//   min-height:auto; */}
+//   max-width: 30vw;
+//   min-width: 50vw;
+//   ${'' /* color: black; */}
+//   grid-template-rows: 1fr;
+//   grid-template-columns: repeat(5, 1fr);
+//   grid-template-areas:
+//     "p1 p2 p3 p4 p5";
+//   align-items: start;
+//   grid-gap: 0.05rem;
+//  `;
+
+ const ContainerFlex = styled.div`
+    margin:10px;
+    ${'' /* cursor: pointer; */}
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 12px;
  `;
 
-const P1 = styled.span`
-  ${'' /* background: #3a3a55; */}
-  grid-area: p1;
-  ${'' /* padding: 0.25rem; */}
-  cursor:pointer;
-
-`;
-
-const P2 = styled.span`
-  ${'' /* background: #3a3a55; */}
-  grid-area: p2;
-  ${'' /* padding: 0.25rem; */}
-  cursor:pointer;
-`;
-
-const P3 = styled.span`
-  ${'' /* background: #3a3a55; */}
-  grid-area: p3;
-  ${'' /* padding: 0.25rem; */}
-  cursor:pointer;
-`;
-
-const P4 = styled.span`
-  ${'' /* background: #3a3a55; */}
-  grid-area: p4;
-  ${'' /* padding: 0.25rem; */}
-  cursor:pointer;
-`;
-
-const P5 = styled.span`
-  ${'' /* background: #3a3a55; */}
-  grid-area: p5;
-  ${'' /* padding: 0.25rem; */}
+const Photo = styled.span`
   cursor:pointer;
 `;
 
@@ -79,15 +56,17 @@ export default function PhotoGallery({ images }) {
 
   }
 
-  // {images[0] && <P1 onClick={() => { handleImgClick(images[0]) }}><img src='http://localhost:3000/dd92769dce988d7debb434de7192b7ed' alt="img" width="100" height="80" /></P1>}
-
   return (
-    <Container>
-      {images[0] && <P1 onClick={() => { handleImgClick(images[0]) }}><img className='border' src={images[0]} alt="img" width="100" height="80" /></P1>}
+    <ContainerFlex>
+      {images.map((img) => {
+        return <Photo onClick={() => { handleImgClick(img) }}><img className='border' src={img} alt="img" width="100" height="80" /></Photo>
+      })}
+      {/* {images[0] && <P1 onClick={() => { handleImgClick(images[0]) }}><img className='border' src={images[0]} alt="img" width="100" height="80" /></P1>}
       {images[1] && <P2 onClick={() => { handleImgClick(images[1]) }}><img className='border' src={images[1]} alt="img" width="100" height="80" /></P2>}
       {images[2] && <P3 onClick={() => { handleImgClick(images[2]) }}><img className='border' src={images[2]} alt="img" width="100" height="80" /></P3>}
       {images[3] && <P4 onClick={() => { handleImgClick(images[3]) }}><img className='border' src={images[3]} alt="img" width="100" height="80" /></P4>}
-      {images[4] && <P5 onClick={() => { handleImgClick(images[4]) }}><img className='border' src={images[4]} alt="img" width="100" height="80" /></P5>}
+      {images[4] && <P5 onClick={() => { handleImgClick(images[4]) }}><img className='border' src={images[4]} alt="img" width="100" height="80" /></P5>} */}
+
       <ModalWindow
         show={show}
         url={url}
@@ -95,7 +74,7 @@ export default function PhotoGallery({ images }) {
         usage='image'
         openPos={Pos.CM_CENTER_CENTER}>
       </ModalWindow>
-    </Container>
+    </ContainerFlex>
   );
 }
 

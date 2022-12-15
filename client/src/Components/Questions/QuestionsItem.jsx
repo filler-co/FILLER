@@ -1,4 +1,4 @@
-import React, { useEffect, createContext } from 'react';
+import React, { useEffect, createContext, useContext } from 'react';
 import { useState } from 'react';
 import styled, { css } from 'styled-components';
 import AnswerItem from './AnswerItem.jsx';
@@ -6,6 +6,8 @@ import {sortResults, imcrementVote} from '../../utils/helper.js';
 import ModalWindow from '../Shared/ModalWindow.jsx';
 import * as Pos from '../Shared/ModalWindow.jsx';
 import axios from 'axios';
+import Highlighter from './HighLighter.jsx';
+import { ProductContext } from './Questions.jsx';
 
 
 /* Define style for component*/
@@ -97,6 +99,8 @@ export function QuestionsItem({ question, handleVote }) {
 
   const [votedFlag, setVotedFlag] = useState(!!localStorage.getItem(question.question_id));
 
+  const [product, postQuestion, hide, searchTerm] = useContext(ProductContext);
+
 
   const showModal = () => {
     setShow(true);
@@ -162,7 +166,8 @@ export function QuestionsItem({ question, handleVote }) {
     <QuestionContext.Provider value={[question, postAnswer, hideModal]}>
       <Container>
       <Question>
-        Q:&nbsp;{question.question_body}
+        {/* Q:&nbsp;{question.question_body} */}
+        Q:&nbsp;<Highlighter text={question.question_body} highlight={searchTerm}></Highlighter>
       </Question>
       <Helpful onClick={handleVoteClick} done={votedFlag}>
         Helpful? Yes({vote})
