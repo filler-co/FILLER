@@ -35,6 +35,7 @@ const TextInput = styled.input`
 
 const Icon = styled.div`
   flex: 0.05 0;
+  cursor: pointer;
 `;
 
 export default function SearchBar({ searchQuestion }) {
