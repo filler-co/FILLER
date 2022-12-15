@@ -7,7 +7,6 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faChevronRight} from '@fortawesome/free-solid-svg-icons';
 import {faChevronLeft} from '@fortawesome/free-solid-svg-icons';
 import {ThemeContext} from './../../index.jsx';
-import Magnifier from 'react-magnifier';
 
 
 
@@ -27,8 +26,6 @@ const ImageContainer = styled.div`
 
 `;
 
-const MagnifierContainer = styled.div`
-`;
 
 const SelectedImage = styled.img`
   max-height: 500px;
