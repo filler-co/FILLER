@@ -107,10 +107,12 @@ const MagnifierDiv = styled.div`
 
 const Image = styled.img`
   max-height: 80%
+  cursor: pointer;
 `;
 
 const ZoomImage = styled.img`
   max-height: 80%;
+  cursor: pointer;
 
   &:hover {
     transform: scale(2.5) translate(${(props)=>(props.xCoor).toString()}%,${(props)=>(props.yCoor).toString()}% );
@@ -289,9 +291,7 @@ export default function ConfirmationModalImpl(props) {
     const [yCoor, setYCoor] = React.useState(0);
 
     const getCursorCoord = (e) => {
-      console.log('x', e.pageX);
       setXCoor(e.pageX);
-      console.log('y', e.pageY);
       setYCoor(e.pageY);
     }
 
