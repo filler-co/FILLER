@@ -213,7 +213,7 @@ export function App() {
         </HeaderDiv>
 
 
-          <AnnouncementDiv>SITE-WIDE ANNOUNCEMENT MESSAGE - NEW PRODUCTS ON SALE</AnnouncementDiv>
+          <AnnouncementDiv>SITE-WIDE ANNOUNCEMENT MESSAGE - <u>NEW PRODUCTS ON SALE</u></AnnouncementDiv>
           <PDdiv>
             <ProductDetails
               renderedProduct={renderedProduct}
