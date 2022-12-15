@@ -101,12 +101,8 @@ const ButtonBar = styled.div`
     width: 100%;
 `;
 
-const MagnifierDiv = styled.div`
-  z-index: 100;
-`;
-
 const Image = styled.img`
-  max-height: 80%
+  max-height: 80%;
   cursor: pointer;
 `;
 
@@ -266,6 +262,7 @@ export default function ConfirmationModalImpl(props) {
           setCenterImg(centerVal);
           setRightImg(centerVal+1);
           setLeftImg(centerVal-1);
+          setZoomMode(false);
         }
       }, [url, show]);
 
