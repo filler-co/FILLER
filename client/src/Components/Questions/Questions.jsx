@@ -74,6 +74,8 @@ export function Questions({ renderedProduct, setqNum, qNum }) {
   const [questions, setQuestions] = useState([]);
   const [displayedQuestions, setDisplayedQuestions] = useState([]);
   const [showMoreBtn, setShowMoreBtn] = useState(true);
+  const [searchResults, setSearchResults] = useState([]);
+  const [searchFlag, setSearchFlag] = useState(false);
 
   const [show, setShow] = useState(false);
   const [url, setUrl] = useState('');
@@ -142,7 +144,7 @@ export function Questions({ renderedProduct, setqNum, qNum }) {
     //console.log('Search questions with keyword : ', keyWord);
     let results = [];
     let flag = false;
-    questions.forEach((question, index) => {
+    displayedQuestions.forEach((question, index) => {
       if (question.question_body.toLowerCase().includes(keyWord)) {
         //console.log('find a match in question');
         results.push(question);
@@ -159,13 +161,19 @@ export function Questions({ renderedProduct, setqNum, qNum }) {
       }
     })
     //console.log('search result is : ', results);
-    setDisplayedQuestions(results);
+    if (results.length === displayedQuestions.length) {
+      setSearchFlag(false);
+    } else {
+      setSearchFlag(true);
+    }
+
+    setSearchResults(results);
   }
 
   /* Handle helpful vote */
   const handleVote = (voteName, id) => {
     imcrementVote(voteName, id, () => {
-    getQuestions(100);
+    // getQuestions(100);
     });
   }
 
@@ -212,7 +220,8 @@ export function Questions({ renderedProduct, setqNum, qNum }) {
       </Search>
       <QAList>
         {/* {displayedQuestions.length > 0 ? displayedQuestions.map((question, index) => <QuestionItem question={question} handleVote={handleVote} key={index} />) : 'Still loading'} */}
-        {displayedQuestions.length > 0 ? displayedQuestions.map((question, index) => <QuestionsItem question={question} handleVote={handleVote} key={index} />) : 'No questions for this product, try another product'}
+        {!searchFlag &&  (displayedQuestions.length > 0 ? displayedQuestions.map((question, index) => <QuestionsItem question={question} handleVote={handleVote} key={index} />) : 'No questions for this product, try another product')}
+        {searchFlag && (searchResults.length > 0 ? searchResults.map((question, index) => <QuestionsItem question={question} handleVote={handleVote} key={index} />) : 'No question match this keyword, try something else')}
       </QAList>
 
       {showMoreBtn && <MoreQuestionBtn>

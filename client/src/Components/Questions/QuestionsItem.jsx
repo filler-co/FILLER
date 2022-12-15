@@ -73,6 +73,7 @@ export function QuestionsItem({ question, handleVote }) {
 
   useEffect(() => {
     // localStorage.clear();
+    setVote(question.question_helpfulness);
     sortResults(Object.values(question.answers),'helpfulness', (result) => {
       setAnswers(result);
       if (result.length > 2) {
@@ -89,6 +90,7 @@ export function QuestionsItem({ question, handleVote }) {
   const [answers, setAnswers] = useState([]);
   const [displayedAnswers, setDisplayedAnswers] = useState([]);
   const [showLoadmore, setShowLoadmore] = useState(false);
+  const [vote, setVote] = useState(0);
 
   const [show, setShow] = useState(false);
   const [url, setUrl] = useState('');
@@ -132,6 +134,7 @@ export function QuestionsItem({ question, handleVote }) {
     if (!localStorage.getItem(question.question_id)) {
       localStorage.setItem(question.question_id, true);
       setVotedFlag(true);
+      setVote(question.question_helpfulness+1);
       handleVote('questions',question.question_id);
     }
 
@@ -162,7 +165,7 @@ export function QuestionsItem({ question, handleVote }) {
         Q:&nbsp;{question.question_body}
       </Question>
       <Helpful onClick={handleVoteClick} done={votedFlag}>
-        Helpful? Yes({question.question_helpfulness})
+        Helpful? Yes({vote})
       </Helpful>
       <AddAnswer onClick={handleAddAnswerClick}>
         Add Answer
