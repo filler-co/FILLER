@@ -19,6 +19,7 @@ export const ThemeContext = React.createContext(null);
 const GlobalStyle = createGlobalStyle`
   body {
     font-family: 'Montserrat', sans-serif;
+    background: ${(props) => (props.theme.bg)};
   }
 `;
 
@@ -49,26 +50,33 @@ const ThemeSwitch = styled.div`
 const HeaderDiv = styled.div`
   padding: 5px;
   margin: 5px;
+  padding-right: 0;
+  margin-right: 0;
   display: flex;
   max-height: 8vh;
   flex-direction: row;
 `;
 
 const HeaderFillerDiv = styled.div`
- background: black;
+ background: ${(props) => props.theme.bg === 'white'? 'black' : 'white'};
  width: 100%;
  height: 80%;
- color: white;
+ color: ${(props) => props.theme.bg === 'white'? 'white' : 'black'};
  font-weight: bold;
  display: flex;
- align-items: flex-end;
+ align-items: center;
  font-size: 1.2;
  padding-left: 4px;
+ justify-content: space-between;
 
 `;
 
+const CoSpan = styled.span`
+  padding-top: 1.5%;
+`;
+
 const AnnouncementDiv = styled.div`
-  color: rgb(0,0,0,0.7);
+  color: ${(props) => props.theme.bg === 'white'? 'rgb(0,0,0,0.7)' : 'rgb(255,255,255, 0.7)'};
   font-style: italic;
   display: flex;
   justify-content: center;
@@ -92,6 +100,13 @@ const ThemeButtonContainer = styled.div`
 `;
 
 const ThemeButton = styled.button`
+  cursor: pointer;
+  border: none;
+  padding-right: 1%;
+
+  font-weight: bold;
+  color: ${(props) => props.theme.bg === 'white'? 'white' : 'black'};
+  background: ${(props) => props.theme.bg === 'white'? 'black' : 'white'};
 
 `;
 
@@ -103,6 +118,7 @@ const PDdiv = styled.div`
   z-index: 1;
   height: 75vh;
   padding-bottom: 3vh;
+  max-width: 75rem;
 `;
 
 const Qdiv = styled.div`
@@ -187,16 +203,17 @@ export function App() {
 <ThemeProvider theme={globalTheme}>
 <Container>
       <GlobalStyle />
-      <button onClick={handleTheme}>GO {globalTheme.bg === 'white' ? 'black' : 'white'}</button>
       <ThemeContext.Provider value={{theme}}>
         <HeaderDiv>
           <ImgLogo src={imgLogo} alt="FILLER IMG"/>
-          <TextLogo src={theme?textLogo:textLogoDark} alt = "FILLER TEXT"/>
-          <HeaderFillerDiv> co.</HeaderFillerDiv>
+          <TextLogo src={(globalTheme.bg==='white')?textLogo:textLogoDark} alt = "FILLER TEXT"/>
+          <HeaderFillerDiv><CoSpan>co.</CoSpan>
+            <ThemeButton onClick={handleTheme}>{globalTheme.bg === 'white' ? 'BLACKOUT' : 'WHITEOUT'}</ThemeButton>
+          </HeaderFillerDiv>
         </HeaderDiv>
 
 
-          <AnnouncementDiv>SITE-WIDE ANNOUNCEMENT MESSAGE - NEW PRODUCTS ON SALE</AnnouncementDiv>
+          <AnnouncementDiv>SITE-WIDE ANNOUNCEMENT MESSAGE - <u>NEW PRODUCTS ON SALE</u></AnnouncementDiv>
           <PDdiv>
             <ProductDetails
               renderedProduct={renderedProduct}

@@ -25,18 +25,34 @@ const SBDiv = styled.div`
   background-position: center;
   background-size: cover;
 
-  ${({ active }) => !active && `
+  ${(props) => (!props.active && props.theme.bg === 'white') && `
   &:hover {
     height: 60px;
     width: 60px;
     border: solid 2px black;
+
   }
   `}
 
-  ${({ active }) => active && `
+  ${(props) => (props.active && props.theme.bg === 'white') && `
   height: 61px;
   width: 61px;
   border: solid 1px black;
+  `}
+
+  ${(props) => (!props.active && props.theme.bg !== 'white') && `
+  &:hover {
+    height: 60px;
+    width: 60px;
+    border: solid 2px white;
+
+  }
+  `}
+
+  ${(props) => (props.active && props.theme.bg !== 'white') && `
+  height: 61px;
+  width: 61px;
+  border: solid 1px white;
   `}
 `;
 

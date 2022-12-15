@@ -12,7 +12,7 @@ import StarHandler from './../Shared/StarHandler.jsx';
 const PDContainer = styled.div`
   display: grid;
   grid-template-columns: 50%, 50%;
-  grid-template-rows: 1fr, 1.5fr, 0.5fr, 1fr, 2.5fr, 1.5fr;
+  grid-template-rows: 1fr 1.5fr 0.5fr 1fr 2.5fr 1.5fr;
   grid-template-areas:
   "product-image product-details"
   "product-image product-details"
@@ -39,7 +39,7 @@ const PDDetailsDiv = styled.div`
   display:flex;
   flex-direction: column;
   justify-content: flex-start;
-  padding-top: 8%;
+  padding-top: 3%;
 `;
 
 
@@ -47,12 +47,15 @@ const PDStarsContainer = styled.div`
   font-size: smaller;
   width: 35vw;
   display: flex;
+  background: rgb(255,255,255,1);
+  margin-bottom: 2px;
 `;
 
 const ScrollSpan = styled.span`
   text-decoration: underline;
   padding-left: 2%;
   cursor: pointer;
+  color: ${(props) => props.theme.bg === 'white'? 'rgb(0,0,0,0.7)' : 'rgb(255,255,255,0.7)'};
   color: rgb(0,0,0,0.7);
 `;
 
