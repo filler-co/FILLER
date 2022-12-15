@@ -21,6 +21,8 @@ const CheckBoxLabel = styled.label`
   top: 0;
   left: 0;
   width: 42px;
+  max-width: 75rem;
+  margin: auto;
   height: 26px;
   border-radius: 15px;
   background: #bebebe;
