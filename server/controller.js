@@ -141,7 +141,7 @@ module.exports.addAnswer = (req, res) => {
 
   const img_urls = [];
   for (let i = 0; i<req.files.length; i++) {
-    img_urls.push(`http://localhost:3000/${req.files[i].filename}`)
+    img_urls.push(`http://ec2-13-57-58-214.us-west-1.compute.amazonaws.com/${req.files[i].filename}`)
   }
 
   axios.post(url, {body:req.body.answer, name:req.body.name, email:req.body.email, photos:img_urls}, { headers: { Authorization: token.TOKEN } } )

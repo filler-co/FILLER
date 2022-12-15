@@ -1,4 +1,4 @@
-import React, { useEffect, createContext } from 'react';
+import React, { useEffect, createContext, useContext } from 'react';
 import { useState } from 'react';
 import styled, { css } from 'styled-components';
 import AnswerItem from './AnswerItem.jsx';
@@ -6,6 +6,8 @@ import {sortResults, imcrementVote} from '../../utils/helper.js';
 import ModalWindow from '../Shared/ModalWindow.jsx';
 import * as Pos from '../Shared/ModalWindow.jsx';
 import axios from 'axios';
+import Highlighter from './HighLighter.jsx';
+import { ProductContext } from './Questions.jsx';
 
 
 /* Define style for component*/
@@ -73,6 +75,7 @@ export function QuestionsItem({ question, handleVote }) {
 
   useEffect(() => {
     // localStorage.clear();
+    setVote(question.question_helpfulness);
     sortResults(Object.values(question.answers),'helpfulness', (result) => {
       setAnswers(result);
       if (result.length > 2) {
@@ -89,11 +92,14 @@ export function QuestionsItem({ question, handleVote }) {
   const [answers, setAnswers] = useState([]);
   const [displayedAnswers, setDisplayedAnswers] = useState([]);
   const [showLoadmore, setShowLoadmore] = useState(false);
+  const [vote, setVote] = useState(0);
 
   const [show, setShow] = useState(false);
   const [url, setUrl] = useState('');
 
   const [votedFlag, setVotedFlag] = useState(!!localStorage.getItem(question.question_id));
+
+  const [product, postQuestion, hide, searchTerm] = useContext(ProductContext);
 
 
   const showModal = () => {
@@ -132,6 +138,7 @@ export function QuestionsItem({ question, handleVote }) {
     if (!localStorage.getItem(question.question_id)) {
       localStorage.setItem(question.question_id, true);
       setVotedFlag(true);
+      setVote(question.question_helpfulness+1);
       handleVote('questions',question.question_id);
     }
 
@@ -159,10 +166,11 @@ export function QuestionsItem({ question, handleVote }) {
     <QuestionContext.Provider value={[question, postAnswer, hideModal]}>
       <Container>
       <Question>
-        Q:&nbsp;{question.question_body}
+        {/* Q:&nbsp;{question.question_body} */}
+        Q:&nbsp;<Highlighter text={question.question_body} highlight={searchTerm}></Highlighter>
       </Question>
       <Helpful onClick={handleVoteClick} done={votedFlag}>
-        Helpful? Yes({question.question_helpfulness})
+        Helpful? Yes({vote})
       </Helpful>
       <AddAnswer onClick={handleAddAnswerClick}>
         Add Answer
