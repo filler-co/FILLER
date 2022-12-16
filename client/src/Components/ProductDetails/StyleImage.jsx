@@ -7,6 +7,8 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faChevronRight} from '@fortawesome/free-solid-svg-icons';
 import {faChevronLeft} from '@fortawesome/free-solid-svg-icons';
 import {ThemeContext} from './../../index.jsx';
+import Magnifier from 'react-magnifier';
+
 
 
 
@@ -24,6 +26,9 @@ const ImageContainer = styled.div`
   background: ${(props) => props.theme.bg === 'white'? '#F1F1F1' : '#36454f94'};
 
 
+`;
+
+const MagnifierContainer = styled.div`
 `;
 
 const SelectedImage = styled.img`
@@ -204,10 +209,8 @@ export default function StyleImage({selectedStylePhotos}) {
   }
   return (
     <ImageContainer>
+
       <SelectedImage onClick={showModal} src={selectedPhoto.url} alt="NO PHOTOS" />
-      {/* <FullViewDiv>
-        <button onClick={handleClick}>O</button>
-      </FullViewDiv> */}
       <GalleryDiv>
         <ScrollLeftDiv>
           <ScrollLeftButton onClick={() => shiftGallery(-1)} active={!galleryList[leftImg]}><FontAwesomeIcon icon={faChevronLeft} /></ScrollLeftButton>

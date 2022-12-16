@@ -25,7 +25,7 @@ const Container = styled.div`
     height: auto;
     overflow-y: auto;
     border: solid 1px transparent;
-    border-radius : 10px;
+    ${'' /* border-radius : 10px; */}
 
     top: ${({ openPos }) => (
     {
@@ -75,7 +75,8 @@ const Image = styled.div`
 `;
 
 const Form = styled.div`
-    min-width: 50vw;
+    min-width: 500px;
+    max-width: 500px;
     min-height: 50vh;
     border-radius: 5px;
     justify-content:center;
