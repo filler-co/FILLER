@@ -160,6 +160,7 @@ const Paragraph = styled.div`
 const Header = styled.div`
   padding: 0.25rem;
   font-size: 1em;
+  text-transform: uppercase;
   ${'' /* border : solid 1px red; */}
   font-weight : bold;
 `;
@@ -313,7 +314,7 @@ export default function ModalForm({ type }) {
 
   return (
     <>
-      {showSuccess ? <><Header>Thanks for your review!</Header><Paragraph>{successMsg}</Paragraph><SuccessButton onClick={handleSuccessClick} /></> :
+      {showSuccess ? <><Header>Thanks for your {type}!</Header><Paragraph>{successMsg}</Paragraph><SuccessButton onClick={handleSuccessClick} /></> :
         <form onSubmit={handleSubmit}>
           <Header>
             {type === 'question' ? <><FormHeader>Ask a Question for </FormHeader><Message>{product.name}</Message></> : <><FormHeader>Submit your Answer</FormHeader><Message>{product.name}</Message><FormHeader>Q:{question_obj.question_body}</FormHeader></>}
