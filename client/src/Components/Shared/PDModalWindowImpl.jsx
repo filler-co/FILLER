@@ -82,6 +82,9 @@ const ImageDiv = styled.div`
     align-items: flex-start;
     border: none;
     z-index: 100;
+    overflow: hidden;
+
+
     ${'' /* background-color: rgba(80,80,150, 0.4); */}
 `;
 
@@ -99,6 +102,17 @@ const ButtonBar = styled.div`
 
 const Image = styled.img`
   max-height: 80%;
+  cursor: zoom-in;
+`;
+
+const ZoomImage = styled.img`
+  max-height: 80%;
+
+
+  &:hover {
+    cursor: zoom-out;
+    transform: scale(2.5) translate(${(props)=>(props.xCoor).toString()}%,${(props)=>(props.yCoor).toString()}% );
+  }
 `;
 const GalleryBar = styled.div`
   display: flex;
@@ -195,7 +209,7 @@ const LeftScrollSpan = styled.span`
     cursor: pointer;
     border: none;
     background: none;
-    width: 50%;
+    width: 25%;
     height: 75%;
     z-index: 101;
     left: 0%;
@@ -211,7 +225,7 @@ const RightScrollSpan = styled.span`
     cursor: pointer;
     border: none;
     background: none;
-    width: 50%;
+    width: 25%;
     height: 75%;
     z-index: 101;
     right: 0%;
@@ -238,6 +252,7 @@ export default function ConfirmationModalImpl(props) {
     const [rightImg, setRightImg] = React.useState(centerVal+1);
     const [mainImgUrl, setMainImgUrl] = React.useState(url);
     const [mainImg, setMainImg] = React.useState(centerVal);
+    const [zoomMode, setZoomMode] = React.useState(false);
 
     React.useEffect(() => {
         if (galleryList && galleryList[0]) {
@@ -247,6 +262,7 @@ export default function ConfirmationModalImpl(props) {
           setCenterImg(centerVal);
           setRightImg(centerVal+1);
           setLeftImg(centerVal-1);
+          setZoomMode(false);
         }
       }, [url, show]);
 
@@ -255,6 +271,7 @@ export default function ConfirmationModalImpl(props) {
         setLeftImg(pos-1);
         setRightImg(pos+1);
         setMainImgUrl(galleryList[pos].url);
+        setZoomMode(false);
         setMainImg(pos);
     }
 
@@ -267,6 +284,13 @@ export default function ConfirmationModalImpl(props) {
     // const sendYes = () => handleClose(true);
 
     const closeWindow = () => handleClose(false);
+    const [xCoor, setXCoor ] = React.useState(0);
+    const [yCoor, setYCoor] = React.useState(0);
+
+    const getCursorCoord = (e) => {
+      setXCoor(e.pageX);
+      setYCoor(e.pageY);
+    }
 
     // useEscapeKey(sendNo);
 
@@ -278,11 +302,18 @@ export default function ConfirmationModalImpl(props) {
             <ButtonBar>
                     <Button onClick={closeWindow} primary={false}>X</Button>
                 </ButtonBar>
-            <ImageDiv>
-                <LeftScrollSpan onClick={() => {shiftGallery(mainImg-1); setMainImgUrl(galleryList[mainImg-1].url); setMainImg(mainImg-1) }} active={!galleryList[mainImg-1]}></LeftScrollSpan>
-                <RightScrollSpan active={!galleryList[mainImg+1]} onClick={() => {shiftGallery(mainImg+1); setMainImgUrl(galleryList[mainImg+1].url); setMainImg(mainImg+1) }}></RightScrollSpan>
-
-                <Image src={mainImgUrl} alt="..." />
+            <ImageDiv zoomMode={zoomMode}>
+                <LeftScrollSpan onClick={() => {shiftGallery(mainImg-1); setMainImgUrl(galleryList[mainImg-1].url); setMainImg(mainImg-1); setZoomMode(false); }} active={!galleryList[mainImg-1]}></LeftScrollSpan>
+                <RightScrollSpan active={!galleryList[mainImg+1]} onClick={() => {shiftGallery(mainImg+1); setMainImgUrl(galleryList[mainImg+1].url); setMainImg(mainImg+1); setZoomMode(false); }}></RightScrollSpan>
+                {/* <MagnifierDiv>
+                  <Magnifier src={mainImgUrl} width='auto' height='80vh' max-height='80%' mgShape='square' mgWidth={200} mgHeight={200}/>
+                </MagnifierDiv> */}
+                {zoomMode && (
+                  <ZoomImage src={mainImgUrl} zoomMode={zoomMode} onClick={() => {setZoomMode(!zoomMode);}} onMouseMove={getCursorCoord} xCoor={((window.innerWidth/2)-xCoor)*.13} yCoor={((window.innerHeight/2)-yCoor)*.13} alt="..." />
+                )}
+                {!zoomMode && (
+                  <Image src={mainImgUrl} zoomMode={zoomMode} onClick={() => {setZoomMode(!zoomMode);}} onMouseMove={getCursorCoord} xCoor={((window.innerWidth/2)-xCoor)*.13} yCoor={((window.innerHeight/2)-yCoor)*.13} alt="..." />
+                )}
             </ImageDiv>
             <GalleryBar>
                 <ScrollLeftDiv>
