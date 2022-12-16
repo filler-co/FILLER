@@ -217,7 +217,7 @@ export default function ModalForm({ type }) {
 
   const handleFileInput = (e) => {
     // handle validations
-    // setSelectedFiles(e.target.files);
+    setSelectedFiles(e.target.files);
     // setImage({
     //   preview: URL.createObjectURL(e.target.files[0]),
     //   raw: e.target.files[0]
@@ -280,6 +280,7 @@ export default function ModalForm({ type }) {
     setName('');
     setEmail('');
     setQuestion('');
+    setImage('');
     setError(null);
 
     if (type === 'question') {
