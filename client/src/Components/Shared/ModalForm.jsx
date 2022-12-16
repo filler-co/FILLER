@@ -43,7 +43,7 @@ const Input = styled.input.attrs({
 `
 
 const DialogStyles = styled.dialog`
-  width: 400px;
+  width: 430px;
   height:450px;
   ${'' /* maxWidth: 100%; */}
   ${'' /* margin: 0 auto; */}
