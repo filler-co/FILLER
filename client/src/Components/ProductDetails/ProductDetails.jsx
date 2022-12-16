@@ -47,7 +47,7 @@ const PDStarsContainer = styled.div`
   font-size: smaller;
   width: 35vw;
   display: flex;
-  background: rgb(255,255,255,1);
+  background: ${(props) => props.theme.bg};
   margin-bottom: 2px;
 `;
 
@@ -56,7 +56,6 @@ const ScrollSpan = styled.span`
   padding-left: 2%;
   cursor: pointer;
   color: ${(props) => props.theme.bg === 'white'? 'rgb(0,0,0,0.7)' : 'rgb(255,255,255,0.7)'};
-  color: rgb(0,0,0,0.7);
 `;
 
 const PDNameContainer = styled.div`

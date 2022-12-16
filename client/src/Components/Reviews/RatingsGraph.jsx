@@ -11,6 +11,7 @@ margin: 20px 0;
 `
 
 const StyledRatingNum = styled.button`
+color: ${(props) => props.theme.bg === 'white' ? 'black' : 'white'};
 background: none;
 border: none;
 border-radius: 5px;
@@ -18,11 +19,11 @@ font-size: 0.8em;
 cursor:pointer;
 &:hover {
   background-color: grey;
-}
+
 
 `
 const StyledRatingAmount = styled.p`
-color: black;
+color: ${(props) => props.theme.font};
 float: right;
 margin: 0 0 10px;
 position: relative;
