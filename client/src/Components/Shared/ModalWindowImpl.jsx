@@ -75,7 +75,8 @@ const Image = styled.div`
 `;
 
 const Form = styled.div`
-    min-width: 50vw;
+    min-width: 500px;
+    max-width: 500px;
     min-height: 50vh;
     border-radius: 5px;
     justify-content:center;
