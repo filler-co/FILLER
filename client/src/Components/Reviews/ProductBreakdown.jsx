@@ -12,7 +12,6 @@ background: lightgrey;
 box-sizing: border-box;
 border: 1px solid black;
 height: 7.5px;
-max-height: 50vh;
 margin-bottom: 0px;
 `
 
