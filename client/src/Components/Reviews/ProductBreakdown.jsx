@@ -29,10 +29,10 @@ export default function ProductBreakdown({renderedProduct}) {
   const [pBList, setPBList] = useState([]);
 
   const charType = [
-     ['Fit','Too Small', 'Too Large'],
-    ['Length', 'Short', 'Long'],
-   ['Comfort','Min.', 'Max.'],
-   ['Quality','Poor', 'Great'],
+     ['Fit','Runs Tight', 'Runs Long'],
+    ['Length', 'Runs Short', ' Runs Long'],
+   ['Comfort','Uncomfortable', 'Perfect'],
+   ['Quality','Poor', 'Perfect'],
    ['Size', 'Small', 'Large'],
    ['Width', 'Narrow', 'Wide'],
   ];

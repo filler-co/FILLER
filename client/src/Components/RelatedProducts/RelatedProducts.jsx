@@ -28,8 +28,7 @@ export default function RelatedProducts({productId, changeRenderedProduct, setRe
 
 
   return (
-    <div className="related-products-container" style={{"maxWidth": "75rem",
-      "margin": 'auto'}}>
+    <div className="related-products-container" >
           <Message>RELATED PRODUCTS</Message>
       {relatedList.map((relatedId, index) =>
       { return (

@@ -13,8 +13,6 @@ import token from '../../../../config';
 
 const ReviewContainer = styled.div`
 display: grid;
-max-width: 75rem;
-margin: auto;
 max-height: 80vh;
 grid-template-columns: .25fr .75fr;
 grid-template-rows: .3fr .3fr .3fr .1fr;

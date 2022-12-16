@@ -56,12 +56,13 @@ export default function StarHandler({ renderedProduct, num, single }) {
       starResult.push(<BlackStar
       width="20px"
       height="20px"
-      stroke="black"/>);
+      stroke="black"
+      z-index="999"/>);
       i += 1;
     }
     if (starArr[1] >= 5 && starArr[1] <= 7) {
       //<FontAwesomeIcon icon={faStarHalf} />
-      starResult.push(<HalfStar width="20px"
+      starResult.push(<HalfStar width="17px"
       height="20px"
       stroke="black" />);
     // } else if (starArr[1] >= 2 && starArr[1] <= 5) {
@@ -74,8 +75,8 @@ export default function StarHandler({ renderedProduct, num, single }) {
         stroke="black"/>)
     }
     while(starResult.length < 5) {
-      starResult.push(<StarOutline  width="20px"
-      height="20px"
+      starResult.push(<StarOutline  width="17px"
+      height="17px"
       />)
     }
 

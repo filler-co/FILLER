@@ -102,7 +102,7 @@ export default function ReviewItem({ review, renderedProduct, rating }) {
 
   if(review.body) {
     let reviewArr = [review.body.slice(0, 50), review.body.slice(50, review.body.length - 1)]
-    console.log(reviewArr)
+    // console.log(reviewArr)
   }
 
 

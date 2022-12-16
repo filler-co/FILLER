@@ -6,15 +6,16 @@ import ReviewForm from './ReviewForm.jsx'
 
 
 const DialogStyles = styled.dialog`
-  width: 500px;
+  width: 600px;
   maxWidth: 100%;
   margin: 0 auto;
   position: fixed;
   left: 50%;
   top: 50%;
-  height: 500px;
+  height: 750px;
+  max-height: 100%;
   transform: translate(-50%,-50%);
-  zIndex: 999;
+  z-index: 999;
   backgroundColor: #eee;
   padding: 10px 20px 40px;
   borderRadius: 8px;
@@ -26,7 +27,6 @@ const DialogStyles = styled.dialog`
 
 
 const DialogCloseButtonStyles = styled.button`
-
 background: white;
 font-size: 0.8em;
 margin: 1em;
