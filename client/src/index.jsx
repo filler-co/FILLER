@@ -14,6 +14,7 @@ import {createGlobalStyle, ThemeProvider} from 'styled-components';
 import ToggleBar from './Components/Shared/Togglebar.jsx';
 import LoadingPage from './Components/LoadingPage.jsx';
 
+
 export const ThemeContext = React.createContext(null);
 
 const GlobalStyle = createGlobalStyle`
@@ -39,8 +40,6 @@ const Container = styled.div`
     "reviews"
     "questions"
     "related-products";
-
-  z-index: 1;
 `;
 
 const ThemeSwitch = styled.div`
@@ -118,7 +117,6 @@ const PDdiv = styled.div`
   z-index: 1;
   height: 75vh;
   padding-bottom: 3vh;
-  max-width: 75rem;
 `;
 
 const Qdiv = styled.div`
@@ -132,8 +130,8 @@ const Qdiv = styled.div`
 const Rdiv = styled.div`
   grid-area: reviews;
   padding: 5px;
-  margin:5px;
- max-height: 20%;
+  margin: 5px;
+
 
 `;
 

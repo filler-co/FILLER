@@ -14,6 +14,7 @@ import Magnifier from 'react-magnifier';
 
 const ImageContainer = styled.div`
   align-items: center;
+  max-width: 44rem;
   display: grid;
   grid-template-rows: 0.8fr, 0.2fr;
   grid-template-columns: 1fr, 1fr, 1fr, 1fr, 1fr;

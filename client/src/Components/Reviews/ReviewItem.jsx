@@ -97,6 +97,14 @@ const formatDate = (dateString) => {
 
 
 export default function ReviewItem({ review, renderedProduct, rating }) {
+  const [over50, setOver50] = useState(false);
+  let reviewArr;
+
+  if(review.body) {
+    let reviewArr = [review.body.slice(0, 50), review.body.slice(50, review.body.length - 1)]
+    // console.log(reviewArr)
+  }
+
 
   return (
     review.display ?
@@ -112,6 +120,7 @@ export default function ReviewItem({ review, renderedProduct, rating }) {
             {review.summary}
         </RevTitle>
         <RevBod>
+            {/* {reviewArr && reviewArr[1].length > 0 ? reviewArr[0], <button>See More</button> : review.body} */}
             {review.body}
         </RevBod>
         <RevRec>

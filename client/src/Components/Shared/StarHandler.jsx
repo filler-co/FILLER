@@ -3,10 +3,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStarHalf, faStar} from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import styled, { css } from 'styled-components';
-import BlackStar from './blackStar.svg';
-import StarOutline from './starOutline.svg';
-import HalfStar from './halfStar.svg';
-import QuarterStar from './quarterStar.svg';
+// import BlackStar from './blackStar.svg';
+// import StarOutline from './starOutline.svg';
+// import HalfStar from './halfStar.svg';
+// import QuarterStar from './quarterStar.svg';
+import GreyStar from '../../Assets/fullstar.png'
+import EmptyStar from '../../Assets/emptystar.png'
+import HalfStar from '../../Assets/halfstar.png'
 
 import token from '../../../../config';
 
@@ -53,30 +56,20 @@ export default function StarHandler({ renderedProduct, num, single }) {
     let i = 0;
     while (i < starArr[0]) {
       //<FontAwesomeIcon icon={faStar} />
-      starResult.push(<BlackStar
-      width="20px"
-      height="20px"
-      stroke="black"/>);
+      starResult.push(<img src={GreyStar}></img>);
       i += 1;
     }
     if (starArr[1] >= 5 && starArr[1] <= 7) {
       //<FontAwesomeIcon icon={faStarHalf} />
-      starResult.push(<HalfStar width="20px"
-      height="20px"
-      stroke="black" />);
+      starResult.push(<img src={HalfStar}></img>);
     // } else if (starArr[1] >= 2 && starArr[1] <= 5) {
     //   //<FontAwesomeIcon icon={faStarHalf} />
     //   starResult.push(<QuarterStar />);
     } else if (starArr[1] >= 7 ){
-      starResult.push(<BlackStar
-        width="20px"
-        height="20px"
-        stroke="black"/>)
+      starResult.push(<img src={GreyStar}></img>)
     }
     while(starResult.length < 5) {
-      starResult.push(<StarOutline  width="20px"
-      height="20px"
-      />)
+      starResult.push(<img src={EmptyStar}></img>)
     }
 
   };
