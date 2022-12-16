@@ -19,7 +19,6 @@
  html,
  body {
    height: 100%;
-   max-width: 75rem;
  }
 
  body {
@@ -59,7 +58,6 @@
  }
 
  main {
-  max-width: 75rem;
    padding: 25px 50px;
    margin: auto;
  }
