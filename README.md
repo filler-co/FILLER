@@ -1,5 +1,5 @@
 
-# Table of Contents -
+# Table of Contents 
 You can link to the different sections below
 
 
@@ -14,7 +14,7 @@ FILLER Co. is proud to present our latest project, a modernized e-commerce inter
 
 
 
-# Overview -
+# Overview 
 A brief description outlining what the project
 
 
@@ -52,7 +52,7 @@ A more detailed outline of the project. What does it do? Is there a high level l
 ![FILLER_sizeStock](https://user-images.githubusercontent.com/64453175/208256826-aea829ee-3ca1-42de-8800-6e217fa15dd9.gif)
 
 
-# Installation -
+# Installation 
   To **build** and install all the dependencies
 ```
   npm install 
@@ -78,11 +78,11 @@ A more detailed outline of the project. What does it do? Is there a high level l
 
 
 
-# Usage -
+# Usage 
 Further details on how the project is meant to be used may be helpful. For a library or framework, this section would outline how to use the library within another project (see socket.io  ). For a service that is meant to be used within a larger project architecture, instructions on how to integrate may be necessary (see node-statsD  ).
 
 [<img src="http://www.google.com.au/images/nav_logo7.png">](http://google.com.au/)
-# Team Members -
+# Team Members 
 Add the names of your team members. Describe roles on the team such as "Product Owner", "Scrum Master" and more.
 <p align="center">
 <a href="https://github.com/palmigloo"><kbd><img width="175" alt="Abigail" src="https://user-images.githubusercontent.com/3084586/208263347-363a0895-7ede-40f6-8f82-83434178ed66.png"></kbd></a>
@@ -90,10 +90,10 @@ Add the names of your team members. Describe roles on the team such as "Product 
 <a href="https://github.com/kylemartinelli"><kbd><img width="175" alt="Kyle" src="https://user-images.githubusercontent.com/3084586/208263384-b764f421-aee0-44a9-93a5-f1abe3910f24.png"></kbd></a>
 </p>
 
-# Roadmap -
+# Roadmap 
 What future enhancements are planned? What is the current status of the project? Is it being actively maintained?
 
-# License -
+# License 
 If open source, state how the project is licensed.
 
 
