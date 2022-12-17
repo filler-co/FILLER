@@ -44,8 +44,25 @@ A more detailed outline of the project. What does it do? Is there a high level l
 
 
 # Installation -
-npm install -- to build
-npm run test -- to test
+  To **build** and install all the dependencies
+```
+  npm install 
+```
+
+  To start **frontend** 
+ ```
+  npm run react-dev 
+```
+  To start **backend** 
+ ```
+  npm run server-dev 
+```
+
+  To **test** 
+  ```
+  npm run test -- to test
+```
+
 
 
 # Usage -
