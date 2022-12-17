@@ -8,6 +8,14 @@ Front end capstone project
 A brief description outlining what the project
 
 
+
+### PRODUCT DETAILS
+<p align="center">
+<img width="748" height="405"  src="https://user-images.githubusercontent.com/64453175/208260718-f8b9358a-9cc0-4445-860f-f153bf174432.gif">
+</p>
+
+
+
 ### RATINGS & REVIEWS
 <p align="center">
 <img width="747" height="532"  src="https://user-images.githubusercontent.com/114783607/208258468-18dc5738-62ee-47a1-81aa-615dc9c27c0a.gif">
@@ -18,6 +26,7 @@ A brief description outlining what the project
 <p align="center">
 <img width="747" height="532"  src="https://user-images.githubusercontent.com/3084586/208255936-9d4b1bdc-bab0-4f93-98f1-25c165a89ce8.gif">
 </p>
+
 
 # Table of Contents -
 You can link to the different sections below
