@@ -2,10 +2,16 @@
 Front end capstone project
 
 # Project Title -
-![Recording 2022-12-17 at 09 32 10 (1)](https://user-images.githubusercontent.com/114783607/208254869-dea31083-8831-492f-992e-ef73f7f7e1f1.gif)
+
 
 # Overview -
 A brief description outlining what the project
+
+
+### RATINGS & REVIEWS
+<p align="center">
+<img width="747" height="532"  src="https://user-images.githubusercontent.com/114783607/208258468-18dc5738-62ee-47a1-81aa-615dc9c27c0a.gif">
+</p>
 
 
 ### QUESTIONS & ANSWERS 
