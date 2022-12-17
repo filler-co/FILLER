@@ -4,22 +4,20 @@ Front end capstone project
 # Project Title -
 ![Recording 2022-12-17 at 09 32 10 (1)](https://user-images.githubusercontent.com/114783607/208254869-dea31083-8831-492f-992e-ef73f7f7e1f1.gif)
 
-
-
-
 # Overview -
 A brief description outlining what the project
-
-![R R_50%](https://user-images.githubusercontent.com/114783607/208256232-34ba758d-cc67-4375-b393-018e666dd474.gif)
-
-![Q A (1)](https://user-images.githubusercontent.com/3084586/208255936-9d4b1bdc-bab0-4f93-98f1-25c165a89ce8.gif)
-
 
 # Table of Contents -
 You can link to the different sections below
 
 # Description -
 A more detailed outline of the project. What does it do? Is there a high level list of features? If describing a project that has visual features, consider adding pictures or animations of the features and functionality in this section. See Adding Screen Captures below.
+
+![FILLER_ChangeTheme](https://user-images.githubusercontent.com/64453175/208255684-b6fde976-0976-43c0-bdf5-0a4c24ebb51a.gif)
+![FILLER_StylesGallery](https://user-images.githubusercontent.com/64453175/208256043-d043ba4c-bcb0-48e7-aa50-b05251547cfd.gif)
+![FILLER_zoomMode](https://user-images.githubusercontent.com/64453175/208256560-915badca-bd1a-4404-9500-ac536f11b240.gif)
+![FILLER_sizeStock](https://user-images.githubusercontent.com/64453175/208256826-aea829ee-3ca1-42de-8800-6e217fa15dd9.gif)
+
 
 # Installation -
 npm install -- to build
