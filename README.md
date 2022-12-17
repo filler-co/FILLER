@@ -8,7 +8,7 @@ A brief description outlining what the project
 
 ### PRODUCT DETAILS
 <p align="center">
-<img width="748" height="405"  src="https://user-images.githubusercontent.com/64453175/208260718-f8b9358a-9cc0-4445-860f-f153bf174432.gif">
+<img width="748" height="399"  src="https://user-images.githubusercontent.com/64453175/208263735-327471e5-98fd-46fc-9711-3e738d9ff39f.gif">
 </p>
 
 
