@@ -81,7 +81,6 @@ A more detailed outline of the project. What does it do? Is there a high level l
 # Usage 
 Further details on how the project is meant to be used may be helpful. For a library or framework, this section would outline how to use the library within another project (see socket.io  ). For a service that is meant to be used within a larger project architecture, instructions on how to integrate may be necessary (see node-statsD  ).
 
-[<img src="http://www.google.com.au/images/nav_logo7.png">](http://google.com.au/)
 # Team Members 
 Add the names of your team members. Describe roles on the team such as "Product Owner", "Scrum Master" and more.
 <p align="center">
