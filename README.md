@@ -4,7 +4,7 @@ You can link to the different sections below
 
 
 
-# FEC
+# Product Description
 
 FILLER Co. is proud to present our latest project, a modernized e-commerce interface developed for a fashion and design business. FILLER was tasked with adapting and modernizing our clients outdated retail portal into a sleek and updated site that prioritizes user experience. Sections such as product details, ratings & reviews, and questions & answers have undergone a complete redesign.
 
@@ -43,7 +43,7 @@ The Questions & Answers module will allow asking and answering of questions for 
 </p>
 
 
-# Description -
+# Detailed Overview 
 A more detailed outline of the project. What does it do? Is there a high level list of features? If describing a project that has visual features, consider adding pictures or animations of the features and functionality in this section. See Adding Screen Captures below.
 
 ![FILLER_theme](https://user-images.githubusercontent.com/64453175/208257058-7636af62-264a-48e5-a965-8eaf58f8d56e.gif)
