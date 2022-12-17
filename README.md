@@ -2,7 +2,8 @@
 You can link to the different sections below
 
 # FEC
-Front end capstone project
+FILLER Co. is proud to present our latest project, a modernized e-commerce interface developed for a fashion and design business. FILLER was tasked with adapting and modernizing our clients outdated retail portal into a sleek and updated site that prioritizes user experience. Sections such as product details, ratings & reviews, and questions & answers have undergone a complete redesign.
+
 
 
 # Overview -
