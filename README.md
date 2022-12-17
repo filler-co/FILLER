@@ -1,12 +1,9 @@
 # FEC
 Front end capstone project
 
-# Project Title -
-
 
 # Overview -
 A brief description outlining what the project
-
 
 
 ### PRODUCT DETAILS
