@@ -23,6 +23,12 @@ A brief description outlining what the project
 
 
 ### QUESTIONS & ANSWERS 
+The Questions & Answers module will allow asking and answering of questions for the product selected. The functionality contained within this module can be divided into several pieces:
+  - View questions
+  - Search for a question
+  - Asking a question
+  - Answering a question
+  
 <p align="center">
 <img width="747" height="532"  src="https://user-images.githubusercontent.com/3084586/208255936-9d4b1bdc-bab0-4f93-98f1-25c165a89ce8.gif">
 </p>
