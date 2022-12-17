@@ -26,6 +26,13 @@ A brief description outlining what the project
 
 
 ### RATINGS & REVIEWS
+The Ratings & Reviews module will allow viewing and submission of reviews for the product selected. The functionality contained within this module can be divided into several pieces:
+ - Write new review
+ - Reviews List
+ - Sorting 
+ - Rating Breakdown
+ - Product Breakdown
+
 <p align="center">
 <img width="747" height="532"  src="https://user-images.githubusercontent.com/114783607/208258468-18dc5738-62ee-47a1-81aa-615dc9c27c0a.gif">
 </p>
