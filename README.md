@@ -1,3 +1,6 @@
+# Table of Contents -
+You can link to the different sections below
+
 # FEC
 Front end capstone project
 
@@ -24,9 +27,6 @@ A brief description outlining what the project
 <img width="747" height="532"  src="https://user-images.githubusercontent.com/3084586/208255936-9d4b1bdc-bab0-4f93-98f1-25c165a89ce8.gif">
 </p>
 
-
-# Table of Contents -
-You can link to the different sections below
 
 # Description -
 A more detailed outline of the project. What does it do? Is there a high level list of features? If describing a project that has visual features, consider adding pictures or animations of the features and functionality in this section. See Adding Screen Captures below.
