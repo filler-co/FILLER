@@ -10,6 +10,8 @@ Front end capstone project
 # Overview -
 A brief description outlining what the project
 
+![R R_50%](https://user-images.githubusercontent.com/114783607/208256232-34ba758d-cc67-4375-b393-018e666dd474.gif)
+
 ![Q A (1)](https://user-images.githubusercontent.com/3084586/208255936-9d4b1bdc-bab0-4f93-98f1-25c165a89ce8.gif)
 
 
