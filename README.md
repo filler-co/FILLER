@@ -60,8 +60,12 @@ A more detailed outline of the project. What does it do? Is there a high level l
 
   To **test** 
   ```
-  npm run test -- to test
+  npm run test 
 ```
+  To check test **coverage**
+  ```
+  npm run test-coverage
+  ```
 
 
 
