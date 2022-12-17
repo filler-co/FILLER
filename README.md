@@ -2,13 +2,10 @@
 Front end capstone project
 
 # Project Title -
-
+![Recording 2022-12-17 at 09 32 10 (1)](https://user-images.githubusercontent.com/114783607/208254869-dea31083-8831-492f-992e-ef73f7f7e1f1.gif)
 
 # Overview -
 A brief description outlining what the project
-
-![R R_50%_cropped](https://user-images.githubusercontent.com/114783607/208256995-c3b05dc2-a29b-489f-8628-c448440db35b.gif)
-
 
 # Table of Contents -
 You can link to the different sections below
@@ -16,7 +13,7 @@ You can link to the different sections below
 # Description -
 A more detailed outline of the project. What does it do? Is there a high level list of features? If describing a project that has visual features, consider adding pictures or animations of the features and functionality in this section. See Adding Screen Captures below.
 
-![FILLER_ChangeTheme](https://user-images.githubusercontent.com/64453175/208255684-b6fde976-0976-43c0-bdf5-0a4c24ebb51a.gif)
+![FILLER_theme](https://user-images.githubusercontent.com/64453175/208257058-7636af62-264a-48e5-a965-8eaf58f8d56e.gif)
 ![FILLER_StylesGallery](https://user-images.githubusercontent.com/64453175/208256043-d043ba4c-bcb0-48e7-aa50-b05251547cfd.gif)
 ![FILLER_zoomMode](https://user-images.githubusercontent.com/64453175/208256560-915badca-bd1a-4404-9500-ac536f11b240.gif)
 ![FILLER_sizeStock](https://user-images.githubusercontent.com/64453175/208256826-aea829ee-3ca1-42de-8800-6e217fa15dd9.gif)
