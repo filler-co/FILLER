@@ -7,6 +7,12 @@ Front end capstone project
 # Overview -
 A brief description outlining what the project
 
+
+### QUESTIONS & ANSWERS 
+<p align="center">
+<img width="747" height="532"  src="https://user-images.githubusercontent.com/3084586/208255936-9d4b1bdc-bab0-4f93-98f1-25c165a89ce8.gif">
+</p>
+
 # Table of Contents -
 You can link to the different sections below
 
