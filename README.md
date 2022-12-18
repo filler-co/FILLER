@@ -19,6 +19,12 @@ A brief description outlining what the project
 
 
 ### PRODUCT DETAILS
+The Product Details module shows relevant information for a single product in the catalog. Its functionality can be divided into several pieces:
+ - Image Gallery
+ - Product Information
+ - Style Selector
+ - Add to Cart
+
 <p align="center">
 <img width="748" height="399"  src="https://user-images.githubusercontent.com/64453175/208263735-327471e5-98fd-46fc-9711-3e738d9ff39f.gif">
 </p>
