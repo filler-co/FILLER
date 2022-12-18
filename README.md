@@ -75,7 +75,12 @@ A more detailed outline of the project. What does it do? Is there a high level l
 ### Expanded View & Zoom Mode
  - Used React's onMouseMove mouse event to track cursor. Cursor coordinates were obtained via mouse event's pageX and pageY properties.
  - Used cursor coordinates in conjunction with the window's innerHeight and innerWidth properties to create dynamic coordinates that were passed into the Translate CSS function of the Transform CSS property
+
 ![FILLER_zoomMode](https://user-images.githubusercontent.com/64453175/208256560-915badca-bd1a-4404-9500-ac536f11b240.gif)
+
+### Dropdowns and Buttons
+ - Used React states to track dropdown values.
+ - Used localStorage to persist favorites-list through multiple sessions.
 
 
 ![FILLER_sizeStock](https://user-images.githubusercontent.com/64453175/208256826-aea829ee-3ca1-42de-8800-6e217fa15dd9.gif)
