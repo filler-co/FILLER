@@ -66,8 +66,18 @@ A more detailed outline of the project. What does it do? Is there a high level l
  - Leveraged global prop with Ternary and Logical && operators to dynamically style specific features.
 
 ![FILLER_theme](https://user-images.githubusercontent.com/64453175/208257058-7636af62-264a-48e5-a965-8eaf58f8d56e.gif)
+
+### Style Select & Image Gallery
+ - Used React states to track displayed image, image gallery positions, and selected style.
+
 ![FILLER_StylesGallery](https://user-images.githubusercontent.com/64453175/208256043-d043ba4c-bcb0-48e7-aa50-b05251547cfd.gif)
+
+### Expanded View & Zoom Mode
+ - Used React's onMouseMove mouse event to track cursor. Cursor coordinates were obtained via mouse event's pageX and pageY properties.
+ - Used cursor coordinates in conjunction with the window's innerHeight and innerWidth properties to create dynamic coordinates that were passed into the Translate CSS function of the Transform CSS property
 ![FILLER_zoomMode](https://user-images.githubusercontent.com/64453175/208256560-915badca-bd1a-4404-9500-ac536f11b240.gif)
+
+
 ![FILLER_sizeStock](https://user-images.githubusercontent.com/64453175/208256826-aea829ee-3ca1-42de-8800-6e217fa15dd9.gif)
 
 
