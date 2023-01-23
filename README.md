@@ -130,7 +130,6 @@ A more detailed outline of the project. What does it do? Is there a high level l
     - AWS
 
 # Team Members 
-Add the names of your team members. Describe roles on the team such as "Product Owner", "Scrum Master" and more.
 <p align="center">
 <a href="https://github.com/palmigloo"><kbd><img width="175" alt="Abigail" src="https://user-images.githubusercontent.com/3084586/208263347-363a0895-7ede-40f6-8f82-83434178ed66.png"></kbd></a>
 <a href="https://github.com/svemi"><kbd><img width="175" alt="Sai" src="https://user-images.githubusercontent.com/3084586/208263354-569cfe2c-1ebc-4f14-ac58-68abbf701dc6.png"></kbd></a>
